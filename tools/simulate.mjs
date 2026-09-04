@@ -17,20 +17,32 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const PORT = 8787;
-const ADMIN = 'test-admin';
+const args = process.argv.slice(2);
+const argOf = (name) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : null; };
+// --remote <url> --admin <token> [--token <ingest>] : test against a deployed backend instead of a local one
+const REMOTE = argOf('--remote');
+const ADMIN = argOf('--admin') || 'test-admin';
+const INGEST = argOf('--token') || '';
+const ENDPOINT = REMOTE ? REMOTE.replace(/\/+$/, '') : `http://localhost:${PORT}`;
+const gameId = 'simgame-' + Date.now().toString(36);
 const stamp = new Date().toISOString().replace(/[:.]/g, '-');
 const OUT = path.join(__dirname, 'out', 'sim-' + stamp);
 fs.mkdirSync(OUT, { recursive: true });
 const say = (...a) => console.log(`[${new Date().toISOString().slice(11, 19)}]`, ...a);
 
-// 1. backend
-const backend = spawn(process.execPath, [path.join(ROOT, 'backend', 'server.js')], {
-  env: Object.assign({}, process.env, { PORT: String(PORT), DATA_DIR: path.join(OUT, 'data'), ADMIN_TOKEN: ADMIN }),
-  stdio: ['ignore', 'pipe', 'pipe']
-});
-backend.stdout.on('data', (d) => say('backend:', String(d).trim()));
-backend.stderr.on('data', (d) => say('backend!', String(d).trim()));
-await new Promise((r) => setTimeout(r, 800));
+// 1. backend (local unless --remote)
+let backend = null;
+if (!REMOTE) {
+  backend = spawn(process.execPath, [path.join(ROOT, 'backend', 'server.js')], {
+    env: Object.assign({}, process.env, { PORT: String(PORT), DATA_DIR: path.join(OUT, 'data'), ADMIN_TOKEN: ADMIN }),
+    stdio: ['ignore', 'pipe', 'pipe']
+  });
+  backend.stdout.on('data', (d) => say('backend:', String(d).trim()));
+  backend.stderr.on('data', (d) => say('backend!', String(d).trim()));
+  await new Promise((r) => setTimeout(r, 800));
+} else {
+  say('using remote backend', ENDPOINT);
+}
 
 // 2. browser + options
 const context = await chromium.launchPersistentContext(path.join(OUT, 'profile'), {
@@ -47,7 +59,8 @@ sw.on('console', (m) => say('sw:', m.type(), m.text()));
 const opt = await context.newPage();
 await opt.goto(`chrome-extension://${extId}/src/options.html`);
 await opt.check('input[name="consent"][value="accepted"]');
-await opt.fill('#endpoint', `http://localhost:${PORT}`);
+await opt.fill('#endpoint', ENDPOINT);
+if (INGEST) await opt.fill('#token', INGEST);
 await opt.click('#save');
 await opt.waitForTimeout(500);
 await opt.screenshot({ path: path.join(OUT, 'options.png') });
@@ -58,7 +71,7 @@ page.on('console', (m) => { if (m.text().includes('[CCT]')) say('page:', m.text(
 await page.goto('https://colonist.io/', { waitUntil: 'domcontentloaded' });
 await page.waitForTimeout(1500);
 
-const result = await page.evaluate(async () => {
+const result = await page.evaluate(async (gameId) => {
   const CH = 'colonist-card-tracker';
   const enc = (v) => window.CCTMsgpack.encode(v);
   const sid = 99;
@@ -73,7 +86,7 @@ const result = await page.evaluate(async () => {
   post('socket-new', { sid, url: 'wss://sim' });
   post('socket-open', { sid, url: 'wss://sim' });
   post('text', { sid, url: 'wss://sim', data: { type: 'Connected', userSessionId: 'sess-abc' }, raw: JSON.stringify({ type: 'Connected', userSessionId: 'sess-abc' }) });
-  frameIn(game(1, { databaseGameId: 'simgame-0001', serverId: 'srv', reconnectToken: 'tok-secret', gameSettingId: 'gs1' }));
+  frameIn(game(1, { databaseGameId: gameId, serverId: 'srv', reconnectToken: 'tok-secret', gameSettingId: 'gs1' }));
   frameIn(game(4, {
     gameState: {
       playerStates: { 1: { resourceCards: { 0: 0 } }, 2: { resourceCards: {} }, 3: { resourceCards: { 0: 0 } }, 4: { resourceCards: { 0: 0 } } },
@@ -113,7 +126,7 @@ const result = await page.evaluate(async () => {
   await sleep(500);
   const st = JSON.parse(document.getElementById('cct-state').textContent);
   return { phase: st.phase, players: st.players.map((p) => p.name), recording: st.recording, consent: st.consent, stats: st.stats };
-});
+}, gameId);
 say('page state', JSON.stringify(result));
 await page.screenshot({ path: path.join(OUT, 'game.png') });
 
@@ -121,9 +134,10 @@ await page.screenshot({ path: path.join(OUT, 'game.png') });
 let uploaded = null;
 for (let i = 0; i < 20; i++) {
   await page.waitForTimeout(3000);
-  const res = await fetch(`http://localhost:${PORT}/games`, { headers: { authorization: 'Bearer ' + ADMIN } });
+  const res = await fetch(`${ENDPOINT}/games?after=0&limit=1000`, { headers: { authorization: 'Bearer ' + ADMIN } });
   const { games } = await res.json();
-  if (games.length) { uploaded = games[0]; break; }
+  const mine = (games || []).filter((g) => g.game_id === gameId);
+  if (mine.length) { uploaded = mine[0]; break; }
 }
 await opt.reload();
 await opt.waitForTimeout(800);
@@ -133,16 +147,19 @@ say('options rows:', JSON.stringify(rows));
 
 if (uploaded) {
   say('UPLOADED', JSON.stringify(uploaded));
-  const lines = fs.readFileSync(path.join(OUT, 'data', 'index.jsonl'), 'utf8').trim().split(/\r?\n/);
-  const meta = JSON.parse(lines[lines.length - 1]).meta;
-  say('standings', JSON.stringify(meta.standings), 'winnerColor', meta.winnerColor, 'players', JSON.stringify(meta.players));
-  const file = path.join(OUT, 'data', uploaded.file);
-  say('file', file, fs.statSync(file).size, 'bytes');
-  fs.copyFileSync(file, path.join(OUT, 'sample.cctr.gz'));
+  const r = await fetch(`${ENDPOINT}/games/${uploaded.key}`, { headers: { authorization: 'Bearer ' + ADMIN } });
+  const buf = Buffer.from(await r.arrayBuffer());
+  fs.writeFileSync(path.join(OUT, 'sample.cctr.gz'), buf);
+  say('downloaded', uploaded.key, buf.length, 'bytes');
+  if (!REMOTE) {
+    const lines = fs.readFileSync(path.join(OUT, 'data', 'index.jsonl'), 'utf8').trim().split(/\r?\n/);
+    const meta = JSON.parse(lines[lines.length - 1]).meta;
+    say('standings', JSON.stringify(meta.standings), 'winnerColor', meta.winnerColor, 'players', JSON.stringify(meta.players));
+  }
 } else {
   say('NOT UPLOADED');
 }
 await context.close();
-backend.kill();
+if (backend) backend.kill();
 say('done', OUT);
 process.exit(uploaded ? 0 : 1);
