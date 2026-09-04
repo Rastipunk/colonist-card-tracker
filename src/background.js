@@ -10,7 +10,7 @@ importScripts('msgpack.js', 'recorder/format.js', 'recorder/store.js');
   var VERSION = chrome.runtime.getManifest().version;
   // Set this to your ingest URL before publishing (users can override it in options).
   var DEFAULT_ENDPOINT = '';
-  var DEFAULT_TOKEN = '';
+  var DEFAULT_TOKEN = '1503d9c7122260685dd7f70db2725762';
   var MAX_ATTEMPTS = 40;
   var END_GRACE_MS = 20000;
   var RETRY_ALARM = 'cct-upload-retry';
