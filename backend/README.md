@@ -32,7 +32,7 @@ Variables:
 | `MAX_BYTES` | Tamaño máximo por partida (8 MB por defecto). |
 | `RATE_PER_HOUR` | Subidas por hora y por instalación (60 por defecto). |
 
-Después, pon la URL pública en `DEFAULT_ENDPOINT` de `src/background.js` (o en Opciones para pruebas).
+Despliegue actual: proyecto `cct-ingest`, servicio `cct-ingest`, dominio `https://cct-ingest-production.up.railway.app` (ya configurado como `DEFAULT_ENDPOINT` en `src/background.js`).
 
 ## Descargar el dataset
 
