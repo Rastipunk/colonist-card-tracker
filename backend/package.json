@@ -1,0 +1,11 @@
+{
+  "name": "cct-ingest",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ingest service for Colonist Card Tracker recordings",
+  "main": "server.js",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

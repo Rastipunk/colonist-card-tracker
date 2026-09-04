@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Colonist Card Tracker</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>🃏 Colonist Card Tracker <span id="version"></span></h1>
+
+    <section>
+      <h2 data-i18n="researchTitle"></h2>
+      <p data-i18n="researchText"></p>
+      <p>
+        <label><input type="radio" name="consent" value="accepted"> <span data-i18n="consentYes"></span></label><br>
+        <label><input type="radio" name="consent" value="declined"> <span data-i18n="consentNo"></span></label>
+      </p>
+      <p class="muted"><span data-i18n="installId"></span> <code id="installId"></code> <span data-i18n="installIdNote"></span></p>
+      <p class="muted"><a id="privacyLink" href="#" target="_blank" data-i18n="privacy"></a></p>
+    </section>
+
+    <section>
+      <h2 data-i18n="serverTitle"></h2>
+      <p>
+        <label><span data-i18n="endpoint"></span> <input id="endpoint" type="url" placeholder="https://..."></label>
+        <label><span data-i18n="token"></span> <input id="token" type="text"></label>
+        <button id="save" data-i18n="save"></button>
+      </p>
+      <p><label><input id="keepLocal" type="checkbox"> <span data-i18n="keepLocal"></span></label></p>
+    </section>
+
+    <section>
+      <h2 data-i18n="gamesTitle"></h2>
+      <p>
+        <button id="retry" data-i18n="retry"></button>
+        <button id="refresh" data-i18n="refresh"></button>
+        <button id="deleteAll" class="danger" data-i18n="deleteAll"></button>
+      </p>
+      <table id="sessions">
+        <thead>
+          <tr><th data-i18n="colDate"></th><th data-i18n="colGame"></th><th data-i18n="colPlayers"></th><th data-i18n="colFrames"></th><th data-i18n="colSize"></th><th data-i18n="colStatus"></th><th></th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p id="empty" class="muted" hidden data-i18n="empty"></p>
+    </section>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  background: #0f1319;
+  color: #e6ebf1;
+  font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+main { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
+h1 { font-size: 22px; margin: 0 0 18px; }
+h1 span { font-size: 13px; color: #8fa0b5; font-weight: 400; margin-left: 6px; }
+h2 { font-size: 16px; margin: 0 0 8px; }
+section { background: #171c25; border: 1px solid #262d3a; border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+p { margin: 8px 0; }
+.muted { color: #8fa0b5; font-size: 12.5px; }
+code { background: #0f1319; padding: 1px 5px; border-radius: 4px; }
+label { display: inline-block; margin: 4px 12px 4px 0; }
+input[type="url"], input[type="text"] {
+  width: 320px; max-width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid #334; background: #0f1319; color: #e6ebf1;
+}
+button {
+  padding: 6px 12px; border-radius: 6px; border: 1px solid #3a4557; background: #222a37; color: #e6ebf1; cursor: pointer; margin-right: 6px;
+}
+button:hover { background: #2c3546; }
+button.danger { border-color: #7a3030; color: #ff9c9c; }
+button.small { padding: 2px 8px; font-size: 12px; }
+a { color: #8ab4ff; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid #262d3a; white-space: nowrap; }
+th { color: #8fa0b5; font-weight: 500; }
+td.status-uploaded { color: #7ee2a8; }
+td.status-pending, td.status-local, td.status-recording, td.status-finalizing { color: #ffcf6b; }
+td.status-failed { color: #ff8a80; }
+#saved { color: #7ee2a8; margin-left: 8px; }

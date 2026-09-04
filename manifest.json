@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Colonist Card Tracker",
+  "version": "1.1.0",
+  "description": "Contador de cartas para colonist.io con probabilidades de robos, banco, cartas de desarrollo y dados. Opcionalmente graba partidas anonimizadas para investigación.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "alarms"],
+  "host_permissions": ["https://colonist.io/*"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "options_ui": {
+    "page": "src/options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://colonist.io/*"],
+      "world": "MAIN",
+      "run_at": "document_start",
+      "js": ["src/msgpack.js", "src/inject.js"]
+    },
+    {
+      "matches": ["https://colonist.io/*"],
+      "run_at": "document_start",
+      "js": [
+        "src/protocol.js",
+        "src/engine/worlds.js",
+        "src/engine/tracker.js",
+        "src/content.js"
+      ],
+      "css": ["src/overlay.css"]
+    }
+  ]
+}
