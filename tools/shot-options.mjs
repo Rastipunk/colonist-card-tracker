@@ -1,0 +1,12 @@
+import { chromium } from 'playwright';
+import path from 'node:path';
+const ROOT = process.argv[2], OUT = process.argv[3];
+const ctx = await chromium.launchPersistentContext(path.join(process.env.TEMP, 'cct-shot-profile-' + Date.now()), { headless: false, viewport: { width: 1280, height: 800 }, args: [`--disable-extensions-except=${ROOT}`, `--load-extension=${ROOT}`, '--no-first-run'] });
+let sw = ctx.serviceWorkers()[0]; if (!sw) sw = await ctx.waitForEvent('serviceworker');
+const id = new URL(sw.url()).host;
+const p = await ctx.newPage();
+await p.goto(`chrome-extension://${id}/src/options.html`);
+await p.waitForTimeout(800);
+await p.screenshot({ path: OUT });
+await ctx.close();
+console.log('saved', OUT);
