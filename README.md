@@ -4,9 +4,9 @@ Extensión de Chrome (Manifest V3) para [colonist.io](https://colonist.io) con d
 
 1. **Contador de cartas** en vivo: recursos por jugador con probabilidades para los robos ocultos,
    banco, cartas de desarrollo y estadísticas de dados.
-2. **Grabación para investigación** (opcional, con consentimiento explícito): guarda la historia
-   completa de cada partida (jugadas, intercambios, dados, estado y chat) anonimizada en el navegador
-   y la envía a tu servidor al terminar.
+2. **Grabación para investigación** (requiere aceptación explícita; sin ella el contador no se
+   activa): guarda la historia completa de cada partida (jugadas, intercambios, dados, estado y chat)
+   anonimizada en el navegador y la envía a tu servidor al terminar.
 
 A diferencia de los trackers anteriores, **no lee el DOM**. Intercepta el WebSocket del juego,
 decodifica los mensajes (MessagePack) y procesa el log estructurado que el servidor envía al
@@ -62,7 +62,9 @@ colonist.io ──WebSocket──► src/inject.js (MAIN)        bytes crudos, a
 - Persistencia y reintentos: las tramas se guardan en IndexedDB durante la partida; al terminar
   (o al cerrar el socket / recargar) se finaliza y se sube. Sin servidor configurado, la partida queda
   en local y se puede exportar desde Opciones. Alarma cada 15 min para reintentos.
-- Consentimiento: tarjeta en el panel la primera vez y radio en Opciones. Sin aceptar no se graba nada.
+- Consentimiento: tarjeta en el panel la primera vez y radio en Opciones. Sin aceptar no se graba nada
+  y el contador permanece desactivado (el texto público habla de investigación sobre toma de decisiones
+  y negociación).
 
 ### Backend
 

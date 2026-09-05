@@ -59,11 +59,12 @@
       unknownCol: 'tipo desconocido',
       rec: 'REC',
       recTitle: 'Grabando la partida (anonimizada) para investigación',
-      consentTitle: 'Ayuda a la investigación',
-      consentText: 'Esta extensión es gratuita. A cambio, si aceptas, guarda la historia de cada partida (jugadas, intercambios y chat) de forma anónima: los nombres de todos los jugadores se sustituyen por códigos antes de salir de tu navegador. Los datos se usan para investigar cómo juegan y negocian las personas y para entrenar bots de Catan.',
-      consentYes: 'Acepto',
-      consentNo: 'Solo el contador',
+      consentTitle: 'Antes de empezar',
+      consentText: 'Esta extensión es gratuita. A cambio, guarda la historia de las partidas (jugadas, intercambios y chat) de forma anónima: los nombres de todos los jugadores se sustituyen por códigos antes de salir de tu navegador. Los datos se recogen exclusivamente con fines de investigación sobre la toma de decisiones y la negociación en el juego. Para usar el contador es necesario aceptar.',
+      consentYes: 'Acepto y activar el contador',
+      consentNo: 'No, gracias',
       consentMore: 'Más detalles',
+      consentDeclined: 'El contador está desactivado porque no has aceptado la recogida anónima de datos. Puedes aceptar cuando quieras.',
       recOff: 'Grabación desactivada'
     },
     en: {
@@ -96,11 +97,12 @@
       unknownCol: 'unknown type',
       rec: 'REC',
       recTitle: 'Recording this game (anonymised) for research',
-      consentTitle: 'Help the research',
-      consentText: 'This extension is free. In return, if you accept, it stores the history of each game (moves, trades and chat) anonymously: every player name is replaced by a code before anything leaves your browser. The data is used to study how people play and negotiate and to train Catan bots.',
-      consentYes: 'I accept',
-      consentNo: 'Counter only',
+      consentTitle: 'Before you start',
+      consentText: 'This extension is free. In return, it stores the history of games (moves, trades and chat) anonymously: every player name is replaced by a code before anything leaves your browser. The data is collected exclusively for research on decision-making and negotiation in the game. Accepting is required to use the counter.',
+      consentYes: 'Accept and enable the counter',
+      consentNo: 'No, thanks',
       consentMore: 'More details',
+      consentDeclined: 'The counter is disabled because you have not accepted the anonymous data collection. You can accept at any time.',
       recOff: 'Recording off'
     }
   };
@@ -571,14 +573,21 @@
     try { s = tracker.summary(); } catch (e) { console.error('[CCT] summary error', e); return; }
     publishState(s);
 
-    if (settings.consent === 'unset') {
+    if (settings.consent !== 'accepted') {
+      // Consent gates the whole UI: no counts are shown until the user accepts.
       ui.consent.hidden = false;
-      ui.consent.innerHTML = '<b>' + T.consentTitle + '</b><p>' + T.consentText + '</p>' +
+      var declined = settings.consent === 'declined';
+      ui.consent.innerHTML = '<b>' + T.consentTitle + '</b><p>' + (declined ? T.consentDeclined : T.consentText) + '</p>' +
         '<div class="cct-consent-actions"><button data-act="yes" class="primary">' + T.consentYes + '</button>' +
-        '<button data-act="no">' + T.consentNo + '</button><button data-act="more" class="link">' + T.consentMore + '</button></div>';
-    } else {
-      ui.consent.hidden = true;
+        (declined ? '' : '<button data-act="no">' + T.consentNo + '</button>') +
+        '<button data-act="more" class="link">' + T.consentMore + '</button></div>';
+      ui.rec.hidden = true;
+      ui.status.textContent = s.phase === 'idle' ? T.waiting : (s.phase === 'ended' ? T.ended : T.live);
+      ui.status.className = 'cct-status';
+      ui.body.innerHTML = '';
+      return;
     }
+    ui.consent.hidden = true;
     ui.rec.hidden = !isRecording();
 
     if (s.phase === 'idle') {
@@ -645,8 +654,7 @@
     foot.push(s.worlds + ' ' + T.scenarios + (s.approx ? ' (' + T.approx + ')' : ''));
     var warnHtml = '';
     if (s.contradictions > 0) warnHtml = '<span class="warn" title="contradictions">⚠ ' + s.contradictions + '</span>';
-    var recNote = settings.consent === 'declined' ? '<span title="' + T.recOff + '">⏺̸ </span>' : '';
-    html += '<div class="cct-foot"><span>' + foot.join(' · ') + '</span>' + warnHtml + '<span>' + recNote + 'v' + VERSION + '</span></div>';
+    html += '<div class="cct-foot"><span>' + foot.join(' · ') + '</span>' + warnHtml + '<span>v' + VERSION + '</span></div>';
 
     ui.body.innerHTML = html;
   }

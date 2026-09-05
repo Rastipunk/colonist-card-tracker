@@ -6,9 +6,9 @@
   var STRINGS = {
     es: {
       researchTitle: 'Datos para investigación',
-      researchText: 'Si aceptas, la extensión guarda la historia de cada partida que juegas en colonist.io (jugadas, intercambios, dados y chat) y la envía al servidor del proyecto al terminar. Antes de salir de tu navegador, todos los nombres de usuario e identificadores (los tuyos y los de los demás jugadores) se sustituyen por códigos generados con una clave aleatoria que solo existe en tu instalación; avatares, correos y tokens se eliminan. Toda la información es anónima y se usa exclusivamente con fines de investigación. El contador funciona igual con o sin grabación.',
+      researchText: 'La extensión guarda la historia de cada partida que juegas en colonist.io (jugadas, intercambios, dados y chat) y la envía al servidor del proyecto al terminar. Antes de salir de tu navegador, todos los nombres de usuario e identificadores (los tuyos y los de los demás jugadores) se sustituyen por códigos generados con una clave aleatoria que solo existe en tu instalación; avatares, correos y tokens se eliminan. Toda la información es anónima y se recoge exclusivamente con fines de investigación sobre la toma de decisiones y la negociación en el juego. Para usar el contador es necesario aceptar.',
       consentYes: 'Acepto: grabar y enviar mis partidas anonimizadas',
-      consentNo: 'No: solo quiero el contador',
+      consentNo: 'No acepto (el contador queda desactivado)',
       installId: 'Identificador de instalación:',
       installIdNote: '(aleatorio, no está ligado a tu cuenta)',
       privacy: 'Política de privacidad',
@@ -32,9 +32,9 @@
     },
     en: {
       researchTitle: 'Research data',
-      researchText: 'If you accept, the extension stores the history of each game you play on colonist.io (moves, trades, dice and chat) and uploads it to the project server when the game ends. Before anything leaves your browser, every username and identifier (yours and the other players\') is replaced by a code generated with a random key that only exists in your installation; avatars, e-mails and tokens are removed. All information is anonymous and used exclusively for research. The counter works the same with or without recording.',
+      researchText: 'The extension stores the history of each game you play on colonist.io (moves, trades, dice and chat) and uploads it to the project server when the game ends. Before anything leaves your browser, every username and identifier (yours and the other players\') is replaced by a code generated with a random key that only exists in your installation; avatars, e-mails and tokens are removed. All information is anonymous and collected exclusively for research on decision-making and negotiation in the game. Accepting is required to use the counter.',
       consentYes: 'I accept: record and upload my anonymised games',
-      consentNo: 'No: I only want the counter',
+      consentNo: 'I do not accept (the counter stays disabled)',
       installId: 'Installation id:',
       installIdNote: '(random, not linked to your account)',
       privacy: 'Privacy policy',

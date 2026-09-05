@@ -2,15 +2,15 @@
 
 _English version below._
 
-**Resumen en una frase:** toda la información que esta extensión guarda es anónima y se utiliza exclusivamente con fines de investigación.
+**Resumen en una frase:** toda la información que esta extensión guarda es anónima y se utiliza exclusivamente con fines de investigación sobre la toma de decisiones y la negociación en el juego.
 
 ## Qué hace la extensión
 
 Muestra un contador de cartas mientras juegas en colonist.io. Para ello lee, dentro de tu navegador, los mensajes que el servidor de Colonist ya envía a la página. No modifica la partida, no envía nada a Colonist y no actúa en ninguna otra web.
 
-## Grabación para investigación (solo si aceptas)
+## Grabación para investigación (requiere tu aceptación)
 
-La primera vez que abres el panel se te pregunta si quieres colaborar. Solo si aceptas expresamente, la extensión guarda la historia de cada partida que juegas: jugadas, dados, intercambios, estado de la partida y mensajes del chat de la partida. La grabación se envía al servidor del proyecto cuando termina la partida. Puedes retirar el consentimiento en cualquier momento desde Opciones; el contador sigue funcionando exactamente igual.
+La primera vez que abres el panel se te pide aceptar la recogida anónima de datos; el contador solo se activa si aceptas. Al aceptar, la extensión guarda la historia de cada partida que juegas: jugadas, dados, intercambios, estado de la partida y mensajes del chat de la partida. La grabación se envía al servidor del proyecto cuando termina la partida. Puedes retirar el consentimiento en cualquier momento desde Opciones; en ese caso el contador queda desactivado y no se graba nada.
 
 ## Anonimización: qué sale de tu navegador y qué no
 
@@ -27,7 +27,7 @@ Se guarda además un identificador de instalación aleatorio (no está ligado a 
 
 ## Uso de los datos
 
-Investigación sobre cómo se juega y se negocia en Catan y entrenamiento de agentes de juego (bots). Los datos anonimizados pueden publicarse como conjunto de datos de investigación. No se venden, no se usan para publicidad y no se cruzan con ninguna otra fuente.
+Investigación sobre la toma de decisiones y la negociación en el juego. Los datos anonimizados pueden publicarse como conjunto de datos de investigación. No se venden, no se usan para publicidad y no se cruzan con ninguna otra fuente.
 
 ## Lo que no se recoge
 
@@ -47,15 +47,15 @@ Abre un issue en https://github.com/Rastipunk/colonist-card-tracker/issues (el c
 
 # Privacy policy · Colonist Card Tracker
 
-**One-sentence summary:** everything this extension stores is anonymous and is used exclusively for research purposes.
+**One-sentence summary:** everything this extension stores is anonymous and is used exclusively for research on decision-making and negotiation in the game.
 
 ## What the extension does
 
 It shows a card counter while you play on colonist.io by reading, inside your browser, the messages the Colonist server already sends to the page. It does not modify the game, sends nothing to Colonist and does not run on any other website.
 
-## Research recording (only if you accept)
+## Research recording (your acceptance is required)
 
-The first time the panel opens you are asked whether you want to contribute. Only if you explicitly accept, the extension stores the history of each game you play: moves, dice, trades, game state and in-game chat messages. The recording is uploaded to the project server when the game ends. You can withdraw consent at any time in Options; the counter keeps working exactly the same.
+The first time the panel opens you are asked to accept the anonymous data collection; the counter is only enabled if you accept. Once accepted, the extension stores the history of each game you play: moves, dice, trades, game state and in-game chat messages. The recording is uploaded to the project server when the game ends. You can withdraw consent at any time in Options; the counter is then disabled and nothing is recorded.
 
 ## Anonymisation: what leaves your browser and what does not
 
@@ -72,7 +72,7 @@ A random installation identifier (not linked to your Colonist account or your de
 
 ## Use of the data
 
-Research on how people play and negotiate in Catan and training of game-playing agents (bots). Anonymised data may be released as a research dataset. It is not sold, not used for advertising and not combined with any other source.
+Research on decision-making and negotiation in the game. Anonymised data may be released as a research dataset. It is not sold, not used for advertising and not combined with any other source.
 
 ## Not collected
 

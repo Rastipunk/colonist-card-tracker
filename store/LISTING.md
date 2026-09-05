@@ -24,7 +24,7 @@ Colonist Card Tracker muestra, mientras juegas en colonist.io, cuántas cartas d
 • Verifica el conteo contra el total de cartas que envía el servidor y avisa si algo no cuadra.
 • Funciona en cualquier idioma y sobrevive a una recarga a mitad de partida.
 
-Investigación abierta. Esta extensión es gratuita. A cambio te pedimos, de forma totalmente opcional, permiso para guardar la historia de tus partidas (jugadas, intercambios y chat) de forma anónima: los nombres de todos los jugadores se sustituyen por códigos antes de que nada salga de tu navegador, y la clave que genera esos códigos nunca sale de tu instalación. Los datos se usan únicamente para investigar cómo se juega y se negocia en Catan y para entrenar agentes de juego. Puedes decir que no, o cambiar de opinión en cualquier momento, y el contador funciona igual.
+Investigación abierta. Esta extensión es gratuita. A cambio, para usarla es necesario aceptar que guarde la historia de tus partidas (jugadas, intercambios y chat) de forma anónima: los nombres de todos los jugadores se sustituyen por códigos antes de que nada salga de tu navegador, y la clave que genera esos códigos nunca sale de tu instalación. Los datos se recogen exclusivamente con fines de investigación sobre la toma de decisiones y la negociación en el juego. Puedes retirar tu aceptación en cualquier momento desde Opciones.
 
 Herramienta no oficial, sin relación con Colonist. Solo lee el tráfico que el servidor ya envía a tu navegador; no envía nada a Colonist ni modifica la partida.
 
@@ -38,7 +38,7 @@ Colonist Card Tracker shows, while you play on colonist.io, how many cards of ea
 • Checks the count against the card totals sent by the server and flags any mismatch.
 • Works in any interface language and survives a page reload mid-game.
 
-Open research. This extension is free. In return we ask, entirely optionally, for permission to store the history of your games (moves, trades and chat) anonymously: every player name is replaced by a code before anything leaves your browser, and the key that generates those codes never leaves your installation. The data is used only to study how people play and negotiate in Catan and to train game-playing agents. You can say no, or change your mind at any time, and the counter works the same.
+Open research. This extension is free. In return, using it requires accepting that it stores the history of your games (moves, trades and chat) anonymously: every player name is replaced by a code before anything leaves your browser, and the key that generates those codes never leaves your installation. The data is collected exclusively for research on decision-making and negotiation in the game. You can withdraw your acceptance at any time in Options.
 
 Unofficial tool, not affiliated with Colonist. It only reads the traffic the server already sends to your browser; it sends nothing to Colonist and does not modify the game.
 
@@ -72,9 +72,9 @@ Español, Inglés.
 | Host `https://colonist.io/*` | La extensión solo funciona en colonist.io: lee los mensajes del juego que la propia página recibe para calcular el contador. |
 | Content script en mundo MAIN | Necesario para observar los mensajes WebSocket del juego; no se modifican ni se envían mensajes. |
 
-**Propósito único:** contador de cartas para colonist.io con grabación opcional de partidas anonimizadas para investigación.
+**Propósito único:** contador de cartas para colonist.io que, con la aceptación del usuario, graba partidas anonimizadas para investigación sobre toma de decisiones y negociación.
 
-**Datos que se recogen (marcar):** "Actividad del usuario" (jugadas e intercambios dentro del juego) y "Contenido del sitio web" (chat de la partida y estado del juego). Todo anonimizado y solo con consentimiento explícito.
+**Datos que se recogen (marcar):** "Actividad del usuario" (jugadas e intercambios dentro del juego) y "Contenido del sitio web" (chat de la partida y estado del juego). Todo anonimizado y solo tras la aceptación explícita del usuario, que es requisito para usar el contador.
 
 **Certificaciones de uso limitado:** sí a las tres (no vender, no usar para fines ajenos al propósito único, no usar para solvencia crediticia ni préstamos).
 
@@ -84,4 +84,4 @@ Español, Inglés.
 
 ## Notas para el revisor (campo opcional)
 
-**EN:** The extension wraps `window.WebSocket` on colonist.io to read incoming game-state messages (msgpack) that the page already receives; it never sends or modifies messages. Recording of games is off until the user explicitly accepts the in-panel consent card, and all usernames/ids are pseudonymised client-side before upload (see `src/recorder/format.js`). Source code is public at https://github.com/Rastipunk/colonist-card-tracker. To test: open a game on colonist.io; the panel appears top-right. Options page lists any recorded games and allows export/delete.
+**EN:** The extension wraps `window.WebSocket` on colonist.io to read incoming game-state messages (msgpack) that the page already receives; it never sends or modifies messages. The counter is disabled and nothing is recorded until the user explicitly accepts the in-panel consent card (the card states that acceptance is required and that data is collected anonymously for research on decision-making and negotiation); all usernames/ids are pseudonymised client-side before upload (see `src/recorder/format.js`). Source code is public at https://github.com/Rastipunk/colonist-card-tracker. To test: open a game on colonist.io; the panel appears top-right. Options page lists any recorded games and allows export/delete.
