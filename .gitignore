@@ -2,3 +2,5 @@ node_modules/
 dist/
 tools/out/
 *.log
+store/_*
+store/raw-*
