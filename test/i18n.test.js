@@ -44,7 +44,9 @@ test('length limits from _meta.json are respected', () => {
 
 test('invariants: app name, key combination, no placeholders or HTML', () => {
   for (const l of locales) {
-    assert.strictEqual(strings[l].appName, 'Colonist Card Tracker', `appName changed in ${l}`);
+    assert.ok(strings[l].appName.startsWith('Colonist Card Tracker'), `appName must start with the brand in ${l}`);
+    assert.ok(/Catan|카탄|カタン|卡坦/.test(strings[l].appName), `appName should carry the 'Catan' keyword in ${l}`);
+    assert.ok(/Catan|카탄|カタン|卡坦/.test(strings[l].appDesc), `appDesc should carry the 'Catan' keyword in ${l}`);
     assert.match(strings[l].close, /Alt\+(Shift|Maj|Maiusc|Umschalt)\+C/, `key combination lost in ${l}.close`);
     for (const k of enKeys) {
       assert.ok(!/\$[A-Za-z_]+\$|\$\d/.test(strings[l][k]), `${l}.${k} contains a placeholder`);

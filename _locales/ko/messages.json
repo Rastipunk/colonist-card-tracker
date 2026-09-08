@@ -1,11 +1,19 @@
 {
   "appName": {
-    "message": "Colonist Card Tracker",
-    "description": "Product name. Keep 'Colonist Card Tracker' unchanged in every language."
+    "message": "Colonist Card Tracker – 카탄 카드 카운터",
+    "description": "Store name. Must start with the brand 'Colonist Card Tracker'; after a dash, a short local phrase meaning 'Catan card counter'. Web Store shows about 35 characters in search results and recommends 45 at most."
   },
   "appDesc": {
-    "message": "colonist.io용 카드 카운터: 훔치기 확률, 은행, 개발 카드, 주사위 표시. 연구를 위해 익명으로 게임을 기록합니다.",
-    "description": "Short description shown by Chrome and the Web Store summary. HARD LIMIT 132 characters."
+    "message": "colonist.io용 카탄 카드 카운터: 훔치기 확률, 은행, 개발 카드, 주사위 표시. 연구를 위해 익명으로 게임을 기록합니다.",
+    "description": "Short description shown by Chrome and as the Web Store summary. HARD LIMIT 132 characters. Keep 'Catan', 'card counter' and 'colonist.io' near the start."
+  },
+  "rateAsk": {
+    "message": "마음에 드시나요? 확장 프로그램을 평가해 주세요",
+    "description": "Footer link shown after the third finished game, once: invitation to rate the extension in the Web Store. Friendly, no pressure, no reward."
+  },
+  "rateDismiss": {
+    "message": "나중에",
+    "description": "Tooltip of the small × next to rateAsk: dismisses the invitation for good."
   },
   "title": {
     "message": "Card Tracker",

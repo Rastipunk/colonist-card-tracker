@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "Kartenzähler für colonist.io: Diebstahl-Wahrscheinlichkeit, Bank, Entwicklungskarten, Würfel. Anonyme Aufzeichnung für Forschung.",
+  "appName": "Colonist Card Tracker – Catan-Kartenzähler",
+  "appDesc": "Catan-Kartenzähler für colonist.io: Diebstahl-Wahrscheinlichkeit, Bank, Entwicklungskarten, Würfel. Anonyme Partien für Forschung.",
+  "rateAsk": "Gefällt sie dir? Bewerte die Erweiterung",
+  "rateDismiss": "Jetzt nicht",
 
   "title": "Card Tracker",
   "waiting": "Warte auf eine Partie…",

@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "colonist.io 卡牌计数器：抢夺概率、银行、发展卡与骰子。以匿名方式记录对局用于研究。",
+  "appName": "Colonist Card Tracker – 卡坦卡牌计数器",
+  "appDesc": "colonist.io 卡坦卡牌计数器：抢夺概率、银行、发展卡与骰子。以匿名方式记录对局用于研究。",
+  "rateAsk": "喜欢吗？给扩展评分",
+  "rateDismiss": "暂不",
 
   "title": "Card Tracker",
   "waiting": "等待对局…",

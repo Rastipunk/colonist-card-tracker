@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "colonist.io用カードカウンター。強奪の確率、銀行、発展カード、サイコロを表示。研究のため匿名で対戦を記録します。",
+  "appName": "Colonist Card Tracker – カタン カードカウンター",
+  "appDesc": "colonist.io用カタン カードカウンター。強奪の確率、銀行、発展カード、サイコロを表示。研究のため匿名で対戦を記録します。",
+  "rateAsk": "気に入りましたか？拡張機能を評価する",
+  "rateDismiss": "あとで",
 
   "title": "Card Tracker",
   "waiting": "ゲームを待っています…",

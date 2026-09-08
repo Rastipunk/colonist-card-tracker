@@ -43,7 +43,7 @@
   function fmtDate(t) {
     if (!t) return '–';
     var d = new Date(t);
-    return d.toLocaleDateString() + ' ' + d.toLocaleTimeString().slice(0, 5);
+    try { return d.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' }); } catch (e) { return d.toLocaleString(); }
   }
 
   function render(stats) {

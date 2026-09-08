@@ -58,14 +58,23 @@ los textos listos para pegar están en `store/listing/<locale>.md`, uno por idio
 Deutsch, 日本語, Français, Português (Brasil), Português (Portugal), Română, Русский, Türkçe,
 Polski, Nederlands, Bahasa Melayu, 한국어, Italiano, 中文 (简体).
 
-## Capturas (1280×800 o 640×400, PNG/JPG, mínimo 1)
+## Capturas (1280×800, PNG) — desde 1.3.0 en `store/shots/`, en inglés
 
-1. Partida real con el panel visible (recortar la captura de tu partida a 1280×800).
-2. Página de Opciones con el consentimiento y la lista de partidas.
+Se generan con `node tools/shot-store.mjs` (piezas) + `python tools/compose-store.py`
+(composición). Subir las cinco en este orden; sustituyen a las capturas de 1.1.0
+(`store/old/`), cuyo texto de consentimiento era el antiguo y mencionaba bots.
 
-## Imagen promocional pequeña (440×280)
+1. `1-game.png` — partida real (anonimizada) con el panel.
+2. `2-steals.png` — robo oculto convertido en probabilidad.
+3. `3-expected.png` — modo valor esperado.
+4. `4-research.png` — tarjeta de consentimiento.
+5. `5-options.png` — página de opciones.
 
-`store/promo-440x280.png` (generada; sustituir si se quiere algo más elaborado).
+## Imágenes promocionales
+
+- Pequeña 440×280: `store/promo-440x280.png`.
+- Marquesina 1400×560: `store/marquee-1400x560.png` (requisito para optar a "Destacada").
+- Ambas se generan con `tools/compose-store.py`.
 
 ## Icono
 

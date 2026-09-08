@@ -1,11 +1,19 @@
 {
   "appName": {
-    "message": "Colonist Card Tracker",
-    "description": "Product name. Keep 'Colonist Card Tracker' unchanged in every language."
+    "message": "Colonist Card Tracker – Catan-Kartenzähler",
+    "description": "Store name. Must start with the brand 'Colonist Card Tracker'; after a dash, a short local phrase meaning 'Catan card counter'. Web Store shows about 35 characters in search results and recommends 45 at most."
   },
   "appDesc": {
-    "message": "Kartenzähler für colonist.io: Diebstahl-Wahrscheinlichkeit, Bank, Entwicklungskarten, Würfel. Anonyme Aufzeichnung für Forschung.",
-    "description": "Short description shown by Chrome and the Web Store summary. HARD LIMIT 132 characters."
+    "message": "Catan-Kartenzähler für colonist.io: Diebstahl-Wahrscheinlichkeit, Bank, Entwicklungskarten, Würfel. Anonyme Partien für Forschung.",
+    "description": "Short description shown by Chrome and as the Web Store summary. HARD LIMIT 132 characters. Keep 'Catan', 'card counter' and 'colonist.io' near the start."
+  },
+  "rateAsk": {
+    "message": "Gefällt sie dir? Bewerte die Erweiterung",
+    "description": "Footer link shown after the third finished game, once: invitation to rate the extension in the Web Store. Friendly, no pressure, no reward."
+  },
+  "rateDismiss": {
+    "message": "Jetzt nicht",
+    "description": "Tooltip of the small × next to rateAsk: dismisses the invitation for good."
   },
   "title": {
     "message": "Card Tracker",

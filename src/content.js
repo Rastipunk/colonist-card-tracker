@@ -42,8 +42,12 @@
   ['title', 'waiting', 'waitingHint', 'live', 'ended', 'spectator', 'turn', 'bank', 'you', 'bot', 'dice', 'rolls',
     'steals', 'scenarios', 'approx', 'synced', 'desync', 'total', 'totalTitle', 'contradictions', 'dev', 'knights',
     'expVP', 'unknownCol', 'modeRange', 'modeExpected', 'export', 'options', 'minimize', 'close', 'rec', 'recTitle',
-    'recOff', 'consentTitle', 'consentText', 'consentYes', 'consentNo', 'consentMore', 'consentDeclined'
+    'recOff', 'consentTitle', 'consentText', 'consentYes', 'consentNo', 'consentMore', 'consentDeclined',
+    'rateAsk', 'rateDismiss'
   ].forEach(function (k) { T[k] = msg(k); });
+  // Web Store review page of this very install (the id is the store id when installed from the store).
+  var RATE_URL = 'https://chromewebstore.google.com/detail/' + chrome.runtime.id + '/reviews';
+  var RATE_AFTER_GAMES = 3;
 
   var ICONS = ['🪵', '🧱', '🐑', '🌾', '🪨', '🧵', '🪙', '📜'];
   var NAMES = ['resLumber', 'resBrick', 'resWool', 'resGrain', 'resOre', 'resCloth', 'resCoin', 'resPaper'].map(msg);
@@ -178,7 +182,11 @@
         frames.push(rec);
         if (frames.length > MAX_FRAMES) frames.shift();
       }
-      if (tracker.phase === 'ended' && lastPhase !== 'ended') onGameEnded(p.sid);
+      if (tracker.phase === 'ended' && lastPhase !== 'ended') {
+        onGameEnded(p.sid);
+        prefs.gamesEnded = (prefs.gamesEnded || 0) + 1;
+        savePrefs();
+      }
       lastPhase = tracker.phase;
       queueRender();
       scheduleReconcile();
@@ -351,7 +359,7 @@
   // ------------------------------------------------------------------ prefs
 
   function loadPrefs() {
-    var p = { minimized: false, mode: 'range', pos: null, hidden: false };
+    var p = { minimized: false, mode: 'range', pos: null, hidden: false, gamesEnded: 0, rateDismissed: false };
     try {
       var raw = localStorage.getItem('cct.prefs');
       if (raw) {
@@ -449,6 +457,18 @@
         render();
       } else if (act === 'more') {
         openOptions();
+      }
+    });
+
+    ui.body.addEventListener('click', function (ev) {
+      var t = ev.target.closest('[data-act]');
+      if (!t) return;
+      var act = t.getAttribute('data-act');
+      if (act === 'rate' || act === 'rate-no') {
+        // Either way the invitation is shown only once; the link itself opens normally.
+        prefs.rateDismissed = true;
+        savePrefs();
+        if (act === 'rate-no') { ev.preventDefault(); render(); }
       }
     });
 
@@ -602,6 +622,10 @@
     var warnHtml = '';
     if (s.contradictions > 0) warnHtml = '<span class="warn" title="' + esc(T.contradictions) + '">⚠ ' + s.contradictions + '</span>';
     html += '<div class="cct-foot"><span>' + foot.join(' · ') + '</span>' + warnHtml + '<span>v' + VERSION + '</span></div>';
+    if ((prefs.gamesEnded || 0) >= RATE_AFTER_GAMES && !prefs.rateDismissed) {
+      html += '<div class="cct-rate"><a href="' + RATE_URL + '" target="_blank" rel="noopener" data-act="rate">★ ' + esc(T.rateAsk) + '</a>' +
+        '<button data-act="rate-no" title="' + esc(T.rateDismiss) + '">×</button></div>';
+    }
 
     ui.body.innerHTML = html;
   }

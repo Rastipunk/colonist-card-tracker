@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "Card counter for colonist.io: steal probabilities, bank, development cards and dice. Records anonymous games for research.",
+  "appName": "Colonist Card Tracker – Catan card counter",
+  "appDesc": "Catan card counter for colonist.io: steal probabilities, bank, development cards and dice. Records anonymous games for research.",
+  "rateAsk": "Enjoying it? Rate the extension",
+  "rateDismiss": "Not now",
 
   "title": "Card Tracker",
   "waiting": "Waiting for a game…",

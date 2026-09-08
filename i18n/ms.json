@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "Pengira kad untuk colonist.io: kebarangkalian curi, bank, kad pembangunan dan dadu. Merakam permainan tanpa nama untuk penyelidikan.",
+  "appName": "Colonist Card Tracker – pengira kad Catan",
+  "appDesc": "Pengira kad Catan untuk colonist.io: kebarangkalian curi, bank, kad pembangunan dan dadu. Permainan tanpa nama untuk penyelidikan.",
+  "rateAsk": "Suka? Nilaikan sambungan ini",
+  "rateDismiss": "Bukan sekarang",
 
   "title": "Card Tracker",
   "waiting": "Menunggu permainan…",

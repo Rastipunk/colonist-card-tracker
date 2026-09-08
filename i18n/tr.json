@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "colonist.io için kart sayacı: çalma olasılıkları, banka, gelişim kartları ve zarlar. Araştırma için anonim oyunlar kaydeder.",
+  "appName": "Colonist Card Tracker – Catan kart sayacı",
+  "appDesc": "colonist.io için Catan kart sayacı: çalma olasılıkları, banka, gelişim kartları ve zarlar. Araştırma için anonim oyunlar kaydeder.",
+  "rateAsk": "Beğendin mi? Uzantıyı değerlendir",
+  "rateDismiss": "Şimdi değil",
 
   "title": "Card Tracker",
   "waiting": "Oyun bekleniyor…",

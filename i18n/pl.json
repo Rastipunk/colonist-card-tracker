@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "Licznik kart do colonist.io: prawdopodobieństwo kradzieży, bank, karty rozwoju i kości. Nagrywa anonimowe partie do badań.",
+  "appName": "Colonist Card Tracker – licznik kart Catan",
+  "appDesc": "Licznik kart Catan do colonist.io: prawdopodobieństwo kradzieży, bank, karty rozwoju i kości. Nagrywa anonimowe partie do badań.",
+  "rateAsk": "Podoba się? Oceń rozszerzenie",
+  "rateDismiss": "Nie teraz",
 
   "title": "Card Tracker",
   "waiting": "Oczekiwanie na partię…",

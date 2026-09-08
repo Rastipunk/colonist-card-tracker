@@ -130,6 +130,28 @@
   gap: 8px;
 }
 #cct-overlay .cct-foot .warn { color: #ffcf6b; }
+#cct-overlay .cct-rate {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+}
+#cct-overlay .cct-rate a { color: #ffd98a; text-decoration: none; }
+#cct-overlay .cct-rate a:hover { text-decoration: underline; }
+#cct-overlay .cct-rate button {
+  all: unset;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  text-align: center;
+  color: #8fa0b5;
+}
+#cct-overlay .cct-rate button:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
 #cct-overlay .cct-empty { color: #9fb0c3; padding: 8px 2px; font-size: 12px; }
 #cct-overlay .cct-empty small { display: block; color: #6f7f94; margin-top: 4px; }
 

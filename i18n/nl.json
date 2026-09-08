@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "Kaartenteller voor colonist.io: steelkansen, bank, ontwikkelingskaarten en dobbelstenen. Neemt anonieme potjes op voor onderzoek.",
+  "appName": "Colonist Card Tracker – Catan-kaartenteller",
+  "appDesc": "Catan-kaartenteller voor colonist.io: steelkansen, bank, ontwikkelingskaarten en dobbelstenen. Anonieme potjes voor onderzoek.",
+  "rateAsk": "Bevalt het? Beoordeel de extensie",
+  "rateDismiss": "Nu niet",
 
   "title": "Card Tracker",
   "waiting": "Wachten op een potje…",

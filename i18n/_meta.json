@@ -19,8 +19,10 @@
     "it": "Italian"
   },
   "keys": {
-    "appName": { "note": "Product name. Keep 'Colonist Card Tracker' unchanged in every language.", "maxLength": 45 },
-    "appDesc": { "note": "Short description shown by Chrome and the Web Store summary. HARD LIMIT 132 characters.", "maxLength": 132 },
+    "appName": { "note": "Store name. Must start with the brand 'Colonist Card Tracker'; after a dash, a short local phrase meaning 'Catan card counter'. Web Store shows about 35 characters in search results and recommends 45 at most.", "maxLength": 45 },
+    "appDesc": { "note": "Short description shown by Chrome and as the Web Store summary. HARD LIMIT 132 characters. Keep 'Catan', 'card counter' and 'colonist.io' near the start.", "maxLength": 132 },
+    "rateAsk": { "note": "Footer link shown after the third finished game, once: invitation to rate the extension in the Web Store. Friendly, no pressure, no reward.", "maxLength": 48 },
+    "rateDismiss": { "note": "Tooltip of the small × next to rateAsk: dismisses the invitation for good.", "maxLength": 20 },
     "title": { "note": "Panel title, next to a card emoji. Keep short." },
     "waiting": { "note": "Status shown while no game is loaded." },
     "waitingHint": { "note": "Hint under the waiting status. F5 is the reload key." },

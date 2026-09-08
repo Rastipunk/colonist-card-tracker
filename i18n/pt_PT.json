@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "Contador de cartas para colonist.io: probabilidade de roubo, banco, desenvolvimento, dados. Grava partidas anónimas para investigar.",
+  "appName": "Colonist Card Tracker – contador Catan",
+  "appDesc": "Contador de cartas Catan para colonist.io: roubos prováveis, banco, desenvolvimento, dados. Grava partidas anónimas para investigar.",
+  "rateAsk": "Gostas? Avalia a extensão",
+  "rateDismiss": "Agora não",
 
   "title": "Card Tracker",
   "waiting": "À espera de uma partida…",

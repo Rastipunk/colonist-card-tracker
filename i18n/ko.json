@@ -1,6 +1,8 @@
 {
-  "appName": "Colonist Card Tracker",
-  "appDesc": "colonist.io용 카드 카운터: 훔치기 확률, 은행, 개발 카드, 주사위 표시. 연구를 위해 익명으로 게임을 기록합니다.",
+  "appName": "Colonist Card Tracker – 카탄 카드 카운터",
+  "appDesc": "colonist.io용 카탄 카드 카운터: 훔치기 확률, 은행, 개발 카드, 주사위 표시. 연구를 위해 익명으로 게임을 기록합니다.",
+  "rateAsk": "마음에 드시나요? 확장 프로그램을 평가해 주세요",
+  "rateDismiss": "나중에",
 
   "title": "Card Tracker",
   "waiting": "게임을 기다리는 중…",
