@@ -12,6 +12,29 @@ A diferencia de los trackers anteriores, **no lee el DOM**. Intercepta el WebSoc
 decodifica los mensajes (MessagePack) y procesa el log estructurado que el servidor envía al
 cliente. Funciona en cualquier idioma de la interfaz y sobrevive a una recarga a mitad de partida.
 
+## Idiomas
+
+La interfaz de la extensión (panel, consentimiento, página de opciones, nombre y descripción)
+está en 15 idiomas más una variante: inglés (por defecto), chino simplificado, alemán, japonés,
+español, francés, portugués de Brasil y de Portugal, rumano, ruso, turco, polaco, neerlandés,
+malayo, coreano e italiano. Chrome elige el idioma según el de su propia interfaz y cae a inglés
+clave por clave si falta algo.
+
+- Fuente de verdad: `i18n/<locale>.json` (mapa plano clave → texto) y `i18n/_meta.json` (notas
+  para traductores y límites de longitud). `_locales/` se **genera** con `npm run i18n`; no se
+  edita a mano.
+- El código pide los textos con `chrome.i18n.getMessage`; los números y porcentajes se formatean
+  con `Intl.NumberFormat` en el idioma del navegador, y el panel respeta `@@bidi_dir` (RTL listo
+  para cuando se añada hebreo o árabe).
+- Nombres de recursos alineados con los que colonist.io muestra en cada idioma.
+- `test/i18n.test.js` comprueba que todos los idiomas tienen las mismas claves, que ningún texto
+  supera su límite (la descripción del manifiesto no puede pasar de 132 caracteres), que los textos
+  legales no se han acortado y que `_locales` está al día.
+- `node tools/shot-i18n.mjs [locale…]` abre Chromium con `--lang` y captura consentimiento, panel
+  y opciones en cada idioma (`tools/out/i18n/`).
+- Para añadir un idioma: copiar `i18n/en.json` con el código de Chrome (p. ej. `sv`, `he`,
+  `zh_TW`), traducir, registrarlo en `_meta.json`, `npm run i18n`, `npm test`.
+
 ## Instalación (desarrollo)
 
 1. `chrome://extensions` → **Modo de desarrollador** → **Cargar descomprimida** → esta carpeta.

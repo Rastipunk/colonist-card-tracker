@@ -15,7 +15,7 @@ const STAGE = path.join(DIST, 'stage');
 fs.rmSync(STAGE, { recursive: true, force: true });
 fs.mkdirSync(STAGE, { recursive: true });
 
-const files = ['manifest.json', 'src', 'icons'];
+const files = ['manifest.json', 'src', 'icons', '_locales'];
 for (const f of files) fs.cpSync(path.join(ROOT, f), path.join(STAGE, f), { recursive: true });
 
 const zip = path.join(DIST, `colonist-card-tracker-${manifest.version}.zip`);

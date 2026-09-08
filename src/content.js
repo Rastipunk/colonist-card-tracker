@@ -28,93 +28,38 @@
   var sockets = {};
   var lastPhase = 'idle';
 
-  var STRINGS = {
-    es: {
-      title: 'Card Tracker',
-      waiting: 'Esperando partida…',
-      waitingHint: 'Entra a una partida. Si ya estás en una, recarga la página (F5) para capturar el estado.',
-      live: 'En vivo',
-      ended: 'Terminada',
-      spectator: 'espectador',
-      turn: 'turno',
-      bank: 'Banco',
-      you: 'tú',
-      dice: 'Dados',
-      rolls: 'tiradas',
-      steals: 'robos ocultos',
-      scenarios: 'escenarios',
-      approx: 'aprox.',
-      synced: 'ok',
-      desync: 'desync',
-      total: 'Σ',
-      dev: 'Desarrollo',
-      knights: 'caballeros',
-      expVP: 'PV esperados',
-      modeRange: 'Mostrar rango (mín + extra probable)',
-      modeExpected: 'Mostrar valor esperado',
-      export: 'Exportar diagnóstico (JSON)',
-      options: 'Opciones y datos',
-      minimize: 'Minimizar',
-      close: 'Ocultar (Alt+Shift+C para volver a mostrar)',
-      unknownCol: 'tipo desconocido',
-      rec: 'REC',
-      recTitle: 'Grabando la partida (anonimizada) para investigación',
-      consentTitle: 'Antes de empezar',
-      consentText: 'Esta extensión es gratuita. A cambio, guarda la historia de las partidas (jugadas, intercambios y chat) de forma anónima: los nombres de todos los jugadores se sustituyen por códigos antes de salir de tu navegador. Los datos se recogen exclusivamente con fines de investigación sobre la toma de decisiones y la negociación en el juego. Para usar el contador es necesario aceptar.',
-      consentYes: 'Acepto y activar el contador',
-      consentNo: 'No, gracias',
-      consentMore: 'Más detalles',
-      consentDeclined: 'El contador está desactivado porque no has aceptado la recogida anónima de datos. Puedes aceptar cuando quieras.',
-      recOff: 'Grabación desactivada'
-    },
-    en: {
-      title: 'Card Tracker',
-      waiting: 'Waiting for a game…',
-      waitingHint: 'Join a game. If you are already in one, reload the page (F5) to capture the state.',
-      live: 'Live',
-      ended: 'Ended',
-      spectator: 'spectator',
-      turn: 'turn',
-      bank: 'Bank',
-      you: 'you',
-      dice: 'Dice',
-      rolls: 'rolls',
-      steals: 'hidden steals',
-      scenarios: 'scenarios',
-      approx: 'approx.',
-      synced: 'ok',
-      desync: 'desync',
-      total: 'Σ',
-      dev: 'Development',
-      knights: 'knights',
-      expVP: 'expected VP',
-      modeRange: 'Show range (min + likely extra)',
-      modeExpected: 'Show expected value',
-      export: 'Export diagnostics (JSON)',
-      options: 'Options and data',
-      minimize: 'Minimize',
-      close: 'Hide (Alt+Shift+C to show again)',
-      unknownCol: 'unknown type',
-      rec: 'REC',
-      recTitle: 'Recording this game (anonymised) for research',
-      consentTitle: 'Before you start',
-      consentText: 'This extension is free. In return, it stores the history of games (moves, trades and chat) anonymously: every player name is replaced by a code before anything leaves your browser. The data is collected exclusively for research on decision-making and negotiation in the game. Accepting is required to use the counter.',
-      consentYes: 'Accept and enable the counter',
-      consentNo: 'No, thanks',
-      consentMore: 'More details',
-      consentDeclined: 'The counter is disabled because you have not accepted the anonymous data collection. You can accept at any time.',
-      recOff: 'Recording off'
-    }
-  };
-  var lang = (navigator.language || 'en').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
-  var T = STRINGS[lang];
+  // ---------------------------------------------------------------- i18n
+  // All user-visible text lives in _locales/<locale>/messages.json (generated
+  // from i18n/*.json). Chrome picks the locale from the browser UI language and
+  // falls back to the default locale (en) key by key.
+  function msg(key) {
+    try { return chrome.i18n.getMessage(key) || key; } catch (e) { return key; }
+  }
+  var UI_LANG = (function () {
+    try { return chrome.i18n.getUILanguage() || navigator.language || 'en'; } catch (e) { return navigator.language || 'en'; }
+  })();
+  var T = {};
+  ['title', 'waiting', 'waitingHint', 'live', 'ended', 'spectator', 'turn', 'bank', 'you', 'bot', 'dice', 'rolls',
+    'steals', 'scenarios', 'approx', 'synced', 'desync', 'total', 'totalTitle', 'contradictions', 'dev', 'knights',
+    'expVP', 'unknownCol', 'modeRange', 'modeExpected', 'export', 'options', 'minimize', 'close', 'rec', 'recTitle',
+    'recOff', 'consentTitle', 'consentText', 'consentYes', 'consentNo', 'consentMore', 'consentDeclined'
+  ].forEach(function (k) { T[k] = msg(k); });
 
   var ICONS = ['🪵', '🧱', '🐑', '🌾', '🪨', '🧵', '🪙', '📜'];
-  var NAMES = {
-    es: ['madera', 'ladrillo', 'oveja', 'trigo', 'mineral', 'tela', 'moneda', 'papel'],
-    en: ['lumber', 'brick', 'wool', 'grain', 'ore', 'cloth', 'coin', 'paper']
-  };
-  var DEV_NAMES = { 11: 'K', 12: 'VP', 13: 'M', 14: 'RB', 15: 'YP' };
+  var NAMES = ['resLumber', 'resBrick', 'resWool', 'resGrain', 'resOre', 'resCloth', 'resCoin', 'resPaper'].map(msg);
+  var DEV_NAMES = { 11: msg('devKnight'), 12: msg('devVP'), 13: msg('devMonopoly'), 14: msg('devRoadBuilding'), 15: msg('devYearOfPlenty') };
+
+  // Locale-aware number formatting (decimal separator, percent sign placement).
+  var numFmt = (function () {
+    try {
+      var f1 = new Intl.NumberFormat(UI_LANG, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      var f2 = new Intl.NumberFormat(UI_LANG, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var fp = new Intl.NumberFormat(UI_LANG, { style: 'percent', maximumFractionDigits: 0 });
+      return { d1: function (x) { return f1.format(x); }, d2: function (x) { return f2.format(x); }, pct: function (x) { return fp.format(x); } };
+    } catch (e) {
+      return { d1: function (x) { return x.toFixed(1); }, d2: function (x) { return x.toFixed(2); }, pct: function (x) { return Math.round(x * 100) + '%'; } };
+    }
+  })();
 
   // ------------------------------------------------------------- settings
 
@@ -300,7 +245,7 @@
       players: tracker.players.map(function (p) { return { color: p.color, username: p.username, isBot: p.isBot }; }),
       myUsername: me ? me.username : null,
       gameSettings: tracker.settings ? { modeSetting: tracker.settings.modeSetting, victoryPointsToWin: tracker.settings.victoryPointsToWin, gameType: tracker.settings.gameType } : null,
-      lang: lang,
+      lang: UI_LANG,
       turn: tracker.turn,
       logEntries: tracker.processedLogs.size,
       chatEntries: tracker.chatCount,
@@ -429,6 +374,8 @@
     if (!root) return null;
     var el = document.createElement('div');
     el.id = 'cct-overlay';
+    el.lang = UI_LANG;
+    el.dir = msg('@@bidi_dir') === 'rtl' ? 'rtl' : 'ltr';
     el.innerHTML =
       '<div class="cct-head">' +
         '<span class="cct-title">🃏 ' + T.title + '</span>' +
@@ -607,23 +554,23 @@
     var showUnknown = s.players.some(function (p) { return p.unknown && p.unknown.max > 0; });
     var showDev = !s.isCK;
     var html = '<table class="cct-table"><thead><tr><th class="name"></th>';
-    for (var t = 0; t < nTypes; t++) html += '<th class="icon" title="' + NAMES[lang][t] + '">' + ICONS[t] + '</th>';
-    if (showUnknown) html += '<th title="' + T.unknownCol + '">❓</th>';
-    html += '<th title="total">' + T.total + '</th>';
+    for (var t = 0; t < nTypes; t++) html += '<th class="icon" title="' + esc(NAMES[t]) + '">' + ICONS[t] + '</th>';
+    if (showUnknown) html += '<th title="' + esc(T.unknownCol) + '">❓</th>';
+    html += '<th title="' + esc(T.totalTitle) + '">' + esc(T.total) + '</th>';
     if (showDev) html += '<th class="icon" title="' + T.dev + '">🃏</th>';
     html += '</tr></thead><tbody>';
 
     s.players.forEach(function (p) {
       html += '<tr class="' + (p.isMe ? 'me' : '') + '">';
       html += '<td class="name" title="' + esc(p.username) + '"><span class="cct-dot" style="background:' + p.colorHex + '"></span>' +
-        esc(p.username) + (p.isMe ? ' <small>(' + T.you + ')</small>' : '') + (p.isBot ? ' <small>🤖</small>' : '') + '</td>';
+        esc(p.username) + (p.isMe ? ' <small>(' + esc(T.you) + ')</small>' : '') + (p.isBot ? ' <small title="' + esc(T.bot) + '">🤖</small>' : '') + '</td>';
       for (var t2 = 0; t2 < nTypes; t2++) html += cellHtml(p.cells ? p.cells[t2] : null);
       if (showUnknown) html += cellHtml(p.unknown);
       html += '<td class="total">' + (p.serverTotal !== null && p.serverTotal !== undefined ? p.serverTotal : (p.modelTotal ? p.modelTotal[0] : '–')) +
         (p.synced === true ? '<span class="ok" title="' + T.synced + '">✓</span>' : (p.synced === false ? '<span class="bad" title="' + T.desync + '">!</span>' : '')) + '</td>';
       if (showDev) {
         var usedStr = (p.dev.used || []).map(function (c) { return DEV_NAMES[c] || ('#' + c); }).join(' ');
-        var vpStr = p.dev.hand > 0 && p.dev.expectedVP > 0 ? ' · ' + T.expVP + ' ' + p.dev.expectedVP.toFixed(1) : '';
+        var vpStr = p.dev.hand > 0 && p.dev.expectedVP > 0 ? ' · ' + T.expVP + ' ' + numFmt.d1(p.dev.expectedVP) : '';
         html += '<td class="dev" title="' + esc((usedStr ? usedStr + ' | ' : '') + p.dev.knights + ' ' + T.knights + vpStr) + '">' +
           p.dev.hand + (usedStr ? ' <span class="used">' + esc(usedStr) + '</span>' : '') + '</td>';
       }
@@ -653,7 +600,7 @@
     foot.push(s.unknownSteals + ' ' + T.steals);
     foot.push(s.worlds + ' ' + T.scenarios + (s.approx ? ' (' + T.approx + ')' : ''));
     var warnHtml = '';
-    if (s.contradictions > 0) warnHtml = '<span class="warn" title="contradictions">⚠ ' + s.contradictions + '</span>';
+    if (s.contradictions > 0) warnHtml = '<span class="warn" title="' + esc(T.contradictions) + '">⚠ ' + s.contradictions + '</span>';
     html += '<div class="cct-foot"><span>' + foot.join(' · ') + '</span>' + warnHtml + '<span>v' + VERSION + '</span></div>';
 
     ui.body.innerHTML = html;
@@ -665,18 +612,18 @@
     if (m.min === m.max) return '<td><span class="v">' + m.min + '</span></td>';
     var title = distTitle(m);
     if (prefs.mode === 'expected') {
-      return '<td title="' + title + '"><span class="e">' + m.mean.toFixed(1) + '</span></td>';
+      return '<td title="' + title + '"><span class="e">' + numFmt.d1(m.mean) + '</span></td>';
     }
     var pExtra = 1 - (m.dist[m.min] || 0);
     var extra = m.max - m.min;
-    return '<td title="' + title + '"><span class="v">' + m.min + '</span><span class="x">+' + extra + '</span><span class="p">' + Math.round(pExtra * 100) + '%</span></td>';
+    return '<td title="' + title + '"><span class="v">' + m.min + '</span><span class="x">+' + extra + '</span><span class="p">' + numFmt.pct(pExtra) + '</span></td>';
   }
 
   function distTitle(m) {
     var parts = [];
     var keys = Object.keys(m.dist).map(Number).sort(function (a, b) { return a - b; });
-    for (var i = 0; i < keys.length; i++) parts.push(keys[i] + ': ' + Math.round(m.dist[keys[i]] * 100) + '%');
-    return 'E=' + m.mean.toFixed(2) + ' | ' + parts.join(', ');
+    for (var i = 0; i < keys.length; i++) parts.push(keys[i] + ': ' + numFmt.pct(m.dist[keys[i]]));
+    return 'E=' + numFmt.d2(m.mean) + ' | ' + parts.join(', ');
   }
 
   /** Mirror a compact summary into the DOM for tooling (tests, live capture). */

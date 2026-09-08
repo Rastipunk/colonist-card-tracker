@@ -3,66 +3,23 @@
 
   var PRIVACY_URL = 'https://github.com/Rastipunk/colonist-card-tracker/blob/main/PRIVACY.md';
 
-  var STRINGS = {
-    es: {
-      researchTitle: 'Datos para investigación',
-      researchText: 'La extensión guarda la historia de cada partida que juegas en colonist.io (jugadas, intercambios, dados y chat) y la envía al servidor del proyecto al terminar. Antes de salir de tu navegador, todos los nombres de usuario e identificadores (los tuyos y los de los demás jugadores) se sustituyen por códigos generados con una clave aleatoria que solo existe en tu instalación; avatares, correos y tokens se eliminan. Toda la información es anónima y se recoge exclusivamente con fines de investigación sobre la toma de decisiones y la negociación en el juego. Para usar el contador es necesario aceptar.',
-      consentYes: 'Acepto: grabar y enviar mis partidas anonimizadas',
-      consentNo: 'No acepto (el contador queda desactivado)',
-      installId: 'Identificador de instalación:',
-      installIdNote: '(aleatorio, no está ligado a tu cuenta)',
-      privacy: 'Política de privacidad',
-      serverTitle: 'Servidor',
-      endpoint: 'URL de ingesta',
-      token: 'Token (opcional)',
-      save: 'Guardar',
-      saved: 'Guardado',
-      keepLocal: 'Conservar una copia local de cada partida subida',
-      gamesTitle: 'Partidas grabadas',
-      retry: 'Reintentar subidas pendientes',
-      refresh: 'Actualizar',
-      deleteAll: 'Borrar todo lo local',
-      deleteAllConfirm: '¿Borrar todas las partidas guardadas localmente? Las ya subidas no se borran del servidor.',
-      colDate: 'Fecha', colGame: 'Partida', colPlayers: 'Jugadores', colFrames: 'Tramas', colSize: 'Tamaño', colStatus: 'Estado',
-      empty: 'Todavía no hay partidas grabadas.',
-      partial: 'parcial',
-      exportBtn: 'Exportar',
-      deleteBtn: 'Borrar',
-      status: { recording: 'grabando', finalizing: 'procesando', pending: 'pendiente de subir', uploaded: 'subida', failed: 'fallida', local: 'solo local (sin servidor)' }
-    },
-    en: {
-      researchTitle: 'Research data',
-      researchText: 'The extension stores the history of each game you play on colonist.io (moves, trades, dice and chat) and uploads it to the project server when the game ends. Before anything leaves your browser, every username and identifier (yours and the other players\') is replaced by a code generated with a random key that only exists in your installation; avatars, e-mails and tokens are removed. All information is anonymous and collected exclusively for research on decision-making and negotiation in the game. Accepting is required to use the counter.',
-      consentYes: 'I accept: record and upload my anonymised games',
-      consentNo: 'I do not accept (the counter stays disabled)',
-      installId: 'Installation id:',
-      installIdNote: '(random, not linked to your account)',
-      privacy: 'Privacy policy',
-      serverTitle: 'Server',
-      endpoint: 'Ingest URL',
-      token: 'Token (optional)',
-      save: 'Save',
-      saved: 'Saved',
-      keepLocal: 'Keep a local copy of every uploaded game',
-      gamesTitle: 'Recorded games',
-      retry: 'Retry pending uploads',
-      refresh: 'Refresh',
-      deleteAll: 'Delete all local data',
-      deleteAllConfirm: 'Delete all locally stored games? Games already uploaded are not removed from the server.',
-      colDate: 'Date', colGame: 'Game', colPlayers: 'Players', colFrames: 'Frames', colSize: 'Size', colStatus: 'Status',
-      empty: 'No recorded games yet.',
-      partial: 'partial',
-      exportBtn: 'Export',
-      deleteBtn: 'Delete',
-      status: { recording: 'recording', finalizing: 'processing', pending: 'pending upload', uploaded: 'uploaded', failed: 'failed', local: 'local only (no server)' }
-    }
+  // All text comes from _locales/<locale>/messages.json (see i18n/ and
+  // tools/i18n-build.mjs). Elements carry data-i18n="<key>".
+  function msg(key) {
+    try { return chrome.i18n.getMessage(key) || key; } catch (e) { return key; }
+  }
+  var T = {
+    saved: msg('saved'),
+    deleteAllConfirm: msg('deleteAllConfirm'),
+    partial: msg('partial'),
+    exportBtn: msg('exportBtn'),
+    deleteBtn: msg('deleteBtn'),
+    status: function (s) { var m = chrome.i18n.getMessage('status_' + s); return m || s; }
   };
-  var lang = (navigator.language || 'en').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
-  var T = STRINGS[lang];
-  document.documentElement.lang = lang;
+  try { document.documentElement.lang = chrome.i18n.getUILanguage(); } catch (e) { /* ignore */ }
+  document.documentElement.dir = msg('@@bidi_dir') === 'rtl' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
-    var key = el.getAttribute('data-i18n');
-    if (T[key]) el.textContent = T[key];
+    el.textContent = msg(el.getAttribute('data-i18n'));
   });
 
   function rt(msg) {
@@ -110,7 +67,7 @@
         '<td>' + (s.players || '–') + '</td>' +
         '<td>' + s.frames + '</td>' +
         '<td>' + fmtBytes(s.blobBytes || s.rawBytes) + '</td>' +
-        '<td class="status-' + s.status + '"' + err + '>' + (T.status[s.status] || s.status) + (s.attempts > 1 ? ' (' + s.attempts + ')' : '') + '</td>' +
+        '<td class="status-' + s.status + '"' + err + '>' + T.status(s.status) + (s.attempts > 1 ? ' (' + s.attempts + ')' : '') + '</td>' +
         '<td>' + (s.hasBlob ? '<button class="small" data-export="' + s.key + '">' + T.exportBtn + '</button>' : '') +
           '<button class="small danger" data-delete="' + s.key + '">' + T.deleteBtn + '</button></td>';
       tbody.appendChild(tr);

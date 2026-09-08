@@ -1,0 +1,354 @@
+{
+  "appName": {
+    "message": "Colonist Card Tracker",
+    "description": "Product name. Keep 'Colonist Card Tracker' unchanged in every language."
+  },
+  "appDesc": {
+    "message": "Kaartenteller voor colonist.io: steelkansen, bank, ontwikkelingskaarten en dobbelstenen. Neemt anonieme potjes op voor onderzoek.",
+    "description": "Short description shown by Chrome and the Web Store summary. HARD LIMIT 132 characters."
+  },
+  "title": {
+    "message": "Card Tracker",
+    "description": "Panel title, next to a card emoji. Keep short."
+  },
+  "waiting": {
+    "message": "Wachten op een potje…",
+    "description": "Status shown while no game is loaded."
+  },
+  "waitingHint": {
+    "message": "Ga een potje binnen. Zit je er al in, herlaad dan de pagina (F5) om de spelstand vast te leggen.",
+    "description": "Hint under the waiting status. F5 is the reload key."
+  },
+  "live": {
+    "message": "Live",
+    "description": "Status: game in progress."
+  },
+  "ended": {
+    "message": "Afgelopen",
+    "description": "Status: game finished."
+  },
+  "spectator": {
+    "message": "toeschouwer",
+    "description": "Status chip when the user is watching, not playing. Lowercase if the language allows."
+  },
+  "turn": {
+    "message": "beurt",
+    "description": "Prefix before the turn number, e.g. 'turn 12'."
+  },
+  "bank": {
+    "message": "Bank",
+    "description": "Row label for the bank's cards. Use the same word colonist.io uses in this language."
+  },
+  "you": {
+    "message": "jij",
+    "description": "Small tag after the user's own name: '(you)'."
+  },
+  "bot": {
+    "message": "bot",
+    "description": "Tooltip on the robot icon next to computer players."
+  },
+  "dice": {
+    "message": "Dobbelstenen",
+    "description": "Section title for the dice histogram."
+  },
+  "rolls": {
+    "message": "worpen",
+    "description": "Suffix after a number: '37 rolls'."
+  },
+  "steals": {
+    "message": "verborgen diefstallen",
+    "description": "Footer: number of steals whose card was not visible, e.g. '3 hidden steals'."
+  },
+  "scenarios": {
+    "message": "scenario's",
+    "description": "Footer: number of possible worlds being tracked, e.g. '120 scenarios'."
+  },
+  "approx": {
+    "message": "ca.",
+    "description": "Footer suffix in parentheses when the scenario count was capped."
+  },
+  "synced": {
+    "message": "Komt overeen met het servertotaal",
+    "description": "Tooltip on the green check next to a player's total."
+  },
+  "desync": {
+    "message": "Komt niet overeen met het servertotaal",
+    "description": "Tooltip on the red exclamation mark next to a player's total."
+  },
+  "total": {
+    "message": "Σ",
+    "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
+  },
+  "totalTitle": {
+    "message": "Totaal aantal kaarten",
+    "description": "Tooltip of the total column header."
+  },
+  "contradictions": {
+    "message": "Tegenstrijdigheden gevonden",
+    "description": "Tooltip of the warning triangle in the footer."
+  },
+  "dev": {
+    "message": "Ontwikkelingskaarten",
+    "description": "Tooltip of the development-cards column."
+  },
+  "knights": {
+    "message": "ridders gespeeld",
+    "description": "Tooltip fragment after a number: '2 knights played'."
+  },
+  "expVP": {
+    "message": "verwachte OP",
+    "description": "Tooltip fragment before a number: 'expected VP 0.4'. VP = victory points; use the local abbreviation if one exists."
+  },
+  "unknownCol": {
+    "message": "onbekend type",
+    "description": "Tooltip of the '?' column (cards of unknown type)."
+  },
+  "modeRange": {
+    "message": "Bereik tonen (minimum + waarschijnlijk extra)",
+    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+  },
+  "modeExpected": {
+    "message": "Verwachte waarde tonen",
+    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
+  },
+  "export": {
+    "message": "Diagnose exporteren (JSON)",
+    "description": "Tooltip of the download button."
+  },
+  "options": {
+    "message": "Opties en gegevens",
+    "description": "Tooltip of the gear button."
+  },
+  "minimize": {
+    "message": "Minimaliseren",
+    "description": "Tooltip of the minimize button."
+  },
+  "close": {
+    "message": "Verbergen (Alt+Shift+C om weer te tonen)",
+    "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
+  },
+  "rec": {
+    "message": "REC",
+    "description": "Blinking recording indicator, like on a camera. Keep 'REC' unless the language has a common alternative."
+  },
+  "recTitle": {
+    "message": "Dit potje wordt (geanonimiseerd) opgenomen voor onderzoek",
+    "description": "Tooltip of the recording indicator."
+  },
+  "recOff": {
+    "message": "Opname uit",
+    "description": "Status when recording is disabled."
+  },
+  "consentTitle": {
+    "message": "Voordat je begint",
+    "description": "Heading of the consent card shown before the counter works."
+  },
+  "consentText": {
+    "message": "Deze extensie is gratis. In ruil daarvoor bewaart ze de geschiedenis van potjes (zetten, ruilen en chat) anoniem: elke spelersnaam wordt vervangen door een code voordat er iets je browser verlaat. De gegevens worden uitsluitend verzameld voor onderzoek naar besluitvorming en onderhandelen in het spel. Om de teller te gebruiken moet je akkoord gaan.",
+    "description": "LEGAL TEXT. Translate faithfully, do not shorten: it says the extension is free, that it stores game history (moves, trades and chat) anonymously, that names are replaced by codes before anything leaves the browser, that data is collected exclusively for research on decision-making and negotiation in the game, and that accepting is required to use the counter."
+  },
+  "consentYes": {
+    "message": "Akkoord en teller inschakelen",
+    "description": "Primary button of the consent card."
+  },
+  "consentNo": {
+    "message": "Nee, bedankt",
+    "description": "Secondary button of the consent card."
+  },
+  "consentMore": {
+    "message": "Meer details",
+    "description": "Link that opens the options page."
+  },
+  "consentDeclined": {
+    "message": "De teller staat uit omdat je niet akkoord bent gegaan met de anonieme gegevensverzameling. Je kunt op elk moment alsnog akkoord gaan.",
+    "description": "Text shown instead of consentText after the user declined."
+  },
+  "resLumber": {
+    "message": "Hout",
+    "description": "Resource tooltip. Use the exact word colonist.io shows in this language for the wood resource."
+  },
+  "resBrick": {
+    "message": "Steen",
+    "description": "Resource tooltip (brick/clay), as in colonist.io."
+  },
+  "resWool": {
+    "message": "Wol",
+    "description": "Resource tooltip (wool/sheep), as in colonist.io."
+  },
+  "resGrain": {
+    "message": "Graan",
+    "description": "Resource tooltip (grain/wheat), as in colonist.io."
+  },
+  "resOre": {
+    "message": "Erts",
+    "description": "Resource tooltip (ore), as in colonist.io."
+  },
+  "resCloth": {
+    "message": "Laken",
+    "description": "Cities & Knights commodity, as in colonist.io."
+  },
+  "resCoin": {
+    "message": "Munt",
+    "description": "Cities & Knights commodity, as in colonist.io."
+  },
+  "resPaper": {
+    "message": "Papier",
+    "description": "Cities & Knights commodity, as in colonist.io."
+  },
+  "devKnight": {
+    "message": "R",
+    "description": "1-3 character abbreviation of 'Knight' shown in the played-cards list."
+  },
+  "devVP": {
+    "message": "OP",
+    "description": "1-3 character abbreviation of 'Victory Point'."
+  },
+  "devMonopoly": {
+    "message": "M",
+    "description": "1-3 character abbreviation of 'Monopoly'."
+  },
+  "devRoadBuilding": {
+    "message": "WB",
+    "description": "1-3 character abbreviation of 'Road Building'."
+  },
+  "devYearOfPlenty": {
+    "message": "JO",
+    "description": "1-3 character abbreviation of 'Year of Plenty'."
+  },
+  "researchTitle": {
+    "message": "Gegevens voor onderzoek",
+    "description": "Options page: heading of the consent section."
+  },
+  "researchText": {
+    "message": "De extensie bewaart de geschiedenis van elk potje dat je op colonist.io speelt (zetten, ruilen, dobbelstenen en chat) en stuurt die na afloop naar de server van het project. Voordat er iets je browser verlaat, worden alle gebruikersnamen en identificaties (die van jou en van de andere spelers) vervangen door codes die zijn gemaakt met een willekeurige sleutel die alleen in jouw installatie bestaat; avatars, e-mailadressen en tokens worden verwijderd. Alle informatie is anoniem en wordt uitsluitend verzameld voor onderzoek naar besluitvorming en onderhandelen in het spel. Om de teller te gebruiken moet je akkoord gaan.",
+    "description": "LEGAL TEXT, options page. Longer version of consentText; translate faithfully and completely."
+  },
+  "optConsentYes": {
+    "message": "Ik ga akkoord: mijn geanonimiseerde potjes opnemen en versturen",
+    "description": "Options page radio button: accept."
+  },
+  "optConsentNo": {
+    "message": "Ik ga niet akkoord (de teller blijft uit)",
+    "description": "Options page radio button: decline."
+  },
+  "installId": {
+    "message": "Installatie-id:",
+    "description": "Label before the random installation identifier."
+  },
+  "installIdNote": {
+    "message": "(willekeurig, niet gekoppeld aan je account)",
+    "description": "Parenthetical after the installation identifier."
+  },
+  "privacy": {
+    "message": "Privacybeleid",
+    "description": "Link text to the privacy policy."
+  },
+  "serverTitle": {
+    "message": "Server",
+    "description": "Options page: heading of the server section (advanced users)."
+  },
+  "endpoint": {
+    "message": "Upload-URL",
+    "description": "Label of the server URL field."
+  },
+  "token": {
+    "message": "Token (optioneel)",
+    "description": "Label of the optional token field."
+  },
+  "save": {
+    "message": "Opslaan",
+    "description": "Button."
+  },
+  "saved": {
+    "message": "Opgeslagen",
+    "description": "Confirmation shown for two seconds after saving."
+  },
+  "keepLocal": {
+    "message": "Een lokale kopie bewaren van elk verstuurd potje",
+    "description": "Checkbox label."
+  },
+  "gamesTitle": {
+    "message": "Opgenomen potjes",
+    "description": "Options page: heading of the recorded games table."
+  },
+  "retry": {
+    "message": "Wachtende uploads opnieuw proberen",
+    "description": "Button: retry uploads that failed."
+  },
+  "refresh": {
+    "message": "Vernieuwen",
+    "description": "Button: reload the table."
+  },
+  "deleteAll": {
+    "message": "Alle lokale gegevens wissen",
+    "description": "Destructive button (red)."
+  },
+  "deleteAllConfirm": {
+    "message": "Alle lokaal opgeslagen potjes wissen? Al verstuurde potjes worden niet van de server verwijderd.",
+    "description": "Browser confirm() dialog before deleting local data."
+  },
+  "colDate": {
+    "message": "Datum",
+    "description": "Table column header."
+  },
+  "colGame": {
+    "message": "Potje",
+    "description": "Table column header (game id)."
+  },
+  "colPlayers": {
+    "message": "Spelers",
+    "description": "Table column header (number of players)."
+  },
+  "colFrames": {
+    "message": "Berichten",
+    "description": "Table column header: number of network messages recorded."
+  },
+  "colSize": {
+    "message": "Grootte",
+    "description": "Table column header (bytes)."
+  },
+  "colStatus": {
+    "message": "Status",
+    "description": "Table column header."
+  },
+  "empty": {
+    "message": "Nog geen opgenomen potjes.",
+    "description": "Shown when the table is empty."
+  },
+  "partial": {
+    "message": "onvolledig",
+    "description": "Small tag after a game id when the recording did not capture the whole game."
+  },
+  "exportBtn": {
+    "message": "Exporteren",
+    "description": "Small button per row."
+  },
+  "deleteBtn": {
+    "message": "Wissen",
+    "description": "Small button per row."
+  },
+  "status_recording": {
+    "message": "wordt opgenomen",
+    "description": "Row status: recording in progress."
+  },
+  "status_finalizing": {
+    "message": "wordt verwerkt",
+    "description": "Row status: being compressed/anonymised."
+  },
+  "status_pending": {
+    "message": "upload in wachtrij",
+    "description": "Row status: waiting to be uploaded."
+  },
+  "status_uploaded": {
+    "message": "verstuurd",
+    "description": "Row status: uploaded successfully."
+  },
+  "status_failed": {
+    "message": "mislukt",
+    "description": "Row status: upload failed after retries."
+  },
+  "status_local": {
+    "message": "alleen lokaal (geen server)",
+    "description": "Row status: kept locally because no server is configured."
+  }
+}

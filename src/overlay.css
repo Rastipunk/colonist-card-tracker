@@ -10,9 +10,11 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
-  font: 12px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 12px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans CJK SC", "Noto Sans CJK JP", "Noto Sans CJK KR", sans-serif;
   user-select: none;
   backdrop-filter: blur(6px);
+  /* Chrome replaces this with ltr/rtl according to the UI locale (see _locales). */
+  direction: __MSG_@@bidi_dir__;
 }
 #cct-overlay[hidden] { display: none !important; }
 #cct-overlay * { box-sizing: border-box; }
@@ -67,25 +69,25 @@
 }
 #cct-overlay table.cct-table th.icon { font-size: 14px; }
 #cct-overlay table.cct-table td.name,
-#cct-overlay table.cct-table th.name { text-align: left; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
+#cct-overlay table.cct-table th.name { text-align: start; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
 #cct-overlay table.cct-table tr.me td.name { font-weight: 600; }
 #cct-overlay .cct-dot {
   display: inline-block;
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  margin-right: 5px;
+  margin-inline-end: 5px;
   vertical-align: 0;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
 }
 #cct-overlay table.cct-table td.z { color: #55627a; }
 #cct-overlay table.cct-table td .v { font-size: 13px; font-weight: 600; }
-#cct-overlay table.cct-table td .x { font-size: 10px; color: #ffcf6b; margin-left: 2px; }
-#cct-overlay table.cct-table td .p { font-size: 9px; color: #8fa0b5; margin-left: 2px; }
+#cct-overlay table.cct-table td .x { font-size: 10px; color: #ffcf6b; margin-inline-start: 2px; }
+#cct-overlay table.cct-table td .p { font-size: 9px; color: #8fa0b5; margin-inline-start: 2px; }
 #cct-overlay table.cct-table td .e { font-size: 13px; font-weight: 600; color: #ffd98a; }
 #cct-overlay table.cct-table td.total { font-weight: 600; }
-#cct-overlay table.cct-table td.total .ok { color: #7ee2a8; font-size: 10px; margin-left: 2px; }
-#cct-overlay table.cct-table td.total .bad { color: #ff8a80; font-size: 10px; margin-left: 2px; }
+#cct-overlay table.cct-table td.total .ok { color: #7ee2a8; font-size: 10px; margin-inline-start: 2px; }
+#cct-overlay table.cct-table td.total .bad { color: #ff8a80; font-size: 10px; margin-inline-start: 2px; }
 #cct-overlay table.cct-table tr.bank td { border-top: 1px solid rgba(255, 255, 255, 0.1); color: #b6c3d2; }
 #cct-overlay table.cct-table td.dev { color: #d8c8ff; }
 #cct-overlay table.cct-table td.dev .used { font-size: 10px; color: #a893d9; }
@@ -149,7 +151,7 @@
   max-width: 420px;
 }
 #cct-overlay .cct-consent p { margin: 4px 0 6px; color: #c9d3de; }
-#cct-overlay .cct-consent-actions { display: flex; gap: 6px; align-items: center; }
+#cct-overlay .cct-consent-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 #cct-overlay .cct-consent button {
   all: unset;
   cursor: pointer;

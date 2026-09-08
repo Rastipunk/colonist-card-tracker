@@ -1,0 +1,354 @@
+{
+  "appName": {
+    "message": "Colonist Card Tracker",
+    "description": "Product name. Keep 'Colonist Card Tracker' unchanged in every language."
+  },
+  "appDesc": {
+    "message": "Compteur de cartes pour colonist.io : vols probables, banque, développement, dés. Parties anonymes enregistrées pour la recherche.",
+    "description": "Short description shown by Chrome and the Web Store summary. HARD LIMIT 132 characters."
+  },
+  "title": {
+    "message": "Card Tracker",
+    "description": "Panel title, next to a card emoji. Keep short."
+  },
+  "waiting": {
+    "message": "En attente d'une partie…",
+    "description": "Status shown while no game is loaded."
+  },
+  "waitingHint": {
+    "message": "Rejoins une partie. Si tu y es déjà, recharge la page (F5) pour capturer l'état du jeu.",
+    "description": "Hint under the waiting status. F5 is the reload key."
+  },
+  "live": {
+    "message": "En direct",
+    "description": "Status: game in progress."
+  },
+  "ended": {
+    "message": "Terminée",
+    "description": "Status: game finished."
+  },
+  "spectator": {
+    "message": "spectateur",
+    "description": "Status chip when the user is watching, not playing. Lowercase if the language allows."
+  },
+  "turn": {
+    "message": "tour",
+    "description": "Prefix before the turn number, e.g. 'turn 12'."
+  },
+  "bank": {
+    "message": "Banque",
+    "description": "Row label for the bank's cards. Use the same word colonist.io uses in this language."
+  },
+  "you": {
+    "message": "toi",
+    "description": "Small tag after the user's own name: '(you)'."
+  },
+  "bot": {
+    "message": "bot",
+    "description": "Tooltip on the robot icon next to computer players."
+  },
+  "dice": {
+    "message": "Dés",
+    "description": "Section title for the dice histogram."
+  },
+  "rolls": {
+    "message": "lancers",
+    "description": "Suffix after a number: '37 rolls'."
+  },
+  "steals": {
+    "message": "vols cachés",
+    "description": "Footer: number of steals whose card was not visible, e.g. '3 hidden steals'."
+  },
+  "scenarios": {
+    "message": "scénarios",
+    "description": "Footer: number of possible worlds being tracked, e.g. '120 scenarios'."
+  },
+  "approx": {
+    "message": "approx.",
+    "description": "Footer suffix in parentheses when the scenario count was capped."
+  },
+  "synced": {
+    "message": "Correspond au total du serveur",
+    "description": "Tooltip on the green check next to a player's total."
+  },
+  "desync": {
+    "message": "Ne correspond pas au total du serveur",
+    "description": "Tooltip on the red exclamation mark next to a player's total."
+  },
+  "total": {
+    "message": "Σ",
+    "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
+  },
+  "totalTitle": {
+    "message": "Total des cartes",
+    "description": "Tooltip of the total column header."
+  },
+  "contradictions": {
+    "message": "Contradictions détectées",
+    "description": "Tooltip of the warning triangle in the footer."
+  },
+  "dev": {
+    "message": "Cartes développement",
+    "description": "Tooltip of the development-cards column."
+  },
+  "knights": {
+    "message": "chevaliers joués",
+    "description": "Tooltip fragment after a number: '2 knights played'."
+  },
+  "expVP": {
+    "message": "PV attendus",
+    "description": "Tooltip fragment before a number: 'expected VP 0.4'. VP = victory points; use the local abbreviation if one exists."
+  },
+  "unknownCol": {
+    "message": "type inconnu",
+    "description": "Tooltip of the '?' column (cards of unknown type)."
+  },
+  "modeRange": {
+    "message": "Afficher l'intervalle (minimum + extra probable)",
+    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+  },
+  "modeExpected": {
+    "message": "Afficher la valeur attendue",
+    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
+  },
+  "export": {
+    "message": "Exporter le diagnostic (JSON)",
+    "description": "Tooltip of the download button."
+  },
+  "options": {
+    "message": "Options et données",
+    "description": "Tooltip of the gear button."
+  },
+  "minimize": {
+    "message": "Réduire",
+    "description": "Tooltip of the minimize button."
+  },
+  "close": {
+    "message": "Masquer (Alt+Maj+C pour réafficher)",
+    "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
+  },
+  "rec": {
+    "message": "REC",
+    "description": "Blinking recording indicator, like on a camera. Keep 'REC' unless the language has a common alternative."
+  },
+  "recTitle": {
+    "message": "Enregistrement de cette partie (anonymisée) pour la recherche",
+    "description": "Tooltip of the recording indicator."
+  },
+  "recOff": {
+    "message": "Enregistrement désactivé",
+    "description": "Status when recording is disabled."
+  },
+  "consentTitle": {
+    "message": "Avant de commencer",
+    "description": "Heading of the consent card shown before the counter works."
+  },
+  "consentText": {
+    "message": "Cette extension est gratuite. En échange, elle conserve l'historique des parties (coups, échanges et chat) de façon anonyme : le nom de chaque joueur est remplacé par un code avant que quoi que ce soit ne quitte ton navigateur. Les données sont collectées exclusivement à des fins de recherche sur la prise de décision et la négociation dans le jeu. Il faut accepter pour utiliser le compteur.",
+    "description": "LEGAL TEXT. Translate faithfully, do not shorten: it says the extension is free, that it stores game history (moves, trades and chat) anonymously, that names are replaced by codes before anything leaves the browser, that data is collected exclusively for research on decision-making and negotiation in the game, and that accepting is required to use the counter."
+  },
+  "consentYes": {
+    "message": "Accepter et activer le compteur",
+    "description": "Primary button of the consent card."
+  },
+  "consentNo": {
+    "message": "Non, merci",
+    "description": "Secondary button of the consent card."
+  },
+  "consentMore": {
+    "message": "Plus de détails",
+    "description": "Link that opens the options page."
+  },
+  "consentDeclined": {
+    "message": "Le compteur est désactivé parce que tu n'as pas accepté la collecte anonyme des données. Tu peux accepter à tout moment.",
+    "description": "Text shown instead of consentText after the user declined."
+  },
+  "resLumber": {
+    "message": "Bois",
+    "description": "Resource tooltip. Use the exact word colonist.io shows in this language for the wood resource."
+  },
+  "resBrick": {
+    "message": "Argile",
+    "description": "Resource tooltip (brick/clay), as in colonist.io."
+  },
+  "resWool": {
+    "message": "Laine",
+    "description": "Resource tooltip (wool/sheep), as in colonist.io."
+  },
+  "resGrain": {
+    "message": "Blé",
+    "description": "Resource tooltip (grain/wheat), as in colonist.io."
+  },
+  "resOre": {
+    "message": "Minerai",
+    "description": "Resource tooltip (ore), as in colonist.io."
+  },
+  "resCloth": {
+    "message": "Tissu",
+    "description": "Cities & Knights commodity, as in colonist.io."
+  },
+  "resCoin": {
+    "message": "Pièce",
+    "description": "Cities & Knights commodity, as in colonist.io."
+  },
+  "resPaper": {
+    "message": "Papier",
+    "description": "Cities & Knights commodity, as in colonist.io."
+  },
+  "devKnight": {
+    "message": "C",
+    "description": "1-3 character abbreviation of 'Knight' shown in the played-cards list."
+  },
+  "devVP": {
+    "message": "PV",
+    "description": "1-3 character abbreviation of 'Victory Point'."
+  },
+  "devMonopoly": {
+    "message": "M",
+    "description": "1-3 character abbreviation of 'Monopoly'."
+  },
+  "devRoadBuilding": {
+    "message": "CR",
+    "description": "1-3 character abbreviation of 'Road Building'."
+  },
+  "devYearOfPlenty": {
+    "message": "AA",
+    "description": "1-3 character abbreviation of 'Year of Plenty'."
+  },
+  "researchTitle": {
+    "message": "Données pour la recherche",
+    "description": "Options page: heading of the consent section."
+  },
+  "researchText": {
+    "message": "L'extension conserve l'historique de chaque partie que tu joues sur colonist.io (coups, échanges, dés et chat) et l'envoie au serveur du projet à la fin de la partie. Avant que quoi que ce soit ne quitte ton navigateur, tous les noms d'utilisateur et identifiants (les tiens et ceux des autres joueurs) sont remplacés par des codes générés avec une clé aléatoire qui n'existe que dans ton installation ; avatars, e-mails et jetons sont supprimés. Toutes les informations sont anonymes et collectées exclusivement à des fins de recherche sur la prise de décision et la négociation dans le jeu. Il faut accepter pour utiliser le compteur.",
+    "description": "LEGAL TEXT, options page. Longer version of consentText; translate faithfully and completely."
+  },
+  "optConsentYes": {
+    "message": "J'accepte : enregistrer et envoyer mes parties anonymisées",
+    "description": "Options page radio button: accept."
+  },
+  "optConsentNo": {
+    "message": "Je refuse (le compteur reste désactivé)",
+    "description": "Options page radio button: decline."
+  },
+  "installId": {
+    "message": "Identifiant d'installation :",
+    "description": "Label before the random installation identifier."
+  },
+  "installIdNote": {
+    "message": "(aléatoire, sans lien avec ton compte)",
+    "description": "Parenthetical after the installation identifier."
+  },
+  "privacy": {
+    "message": "Politique de confidentialité",
+    "description": "Link text to the privacy policy."
+  },
+  "serverTitle": {
+    "message": "Serveur",
+    "description": "Options page: heading of the server section (advanced users)."
+  },
+  "endpoint": {
+    "message": "URL d'envoi",
+    "description": "Label of the server URL field."
+  },
+  "token": {
+    "message": "Jeton (facultatif)",
+    "description": "Label of the optional token field."
+  },
+  "save": {
+    "message": "Enregistrer",
+    "description": "Button."
+  },
+  "saved": {
+    "message": "Enregistré",
+    "description": "Confirmation shown for two seconds after saving."
+  },
+  "keepLocal": {
+    "message": "Garder une copie locale de chaque partie envoyée",
+    "description": "Checkbox label."
+  },
+  "gamesTitle": {
+    "message": "Parties enregistrées",
+    "description": "Options page: heading of the recorded games table."
+  },
+  "retry": {
+    "message": "Réessayer les envois en attente",
+    "description": "Button: retry uploads that failed."
+  },
+  "refresh": {
+    "message": "Actualiser",
+    "description": "Button: reload the table."
+  },
+  "deleteAll": {
+    "message": "Supprimer toutes les données locales",
+    "description": "Destructive button (red)."
+  },
+  "deleteAllConfirm": {
+    "message": "Supprimer toutes les parties stockées localement ? Les parties déjà envoyées ne sont pas retirées du serveur.",
+    "description": "Browser confirm() dialog before deleting local data."
+  },
+  "colDate": {
+    "message": "Date",
+    "description": "Table column header."
+  },
+  "colGame": {
+    "message": "Partie",
+    "description": "Table column header (game id)."
+  },
+  "colPlayers": {
+    "message": "Joueurs",
+    "description": "Table column header (number of players)."
+  },
+  "colFrames": {
+    "message": "Messages",
+    "description": "Table column header: number of network messages recorded."
+  },
+  "colSize": {
+    "message": "Taille",
+    "description": "Table column header (bytes)."
+  },
+  "colStatus": {
+    "message": "État",
+    "description": "Table column header."
+  },
+  "empty": {
+    "message": "Aucune partie enregistrée pour l'instant.",
+    "description": "Shown when the table is empty."
+  },
+  "partial": {
+    "message": "partielle",
+    "description": "Small tag after a game id when the recording did not capture the whole game."
+  },
+  "exportBtn": {
+    "message": "Exporter",
+    "description": "Small button per row."
+  },
+  "deleteBtn": {
+    "message": "Supprimer",
+    "description": "Small button per row."
+  },
+  "status_recording": {
+    "message": "enregistrement",
+    "description": "Row status: recording in progress."
+  },
+  "status_finalizing": {
+    "message": "traitement",
+    "description": "Row status: being compressed/anonymised."
+  },
+  "status_pending": {
+    "message": "envoi en attente",
+    "description": "Row status: waiting to be uploaded."
+  },
+  "status_uploaded": {
+    "message": "envoyée",
+    "description": "Row status: uploaded successfully."
+  },
+  "status_failed": {
+    "message": "échec",
+    "description": "Row status: upload failed after retries."
+  },
+  "status_local": {
+    "message": "locale uniquement (pas de serveur)",
+    "description": "Row status: kept locally because no server is configured."
+  }
+}

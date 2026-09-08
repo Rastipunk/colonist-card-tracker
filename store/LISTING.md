@@ -2,6 +2,9 @@
 
 Todo lo de este archivo se pega tal cual en el Developer Dashboard cuando llegue el momento.
 
+**Publicada el 2026-09-05 (v1.1.0).** ID `llcpmhhkdfkeoljcfbhknfcknfejfkoi`.
+Ficha pública: https://chromewebstore.google.com/detail/llcpmhhkdfkeoljcfbhknfcknfejfkoi
+
 ## Nombre
 
 Colonist Card Tracker
@@ -48,7 +51,12 @@ Productividad → Herramientas para desarrolladores no; usar **Juegos** (o "Fun"
 
 ## Idiomas
 
-Español, Inglés.
+Desde 1.2.0 la extensión está en 15 idiomas (+ portugués de Portugal). La ficha de la tienda se
+traduce aparte, idioma por idioma, en el panel ("Ficha de Play Store" → selector de idioma arriba):
+los textos listos para pegar están en `store/listing/<locale>.md`, uno por idioma, con el resumen
+(≤ 132 caracteres) y la descripción. Los nombres que usa el panel de Google: English, Español,
+Deutsch, 日本語, Français, Português (Brasil), Português (Portugal), Română, Русский, Türkçe,
+Polski, Nederlands, Bahasa Melayu, 한국어, Italiano, 中文 (简体).
 
 ## Capturas (1280×800 o 640×400, PNG/JPG, mínimo 1)
 
