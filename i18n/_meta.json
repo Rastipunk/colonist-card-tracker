@@ -357,6 +357,10 @@
     },
     "moreStatsTitle": {
       "note": "Tooltip of the 'More stats' button."
+    },
+    "setup": {
+      "note": "Status shown instead of the round number while players place their initial settlements (before the first dice roll).",
+      "maxLength": 24
     }
   }
 }

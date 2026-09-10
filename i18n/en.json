@@ -11,6 +11,7 @@
   "spectator": "spectator",
   "turn": "turn",
   "round": "round",
+  "setup": "setup",
   "bank": "Bank",
   "you": "you",
   "bot": "bot",

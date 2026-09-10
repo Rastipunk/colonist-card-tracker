@@ -363,3 +363,14 @@ test('standings are computed from victoryPointsState and the winner', () => {
   assert.equal(st[0].winner, true);
   assert.equal(st[2].publicVp, 3);
 });
+
+test('turns start with the first dice roll; placement separators are not counted', () => {
+  const t = newGame({ logs: [] });
+  t.__logIdx = 0;
+  logs(t, [log(L.Separator), log(L.Separator), log(L.Separator), log(L.Separator)]);
+  assert.equal(t.summary().turn, 0);
+  logs(t, [log(L.RolledDice, { playerColor: RED, firstDice: 3, secondDice: 4 })]);
+  assert.equal(t.summary().turn, 1);
+  logs(t, [log(L.Separator), log(L.RolledDice, { playerColor: BLUE, firstDice: 2, secondDice: 2 }), log(L.Separator)]);
+  assert.equal(t.summary().turn, 3);
+});

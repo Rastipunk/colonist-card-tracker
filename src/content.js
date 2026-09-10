@@ -44,7 +44,7 @@
     'expVP', 'unknownCol', 'modeRange', 'modeExpected', 'export', 'options', 'minimize', 'close', 'rec', 'recTitle',
     'recOff', 'consentTitle', 'consentText', 'consentYes', 'consentNo', 'consentMore', 'consentDeclined',
     'rateAsk', 'rateDismiss', 'devInHand', 'devPlayed', 'devNone', 'devDeck', 'moreStats', 'round',
-    'themeLight', 'themeDark', 'sevens', 'expected', 'mostRolled', 'perPlayer', 'bankTitle', 'moreStatsTitle'
+    'themeLight', 'themeDark', 'sevens', 'expected', 'mostRolled', 'perPlayer', 'bankTitle', 'moreStatsTitle', 'setup'
   ].forEach(function (k) { T[k] = msg(k); });
   // Web Store review page of this very install (the id is the store id when installed from the store).
   var RATE_URL = 'https://chromewebstore.google.com/detail/' + chrome.runtime.id + '/reviews';
@@ -648,7 +648,7 @@
     // rounds, where every player has played once.
     var nPlayers = Math.max(1, s.players.length);
     var round = Math.max(1, Math.ceil(s.turn / nPlayers));
-    statusBits.push(T.round + ' ' + round);
+    statusBits.push(s.turn === 0 && s.phase === 'live' ? T.setup : T.round + ' ' + round);
     ui.status.textContent = statusBits.join(' · ');
     ui.status.className = 'cct-status ' + (s.phase === 'live' ? 'live' : '');
 

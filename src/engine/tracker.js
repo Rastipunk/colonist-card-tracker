@@ -106,7 +106,10 @@ CCT.Tracker = (function () {
     this.worlds = null;
     this.processedLogs = new Set();
     this.lastLogIndex = -1;
+    // turn = 0 during the initial placement; the first dice roll starts turn 1 and every
+    // end-of-turn separator after that adds one. Placement turns are never counted.
     this.turn = 0;
+    this.mainStarted = false;
     this.dice = { hist: {}, count: 0, byPlayer: {} };
     this.dev = { deck: null, players: {} };
     this.unknownSteals = [];
@@ -413,6 +416,7 @@ CCT.Tracker = (function () {
 
       case L.RolledDice:
       case L.DiceRolledAutomatically:
+        if (!this.mainStarted) { this.mainStarted = true; this.turn = 1; }
         this.recordDice(t);
         break;
 
@@ -533,7 +537,7 @@ CCT.Tracker = (function () {
         break;
 
       case L.Separator:
-        this.turn++;
+        if (this.mainStarted) this.turn++;
         this.freeRoads = {};
         break;
 
