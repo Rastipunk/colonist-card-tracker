@@ -168,6 +168,13 @@
 #cct-overlay table.cct-table td.devcol .played b { font-size: 9px; font-weight: 600; color: var(--muted); margin-inline-start: -1px; }
 
 /* -------------------------------------------------------------- sections */
+/* Only the table decides the panel width: every other block takes the width the
+   table gives (width:0 + min-width:100% removes it from the shrink-to-fit measure),
+   so opening the stats or the rating line never shifts the header buttons. */
+#cct-overlay .cct-section,
+#cct-overlay .cct-foot,
+#cct-overlay .cct-rate,
+#cct-overlay .cct-empty { width: 0; min-width: 100%; }
 #cct-overlay .cct-section { margin-top: 7px; }
 #cct-overlay .cct-section h4 {
   margin: 0 0 3px;
@@ -211,7 +218,8 @@
   pointer-events: none;
 }
 #cct-overlay .cct-dice .bar span { margin-top: 2px; }
-#cct-overlay .cct-stats { margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; font-size: 11px; color: var(--muted-2); }
+#cct-overlay .cct-stats { margin-top: 6px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2px 12px; font-size: 11px; color: var(--muted-2); }
+#cct-overlay .cct-stats span { white-space: normal; overflow-wrap: anywhere; }
 #cct-overlay .cct-stats b { color: var(--text-2); font-weight: 600; }
 #cct-overlay .cct-stats .warn { color: var(--warn); }
 #cct-overlay .cct-foot {

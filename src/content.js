@@ -417,7 +417,7 @@
   // ------------------------------------------------------------------ prefs
 
   function loadPrefs() {
-    var p = { minimized: false, mode: 'range', pos: null, hidden: false, gamesEnded: 0, rateDismissed: false, statsOpen: false, theme: 'dark' };
+    var p = { minimized: false, mode: 'range', pos: null, hidden: false, gamesEnded: 0, rateDismissed: false, statsOpen: false, theme: 'dark', minWidth: null };
     try {
       var raw = localStorage.getItem('cct.prefs');
       if (raw) {
@@ -469,7 +469,7 @@
       modeBtn: el.querySelector('[data-act="mode"]')
     };
     if (prefs.pos) applyPos(prefs.pos);
-    if (prefs.minimized) el.classList.add('cct-min');
+    if (prefs.minimized) { el.classList.add('cct-min'); if (prefs.minWidth) el.style.width = prefs.minWidth + 'px'; }
     if (prefs.hidden) el.hidden = true;
     if (prefs.theme === 'light') el.classList.add('cct-light');
     ui.modeBtn.classList.toggle('on', prefs.mode === 'expected');
@@ -501,6 +501,9 @@
           openOptions();
           break;
         case 'min':
+          // Keep the panel width while minimized so the buttons stay under the cursor.
+          if (!prefs.minimized) { prefs.minWidth = Math.round(el.getBoundingClientRect().width); el.style.width = prefs.minWidth + 'px'; }
+          else { prefs.minWidth = null; el.style.width = ''; }
           prefs.minimized = !prefs.minimized;
           el.classList.toggle('cct-min', prefs.minimized);
           savePrefs();
