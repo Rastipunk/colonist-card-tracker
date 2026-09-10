@@ -95,8 +95,9 @@ ImageDraw.Draw(mask).ellipse((10, 10, isl.width - 10, isl.height - 10), fill=255
 mask = mask.filter(ImageFilter.GaussianBlur(28))
 isl.putalpha(mask)
 s1.alpha_composite(isl, (40, 190))
-ph = panel.resize((int(panel.width * 0.93), int(panel.height * 0.93)), Image.LANCZOS)
-x, y = 1280 - ph.width - 56, 190 + (525 - ph.height) // 2
+hero_scale = min(0.93, 590 / panel.height)          # fit under the caption whatever the panel height
+ph = panel.resize((int(panel.width * hero_scale), int(panel.height * hero_scale)), Image.LANCZOS)
+x, y = 1280 - ph.width - 56, 175 + max(0, (590 - ph.height) // 2)
 shadow(s1, (x, y, x + ph.width, y + ph.height))
 s1.alpha_composite(ph, (x, y))
 s1.convert("RGB").save(os.path.join(SHOTS, "1-game.png"))

@@ -108,9 +108,13 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
 }
 #cct-overlay table.cct-table td.z { color: #55627a; }
+/* fixed-width value columns so probabilities never change the layout */
+#cct-overlay table.cct-table th:not(.name),
+#cct-overlay table.cct-table td:not(.name) { min-width: 40px; width: 40px; }
+#cct-overlay table.cct-table td { height: 30px; vertical-align: middle; line-height: 1.1; }
 #cct-overlay table.cct-table td .v { font-size: 13px; font-weight: 600; }
 #cct-overlay table.cct-table td .x { font-size: 10px; color: #ffcf6b; margin-inline-start: 2px; }
-#cct-overlay table.cct-table td .p { font-size: 9px; color: #8fa0b5; margin-inline-start: 2px; }
+#cct-overlay table.cct-table td .p { display: block; font-size: 9px; color: #8fa0b5; margin-top: 1px; }
 #cct-overlay table.cct-table td .e { font-size: 13px; font-weight: 600; color: #ffd98a; }
 #cct-overlay table.cct-table td.total { font-weight: 600; }
 #cct-overlay table.cct-table td.total .ok { color: #7ee2a8; font-size: 10px; margin-inline-start: 2px; }

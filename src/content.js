@@ -736,7 +736,8 @@
     }
     var pExtra = 1 - (m.dist[m.min] || 0);
     var extra = m.max - m.min;
-    return '<td title="' + title + '"><span class="v">' + m.min + '</span><span class="x">+' + extra + '</span><span class="p">' + numFmt.pct(pExtra) + '</span></td>';
+    // Number and "+extra" on the first line, probability underneath: column widths stay put.
+    return '<td class="rng" title="' + title + '"><span class="v">' + m.min + '</span><span class="x">+' + extra + '</span><span class="p">' + numFmt.pct(pExtra) + '</span></td>';
   }
 
   function distTitle(m) {
