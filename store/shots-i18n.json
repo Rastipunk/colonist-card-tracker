@@ -1,0 +1,275 @@
+{
+  "_comment": "Texts of the Web Store screenshots per locale. Used by tools/shot-store.mjs (features board) and tools/compose-store.py (captions). The brand 'Colonist Card Tracker' is never translated.",
+  "en": {
+    "tagline": "Catan card counter for colonist.io",
+    "bullets": ["Who holds what, every turn", "Hidden steals as probabilities", "Development cards, bank, dice", "15 languages · free · open source"],
+    "stats": ["Every roll and every steal, in numbers", "Dice histogram against the odds, sevens, hidden steals as probabilities, all in one panel"],
+    "game": ["Who holds what, every turn", "Live on colonist.io: resources per player, bank, development cards and dice"],
+    "features": ["Everything the panel shows you", "Colonist Card Tracker · Catan card counter for colonist.io"],
+    "items": [
+      ["Every player's hand, live", "Resource cards per player, updated with every distribution, build, trade and discard."],
+      ["Hidden steals become probabilities", "\"2 +1 65%\": two cards for sure and a 65% chance of one more, refined as the game goes on."],
+      ["Expected value in one click", "Switch between ranges and a single average number whenever you prefer."],
+      ["Development cards, in hand and played", "Count per player plus every knight, monopoly, road building or year of plenty already revealed."],
+      ["Bank and deck", "What is left of each resource in the bank and how many development cards remain."],
+      ["Dice, sevens and luck", "Histogram with the expected count for every number, sevens versus expected, most rolled number."],
+      ["Checked against the server", "Totals are verified against the game server every update: ✓ means the count is right."],
+      ["Your language, your theme", "Interface in 15 languages, light and dark themes, free and open source."]
+    ]
+  },
+  "es": {
+    "tagline": "Contador de cartas de Catan para colonist.io",
+    "bullets": ["Quién tiene qué, en cada turno", "Robos ocultos como probabilidades", "Cartas de desarrollo, banco, dados", "15 idiomas · gratis · código abierto"],
+    "stats": ["Cada tirada y cada robo, en números", "Histograma de dados frente a lo esperado, sietes, robos ocultos como probabilidades, todo en un panel"],
+    "game": ["Quién tiene qué, en cada turno", "En vivo en colonist.io: recursos por jugador, banco, cartas de desarrollo y dados"],
+    "features": ["Todo lo que te muestra el panel", "Colonist Card Tracker · contador de cartas de Catan para colonist.io"],
+    "items": [
+      ["La mano de cada jugador, en vivo", "Cartas de recurso por jugador, actualizadas con cada reparto, construcción, intercambio y descarte."],
+      ["Los robos ocultos se vuelven probabilidades", "«2 +1 65%»: dos cartas seguras y un 65 % de probabilidad de una más, afinado según avanza la partida."],
+      ["Valor esperado con un clic", "Cambia entre rangos y un único número medio cuando prefieras."],
+      ["Cartas de desarrollo, en mano y jugadas", "Cuántas tiene cada jugador y cada caballero, monopolio, carreteras o invento ya revelado."],
+      ["Banco y mazo", "Lo que queda de cada recurso en el banco y cuántas cartas de desarrollo faltan por comprar."],
+      ["Dados, sietes y suerte", "Histograma con lo esperado para cada número, sietes frente a lo esperado, número más frecuente."],
+      ["Verificado contra el servidor", "Los totales se comprueban con el servidor del juego en cada actualización: ✓ significa que el conteo es correcto."],
+      ["Tu idioma, tu tema", "Interfaz en 15 idiomas, tema claro y oscuro, gratis y de código abierto."]
+    ]
+  },
+  "de": {
+    "tagline": "Catan-Kartenzähler für colonist.io",
+    "bullets": ["Wer hat was, in jedem Zug", "Verdeckte Diebstähle als Wahrscheinlichkeiten", "Entwicklungskarten, Bank, Würfel", "15 Sprachen · kostenlos · Open Source"],
+    "stats": ["Jeder Wurf und jeder Diebstahl, in Zahlen", "Würfelhistogramm gegen die Wahrscheinlichkeit, Siebener, verdeckte Diebstähle als Wahrscheinlichkeiten, alles in einem Panel"],
+    "game": ["Wer hat was, in jedem Zug", "Live auf colonist.io: Rohstoffe je Spieler, Bank, Entwicklungskarten und Würfel"],
+    "features": ["Alles, was das Panel dir zeigt", "Colonist Card Tracker · Catan-Kartenzähler für colonist.io"],
+    "items": [
+      ["Jede Hand, live", "Rohstoffkarten je Spieler, aktualisiert bei jeder Ausschüttung, jedem Bau, Handel und Abwurf."],
+      ["Verdeckte Diebstähle werden zu Wahrscheinlichkeiten", "„2 +1 65%“: zwei Karten sicher und 65 % Chance auf eine weitere, im Spielverlauf immer genauer."],
+      ["Erwartungswert mit einem Klick", "Wechsle jederzeit zwischen Spannen und einer einzelnen Durchschnittszahl."],
+      ["Entwicklungskarten, auf der Hand und gespielt", "Anzahl je Spieler plus jeder bereits aufgedeckte Ritter, jedes Monopol, jeder Straßenbau und jede Erfindung."],
+      ["Bank und Stapel", "Was von jedem Rohstoff in der Bank übrig ist und wie viele Entwicklungskarten noch da sind."],
+      ["Würfel, Siebener und Glück", "Histogramm mit der Erwartung für jede Zahl, Siebener gegen die Erwartung, häufigste Zahl."],
+      ["Mit dem Server abgeglichen", "Die Summen werden bei jedem Update mit dem Spielserver geprüft: ✓ heißt, die Zählung stimmt."],
+      ["Deine Sprache, dein Design", "Oberfläche in 15 Sprachen, helles und dunkles Design, kostenlos und Open Source."]
+    ]
+  },
+  "fr": {
+    "tagline": "Compteur de cartes Catan pour colonist.io",
+    "bullets": ["Qui a quoi, à chaque tour", "Les vols cachés en probabilités", "Cartes développement, banque, dés", "15 langues · gratuit · open source"],
+    "stats": ["Chaque lancer et chaque vol, en chiffres", "Histogramme des dés face aux probabilités, les sept, les vols cachés en probabilités, tout dans un seul panneau"],
+    "game": ["Qui a quoi, à chaque tour", "En direct sur colonist.io : ressources par joueur, banque, cartes développement et dés"],
+    "features": ["Tout ce que le panneau t'affiche", "Colonist Card Tracker · compteur de cartes Catan pour colonist.io"],
+    "items": [
+      ["La main de chaque joueur, en direct", "Cartes ressource par joueur, mises à jour à chaque distribution, construction, échange et défausse."],
+      ["Les vols cachés deviennent des probabilités", "« 2 +1 65% » : deux cartes sûres et 65 % de chances d'en avoir une de plus, affiné au fil de la partie."],
+      ["La valeur attendue en un clic", "Passe des intervalles à un seul nombre moyen quand tu veux."],
+      ["Cartes développement, en main et jouées", "Le nombre par joueur plus chaque chevalier, monopole, construction de routes ou année d'abondance déjà révélé."],
+      ["Banque et pioche", "Ce qu'il reste de chaque ressource à la banque et combien de cartes développement restent."],
+      ["Dés, sept et chance", "Histogramme avec l'attendu pour chaque numéro, les sept face à l'attendu, numéro le plus fréquent."],
+      ["Vérifié avec le serveur", "Les totaux sont contrôlés avec le serveur du jeu à chaque mise à jour : ✓ signifie que le compte est bon."],
+      ["Ta langue, ton thème", "Interface en 15 langues, thèmes clair et sombre, gratuit et open source."]
+    ]
+  },
+  "it": {
+    "tagline": "Contatore di carte Catan per colonist.io",
+    "bullets": ["Chi ha cosa, a ogni turno", "Furti nascosti come probabilità", "Carte di sviluppo, banca, dadi", "15 lingue · gratis · open source"],
+    "stats": ["Ogni lancio e ogni furto, in numeri", "Istogramma dei dadi contro le probabilità, i sette, i furti nascosti come probabilità, tutto in un pannello"],
+    "game": ["Chi ha cosa, a ogni turno", "In diretta su colonist.io: risorse per giocatore, banca, carte di sviluppo e dadi"],
+    "features": ["Tutto ciò che il pannello ti mostra", "Colonist Card Tracker · contatore di carte Catan per colonist.io"],
+    "items": [
+      ["La mano di ogni giocatore, dal vivo", "Carte risorsa per giocatore, aggiornate a ogni distribuzione, costruzione, scambio e scarto."],
+      ["I furti nascosti diventano probabilità", "«2 +1 65%»: due carte sicure e il 65% di probabilità di averne un'altra, affinato durante la partita."],
+      ["Valore atteso con un clic", "Passa dagli intervalli a un singolo numero medio quando preferisci."],
+      ["Carte di sviluppo, in mano e giocate", "Il numero per giocatore più ogni cavaliere, monopolio, costruzione di strade o anno di abbondanza già rivelato."],
+      ["Banca e mazzo", "Quanto resta di ogni risorsa in banca e quante carte di sviluppo rimangono."],
+      ["Dadi, sette e fortuna", "Istogramma con l'atteso per ogni numero, i sette contro l'atteso, numero più frequente."],
+      ["Verificato con il server", "I totali sono controllati con il server di gioco a ogni aggiornamento: ✓ significa che il conteggio è giusto."],
+      ["La tua lingua, il tuo tema", "Interfaccia in 15 lingue, tema chiaro e scuro, gratis e open source."]
+    ]
+  },
+  "pt_BR": {
+    "tagline": "Contador de cartas de Catan para colonist.io",
+    "bullets": ["Quem tem o quê, a cada turno", "Roubos ocultos como probabilidades", "Cartas de desenvolvimento, banco, dados", "15 idiomas · grátis · código aberto"],
+    "stats": ["Cada lançamento e cada roubo, em números", "Histograma dos dados contra o esperado, setes, roubos ocultos como probabilidades, tudo em um painel"],
+    "game": ["Quem tem o quê, a cada turno", "Ao vivo no colonist.io: recursos por jogador, banco, cartas de desenvolvimento e dados"],
+    "features": ["Tudo o que o painel mostra a você", "Colonist Card Tracker · contador de cartas de Catan para colonist.io"],
+    "items": [
+      ["A mão de cada jogador, ao vivo", "Cartas de recurso por jogador, atualizadas a cada distribuição, construção, troca e descarte."],
+      ["Roubos ocultos viram probabilidades", "“2 +1 65%”: duas cartas certas e 65% de chance de mais uma, refinado conforme a partida avança."],
+      ["Valor esperado em um clique", "Alterne entre intervalos e um único número médio quando preferir."],
+      ["Cartas de desenvolvimento, na mão e jogadas", "Quantidade por jogador mais cada cavaleiro, monopólio, construção de estradas ou invenção já revelado."],
+      ["Banco e baralho", "O que resta de cada recurso no banco e quantas cartas de desenvolvimento ainda há."],
+      ["Dados, setes e sorte", "Histograma com o esperado para cada número, setes contra o esperado, número mais frequente."],
+      ["Conferido com o servidor", "Os totais são verificados com o servidor do jogo a cada atualização: ✓ significa que a contagem está certa."],
+      ["Seu idioma, seu tema", "Interface em 15 idiomas, temas claro e escuro, grátis e de código aberto."]
+    ]
+  },
+  "pt_PT": {
+    "tagline": "Contador de cartas de Catan para colonist.io",
+    "bullets": ["Quem tem o quê, em cada turno", "Roubos ocultos como probabilidades", "Cartas de desenvolvimento, banco, dados", "15 idiomas · grátis · código aberto"],
+    "stats": ["Cada lançamento e cada roubo, em números", "Histograma dos dados face ao esperado, setes, roubos ocultos como probabilidades, tudo num painel"],
+    "game": ["Quem tem o quê, em cada turno", "Em direto no colonist.io: recursos por jogador, banco, cartas de desenvolvimento e dados"],
+    "features": ["Tudo o que o painel te mostra", "Colonist Card Tracker · contador de cartas de Catan para colonist.io"],
+    "items": [
+      ["A mão de cada jogador, em direto", "Cartas de recurso por jogador, atualizadas a cada distribuição, construção, troca e descarte."],
+      ["Os roubos ocultos tornam-se probabilidades", "«2 +1 65%»: duas cartas certas e 65 % de probabilidade de mais uma, afinado à medida que a partida avança."],
+      ["Valor esperado num clique", "Alterna entre intervalos e um único número médio quando preferires."],
+      ["Cartas de desenvolvimento, na mão e jogadas", "Quantidade por jogador mais cada cavaleiro, monopólio, construção de estradas ou ano da fartura já revelado."],
+      ["Banco e baralho", "O que resta de cada recurso no banco e quantas cartas de desenvolvimento ainda há."],
+      ["Dados, setes e sorte", "Histograma com o esperado para cada número, setes face ao esperado, número mais frequente."],
+      ["Verificado com o servidor", "Os totais são confirmados com o servidor do jogo a cada atualização: ✓ significa que a contagem está certa."],
+      ["A tua língua, o teu tema", "Interface em 15 idiomas, temas claro e escuro, grátis e de código aberto."]
+    ]
+  },
+  "ro": {
+    "tagline": "Contor de cărți Catan pentru colonist.io",
+    "bullets": ["Cine ce are, la fiecare tură", "Furturi ascunse ca probabilități", "Cărți de dezvoltare, bancă, zaruri", "15 limbi · gratuit · open source"],
+    "stats": ["Fiecare aruncare și fiecare furt, în cifre", "Histograma zarurilor față de probabilități, șaptele, furturile ascunse ca probabilități, totul într-un panou"],
+    "game": ["Cine ce are, la fiecare tură", "În direct pe colonist.io: resurse per jucător, bancă, cărți de dezvoltare și zaruri"],
+    "features": ["Tot ce îți arată panoul", "Colonist Card Tracker · contor de cărți Catan pentru colonist.io"],
+    "items": [
+      ["Mâna fiecărui jucător, în direct", "Cărți de resurse per jucător, actualizate la fiecare distribuire, construcție, schimb și aruncare."],
+      ["Furturile ascunse devin probabilități", "„2 +1 65%”: două cărți sigure și 65 % șanse pentru încă una, rafinat pe măsură ce partida avansează."],
+      ["Valoarea așteptată cu un clic", "Treci de la intervale la un singur număr mediu oricând vrei."],
+      ["Cărți de dezvoltare, în mână și jucate", "Numărul per jucător plus fiecare cavaler, monopol, construire de drumuri sau an al abundenței deja dezvăluit."],
+      ["Bancă și pachet", "Ce a mai rămas din fiecare resursă în bancă și câte cărți de dezvoltare mai sunt."],
+      ["Zaruri, șapte și noroc", "Histogramă cu așteptatul pentru fiecare număr, șaptele față de așteptat, numărul cel mai frecvent."],
+      ["Verificat cu serverul", "Totalurile sunt confirmate cu serverul jocului la fiecare actualizare: ✓ înseamnă că numărătoarea e corectă."],
+      ["Limba ta, tema ta", "Interfață în 15 limbi, temă deschisă și închisă, gratuit și open source."]
+    ]
+  },
+  "ru": {
+    "tagline": "Счётчик карт Catan для colonist.io",
+    "bullets": ["У кого что, каждый ход", "Скрытые кражи как вероятности", "Карты развития, банк, кубики", "15 языков · бесплатно · открытый код"],
+    "stats": ["Каждый бросок и каждая кража — в цифрах", "Гистограмма кубиков против вероятностей, семёрки, скрытые кражи как вероятности — всё в одной панели"],
+    "game": ["У кого что, каждый ход", "В реальном времени на colonist.io: ресурсы игроков, банк, карты развития и кубики"],
+    "features": ["Всё, что показывает панель", "Colonist Card Tracker · счётчик карт Catan для colonist.io"],
+    "items": [
+      ["Рука каждого игрока, в реальном времени", "Карты ресурсов по игрокам, обновляются при каждой раздаче, постройке, обмене и сбросе."],
+      ["Скрытые кражи становятся вероятностями", "«2 +1 65%»: две карты точно и 65 % шанс ещё одной, уточняется по ходу партии."],
+      ["Ожидаемое значение в один клик", "Переключайтесь между диапазонами и одним средним числом, как удобнее."],
+      ["Карты развития: на руках и сыгранные", "Количество у каждого игрока плюс каждый уже раскрытый рыцарь, монополия, строительство дорог или год изобилия."],
+      ["Банк и колода", "Сколько каждого ресурса осталось в банке и сколько карт развития ещё есть."],
+      ["Кубики, семёрки и удача", "Гистограмма с ожиданием для каждого числа, семёрки против ожидания, самое частое число."],
+      ["Сверено с сервером", "Суммы проверяются с игровым сервером при каждом обновлении: ✓ значит, подсчёт верен."],
+      ["Ваш язык, ваша тема", "Интерфейс на 15 языках, светлая и тёмная темы, бесплатно и с открытым кодом."]
+    ]
+  },
+  "tr": {
+    "tagline": "colonist.io için Catan kart sayacı",
+    "bullets": ["Her turda kimde ne var", "Gizli çalmalar olasılık olarak", "Gelişim kartları, banka, zarlar", "15 dil · ücretsiz · açık kaynak"],
+    "stats": ["Her atış ve her çalma, rakamlarla", "Olasılıklara karşı zar histogramı, yediler, olasılık olarak gizli çalmalar, hepsi tek panelde"],
+    "game": ["Her turda kimde ne var", "colonist.io'da canlı: oyuncu başına kaynaklar, banka, gelişim kartları ve zarlar"],
+    "features": ["Panelin sana gösterdiği her şey", "Colonist Card Tracker · colonist.io için Catan kart sayacı"],
+    "items": [
+      ["Her oyuncunun eli, canlı", "Oyuncu başına kaynak kartları; her dağıtım, inşaat, takas ve atmada güncellenir."],
+      ["Gizli çalmalar olasılığa dönüşür", "'2 +1 65%': kesin iki kart ve %65 ihtimalle bir kart daha; oyun ilerledikçe netleşir."],
+      ["Tek tıkla beklenen değer", "İstediğin zaman aralıklar ile tek bir ortalama sayı arasında geçiş yap."],
+      ["Gelişim kartları, eldeki ve oynanan", "Oyuncu başına sayı ve açığa çıkan her şövalye, tekel, yol yapımı veya bolluk yılı."],
+      ["Banka ve deste", "Bankada her kaynaktan ne kaldığı ve kaç gelişim kartı kaldığı."],
+      ["Zarlar, yediler ve şans", "Her sayı için beklenenle histogram, beklenene karşı yediler, en sık gelen sayı."],
+      ["Sunucuyla doğrulanır", "Toplamlar her güncellemede oyun sunucusuyla kontrol edilir: ✓ sayımın doğru olduğu anlamına gelir."],
+      ["Senin dilin, senin teman", "15 dilde arayüz, açık ve koyu tema, ücretsiz ve açık kaynak."]
+    ]
+  },
+  "pl": {
+    "tagline": "Licznik kart Catan do colonist.io",
+    "bullets": ["Kto ma co, w każdej turze", "Ukryte kradzieże jako prawdopodobieństwa", "Karty rozwoju, bank, kości", "15 języków · za darmo · open source"],
+    "stats": ["Każdy rzut i każda kradzież, w liczbach", "Histogram kości wobec prawdopodobieństwa, siódemki, ukryte kradzieże jako prawdopodobieństwa, wszystko w jednym panelu"],
+    "game": ["Kto ma co, w każdej turze", "Na żywo na colonist.io: surowce graczy, bank, karty rozwoju i kości"],
+    "features": ["Wszystko, co pokazuje panel", "Colonist Card Tracker · licznik kart Catan do colonist.io"],
+    "items": [
+      ["Ręka każdego gracza, na żywo", "Karty surowców na gracza, aktualizowane przy każdym rozdaniu, budowie, wymianie i odrzuceniu."],
+      ["Ukryte kradzieże stają się prawdopodobieństwami", "„2 +1 65%”: dwie karty na pewno i 65% szans na jeszcze jedną, doprecyzowane w trakcie partii."],
+      ["Wartość oczekiwana jednym kliknięciem", "Przełączaj między zakresami a jedną średnią liczbą, kiedy wolisz."],
+      ["Karty rozwoju, w ręce i zagrane", "Liczba na gracza oraz każdy ujawniony rycerz, monopol, budowa dróg lub rok urodzaju."],
+      ["Bank i talia", "Ile każdego surowca zostało w banku i ile kart rozwoju pozostało."],
+      ["Kości, siódemki i szczęście", "Histogram z oczekiwaną liczbą dla każdej wartości, siódemki wobec oczekiwanych, najczęstszy wynik."],
+      ["Sprawdzone z serwerem", "Sumy są weryfikowane z serwerem gry przy każdej aktualizacji: ✓ oznacza, że liczenie się zgadza."],
+      ["Twój język, twój motyw", "Interfejs w 15 językach, jasny i ciemny motyw, za darmo i open source."]
+    ]
+  },
+  "nl": {
+    "tagline": "Catan-kaartenteller voor colonist.io",
+    "bullets": ["Wie heeft wat, elke beurt", "Verborgen diefstallen als kansen", "Ontwikkelingskaarten, bank, dobbelstenen", "15 talen · gratis · open source"],
+    "stats": ["Elke worp en elke diefstal, in cijfers", "Dobbelhistogram tegenover de kansen, zevens, verborgen diefstallen als kansen, alles in één paneel"],
+    "game": ["Wie heeft wat, elke beurt", "Live op colonist.io: grondstoffen per speler, bank, ontwikkelingskaarten en dobbelstenen"],
+    "features": ["Alles wat het paneel je laat zien", "Colonist Card Tracker · Catan-kaartenteller voor colonist.io"],
+    "items": [
+      ["De hand van elke speler, live", "Grondstofkaarten per speler, bijgewerkt bij elke uitdeling, bouw, ruil en afleg."],
+      ["Verborgen diefstallen worden kansen", "'2 +1 65%': twee kaarten zeker en 65% kans op nog één, verfijnd naarmate het potje vordert."],
+      ["Verwachte waarde met één klik", "Wissel wanneer je wilt tussen bereiken en één gemiddeld getal."],
+      ["Ontwikkelingskaarten, in de hand en gespeeld", "Aantal per speler plus elke al onthulde ridder, monopolie, wegenbouw of jaar van overvloed."],
+      ["Bank en stapel", "Wat er van elke grondstof in de bank over is en hoeveel ontwikkelingskaarten er nog zijn."],
+      ["Dobbelstenen, zevens en geluk", "Histogram met het verwachte aantal per getal, zevens tegenover verwacht, meest gegooide getal."],
+      ["Gecontroleerd met de server", "De totalen worden bij elke update met de spelserver vergeleken: ✓ betekent dat de telling klopt."],
+      ["Jouw taal, jouw thema", "Interface in 15 talen, licht en donker thema, gratis en open source."]
+    ]
+  },
+  "ms": {
+    "tagline": "Pengira kad Catan untuk colonist.io",
+    "bullets": ["Siapa pegang apa, setiap giliran", "Curian tersembunyi sebagai kebarangkalian", "Kad pembangunan, bank, dadu", "15 bahasa · percuma · sumber terbuka"],
+    "stats": ["Setiap lontaran dan setiap curian, dalam angka", "Histogram dadu berbanding kebarangkalian, tujuh, curian tersembunyi sebagai kebarangkalian, semuanya dalam satu panel"],
+    "game": ["Siapa pegang apa, setiap giliran", "Secara langsung di colonist.io: sumber setiap pemain, bank, kad pembangunan dan dadu"],
+    "features": ["Semua yang panel tunjukkan", "Colonist Card Tracker · pengira kad Catan untuk colonist.io"],
+    "items": [
+      ["Tangan setiap pemain, secara langsung", "Kad sumber setiap pemain, dikemas kini pada setiap pengagihan, pembinaan, pertukaran dan buangan."],
+      ["Curian tersembunyi menjadi kebarangkalian", "'2 +1 65%': dua kad pasti dan 65% peluang satu lagi, diperhalusi sepanjang permainan."],
+      ["Nilai jangkaan dengan satu klik", "Tukar antara julat dan satu nombor purata bila-bila masa."],
+      ["Kad pembangunan, di tangan dan dimainkan", "Bilangan setiap pemain serta setiap kesateria, monopoli, pembinaan jalan atau tahun melimpah yang telah didedahkan."],
+      ["Bank dan dek", "Baki setiap sumber di bank dan berapa kad pembangunan yang tinggal."],
+      ["Dadu, tujuh dan nasib", "Histogram dengan jangkaan bagi setiap nombor, tujuh berbanding jangkaan, nombor paling kerap."],
+      ["Disemak dengan pelayan", "Jumlah disahkan dengan pelayan permainan pada setiap kemas kini: ✓ bermaksud kiraan betul."],
+      ["Bahasa anda, tema anda", "Antara muka dalam 15 bahasa, tema cerah dan gelap, percuma dan sumber terbuka."]
+    ]
+  },
+  "ko": {
+    "tagline": "colonist.io용 카탄 카드 카운터",
+    "bullets": ["매 턴, 누가 무엇을 들고 있는지", "비공개 훔치기를 확률로", "개발 카드, 은행, 주사위", "15개 언어 · 무료 · 오픈 소스"],
+    "stats": ["모든 주사위와 모든 훔치기를 숫자로", "확률 대비 주사위 히스토그램, 7, 확률로 표시되는 비공개 훔치기, 모두 한 패널에"],
+    "game": ["매 턴, 누가 무엇을 들고 있는지", "colonist.io에서 실시간: 플레이어별 자원, 은행, 개발 카드, 주사위"],
+    "features": ["패널이 보여주는 모든 것", "Colonist Card Tracker · colonist.io용 카탄 카드 카운터"],
+    "items": [
+      ["모든 플레이어의 손패, 실시간", "플레이어별 자원 카드가 분배, 건설, 거래, 버리기마다 갱신됩니다."],
+      ["비공개 훔치기가 확률이 됩니다", "'2 +1 65%': 확실한 2장과 한 장 더 있을 확률 65%, 게임이 진행될수록 정밀해집니다."],
+      ["클릭 한 번으로 기댓값", "원할 때 범위와 하나의 평균값 사이를 전환합니다."],
+      ["개발 카드: 손에 든 것과 사용한 것", "플레이어별 장수와 이미 공개된 기사, 독점, 도로 건설, 풍요의 해."],
+      ["은행과 덱", "은행에 남은 자원별 카드 수와 남은 개발 카드 수."],
+      ["주사위, 7, 그리고 운", "숫자별 예상치가 있는 히스토그램, 예상 대비 7의 횟수, 가장 많이 나온 숫자."],
+      ["서버로 검증", "합계를 매 갱신마다 게임 서버와 대조합니다. ✓는 집계가 맞다는 뜻입니다."],
+      ["당신의 언어, 당신의 테마", "15개 언어 인터페이스, 밝은/어두운 테마, 무료 오픈 소스."]
+    ]
+  },
+  "ja": {
+    "tagline": "colonist.io用カタン カードカウンター",
+    "bullets": ["毎ターン、誰が何を持っているか", "非公開の強奪を確率で表示", "発展カード、銀行、サイコロ", "15言語 · 無料 · オープンソース"],
+    "stats": ["すべての出目と強奪を数字で", "確率と比較したサイコロ分布、7の回数、確率で示す非公開の強奪、すべて1つのパネルに"],
+    "game": ["毎ターン、誰が何を持っているか", "colonist.ioでリアルタイム：プレイヤー別の資源、銀行、発展カード、サイコロ"],
+    "features": ["パネルが表示するすべて", "Colonist Card Tracker · colonist.io用カタン カードカウンター"],
+    "items": [
+      ["各プレイヤーの手札をリアルタイムで", "資源の配布、建設、交渉、捨て札のたびに更新されるプレイヤー別の資源カード。"],
+      ["非公開の強奪が確率になる", "「2 +1 65%」：確実に2枚、さらに1枚ある確率が65%。ゲームが進むほど精度が上がります。"],
+      ["ワンクリックで期待値", "範囲表示と平均値の一本表示をいつでも切り替え。"],
+      ["発展カード：手札と使用済み", "プレイヤー別の枚数に加え、公開済みの騎士、独占、道路建設、豊穣の年。"],
+      ["銀行と山札", "銀行に残る各資源の枚数と、残りの発展カード枚数。"],
+      ["サイコロ、7、そして運", "各数の期待値付きヒストグラム、期待値と比べた7の回数、最も多く出た数。"],
+      ["サーバーと照合", "合計は更新のたびにゲームサーバーと照合されます。✓ はカウントが正しい印です。"],
+      ["あなたの言語、あなたのテーマ", "15言語のインターフェース、ライトとダークのテーマ、無料でオープンソース。"]
+    ]
+  },
+  "zh_CN": {
+    "tagline": "colonist.io 卡坦卡牌计数器",
+    "bullets": ["每一回合，谁手里有什么", "未公开的抢夺变成概率", "发展卡、银行、骰子", "15 种语言 · 免费 · 开源"],
+    "stats": ["每一次投掷、每一次抢夺，都有数字", "与概率对比的骰子直方图、7 的次数、以概率表示的未公开抢夺，尽在一个面板"],
+    "game": ["每一回合，谁手里有什么", "在 colonist.io 实时显示：各玩家资源、银行、发展卡与骰子"],
+    "features": ["面板为你呈现的一切", "Colonist Card Tracker · colonist.io 卡坦卡牌计数器"],
+    "items": [
+      ["每位玩家的手牌，实时更新", "各玩家的资源卡，随每次分发、建造、交易和弃牌更新。"],
+      ["未公开的抢夺变成概率", "“2 +1 65%”：确定有 2 张，另有 65% 的概率再多 1 张，随对局推进不断修正。"],
+      ["一键切换期望值", "随时在范围显示与单个平均值之间切换。"],
+      ["发展卡：手中与已打出", "各玩家的数量，以及已公开的每一张骑士、垄断、道路建设或丰年。"],
+      ["银行与牌堆", "银行中各资源的剩余数量，以及剩余的发展卡数量。"],
+      ["骰子、7 与运气", "带各点数预期值的直方图、7 的次数与预期对比、最常出现的点数。"],
+      ["与服务器核对", "每次更新都与游戏服务器核对总数：✓ 表示计数正确。"],
+      ["你的语言，你的主题", "15 种语言界面，浅色与深色主题，免费开源。"]
+    ]
+  }
+}

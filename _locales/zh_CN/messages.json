@@ -44,7 +44,7 @@
     "description": "Prefix before the turn number, e.g. 'turn 12'."
   },
   "round": {
-    "message": "第 轮",
+    "message": "轮次",
     "description": "Status prefix before the round number (one round = every player has taken a turn), e.g. 'round 12'."
   },
   "setup": {

@@ -1,166 +1,179 @@
 """
-Builds the Chrome Web Store graphics from the raw captures of tools/shot-store.mjs
-and the anonymised real-game background (store/old/screenshot-game-1280x800.png,
-the 1.1.0 capture; only its game area is used, the old panel is patched over):
+Builds the Chrome Web Store graphics, per locale, from the raw captures of
+tools/shot-store.mjs (tools/out/store/<locale>/) and the anonymised real-game
+background (store/old/screenshot-game-1280x800.png, island only):
 
-  store/shots/1-game.png        1280x800  real game with the panel (English)
-  store/shots/2-steals.png      1280x800  panel close-up: hidden steal as probabilities
-  store/shots/3-expected.png    1280x800  expected-value mode
-  store/shots/4-research.png    1280x800  consent card over the game
-  store/shots/5-options.png     1280x800  options page
-  store/marquee-1400x560.png    marquee promo tile
-  store/promo-440x280.png       small promo tile
+  store/shots/<locale>/1-promo.png      1280x800  promotional hero (upload first)
+  store/shots/<locale>/2-stats.png      1280x800  panel with "More stats" open
+  store/shots/<locale>/3-game.png       1280x800  real island + panel
+  store/shots/<locale>/4-features.png   1280x800  features board
+  store/shots/<locale>/extra-research.png, extra-options.png   optional
+  store/marquee-1400x560.png, store/promo-440x280.png          English promo tiles
 
-  python tools/compose-store.py
+  python tools/compose-store.py [locale ...]
 """
-import os
+import os, sys, json
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, "tools", "out", "store")
 STORE = os.path.join(ROOT, "store")
-SHOTS = os.path.join(STORE, "shots")
-os.makedirs(SHOTS, exist_ok=True)
+TEXTS = json.load(open(os.path.join(STORE, "shots-i18n.json"), encoding="utf-8"))
+locales = sys.argv[1:] or [k for k in TEXTS if not k.startswith("_")]
 
-BLUE = (49, 144, 207)
 DARK = (16, 20, 28)
 FONT_DIR = r"C:\Windows\Fonts"
-def font(size, bold=False):
-    for name in (["segoeuib.ttf", "arialbd.ttf"] if bold else ["segoeui.ttf", "arial.ttf"]):
-        p = os.path.join(FONT_DIR, name)
-        if os.path.exists(p):
-            return ImageFont.truetype(p, size)
-    return ImageFont.load_default()
+# Segoe UI covers Latin, Cyrillic and Greek; CJK locales use the system fonts Chrome uses too.
+FONTS = {
+    "default": ("segoeui.ttf", "segoeuib.ttf"),
+    "zh_CN": ("msyh.ttc", "msyhbd.ttc"),
+    "ja": ("YuGothM.ttc", "YuGothB.ttc"),
+    "ko": ("malgun.ttf", "malgunbd.ttf"),
+}
+def font(size, bold=False, locale="en"):
+    reg, b = FONTS.get(locale, FONTS["default"])
+    p = os.path.join(FONT_DIR, b if bold else reg)
+    if not os.path.exists(p):
+        p = os.path.join(FONT_DIR, "arialbd.ttf" if bold else "arial.ttf")
+    return ImageFont.truetype(p, size)
 
-def load(name):
-    return Image.open(os.path.join(RAW, name)).convert("RGBA")
+def fit(draw, text, f, max_w, locale):
+    """Shrink the font until the text fits max_w (captions differ a lot per language)."""
+    size = f.size
+    while draw.textlength(text, font=f) > max_w and size > 14:
+        size -= 2
+        f = font(size, f.path.lower().endswith(("b.ttf", "bd.ttc", "bd.ttf", "b.ttc")), locale)
+    return f
 
-def downscale(img, factor=2):
-    return img.resize((img.width // factor, img.height // factor), Image.LANCZOS)
+def wrap(draw, text, f, max_w):
+    words, lines, cur = text.split(" "), [], ""
+    for w in words:
+        t = (cur + " " + w).strip()
+        if draw.textlength(t, font=f) <= max_w or not cur:
+            cur = t
+        else:
+            lines.append(cur); cur = w
+    if cur: lines.append(cur)
+    return lines
+
+def wrap_cjk(draw, text, f, max_w):
+    lines, cur = [], ""
+    for ch in text:
+        if draw.textlength(cur + ch, font=f) <= max_w:
+            cur += ch
+        else:
+            lines.append(cur); cur = ch
+    if cur: lines.append(cur)
+    return lines
+
+def draw_wrapped(draw, xy, text, f, fill, max_w, locale, line_gap=6):
+    x, y = xy
+    lines = wrap_cjk(draw, text, f, max_w) if locale in ("zh_CN", "ja") else wrap(draw, text, f, max_w)
+    for ln in lines:
+        draw.text((x, y), ln, font=f, fill=fill)
+        y += f.size + line_gap
+    return y
 
 def shadow(canvas, box, radius=18, alpha=110):
     x0, y0, x1, y1 = box
     layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
-    d = ImageDraw.Draw(layer)
-    d.rounded_rectangle((x0 + 6, y0 + 10, x1 + 6, y1 + 10), radius=12, fill=(0, 0, 0, alpha))
-    layer = layer.filter(ImageFilter.GaussianBlur(radius))
-    canvas.alpha_composite(layer)
+    ImageDraw.Draw(layer).rounded_rectangle((x0 + 6, y0 + 10, x1 + 6, y1 + 10), radius=12, fill=(0, 0, 0, alpha))
+    canvas.alpha_composite(layer.filter(ImageFilter.GaussianBlur(radius)))
+
+def downscale(img, factor=2):
+    return img.resize((img.width // factor, img.height // factor), Image.LANCZOS)
 
 # ---------------------------------------------------------------- background
 game = Image.open(os.path.join(STORE, "old", "screenshot-game-1280x800.png")).convert("RGBA")
-# cover the old panel (top-right) with a stretched strip of the page's own background
-# (keeps the subtle vertical gradient of the capture, so the patch is invisible)
-BLUE = game.getpixel((60, 60))[:3]
-bg = game.copy()
-# The old panel occupied x 715..1215, y 0..508. Columns x=180 (left of the board) and
-# x=1250 (right of the old panel) are untouched background for every row, so each row
-# of the patch is a linear blend between those two samples: this follows both the
-# vertical and the horizontal gradient of the page without touching the board.
-X0, X1, Y1 = 705, 1280, 515
-LX, RX = 704, 1250
-px = bg.load()
-def is_bg(c):
-    r, g, b = c[:3]
-    return b > r + 40 and b > g          # the page blue, not a board hex
-# left samples: the column just left of the patch, skipping rows where the board touches it
-left = [game.getpixel((LX, yy))[:3] for yy in range(0, Y1)]
-ok_rows = [yy for yy in range(0, Y1) if is_bg(left[yy])]
-for yy in range(0, Y1):
-    if not is_bg(left[yy]):
-        near = min(ok_rows, key=lambda k: abs(k - yy))
-        left[yy] = left[near]
-for yy in range(0, Y1):
-    l = left[yy]
-    r = game.getpixel((RX, yy))[:3]
-    for xx in range(X0, X1):
-        t = min(1.0, max(0.0, (xx - LX) / (RX - LX)))
-        px[xx, yy] = tuple(int(round(l[i] + (r[i] - l[i]) * t)) for i in range(3)) + (255,)
-
-panel = load("panel-range.png")          # captured at 2x (deviceScaleFactor 2)
-panel_exp = load("panel-expected.png")
-consent = load("consent.png")
-options = load("options.png")
-
-# 1) hero: the real island (feathered) next to the panel at readable size.
-#    The capture's background has a dark halo around the island and the old panel's
-#    shadow, so it is not patched; the island is cut out with a soft mask instead.
 LIGHT = game.getpixel((300, 60))[:3]
-s1 = Image.new("RGBA", (1280, 800), LIGHT + (255,))
-d = ImageDraw.Draw(s1)
-d.text((64, 44), "Who holds what, every turn", font=font(44, True), fill=(255, 255, 255))
-d.text((66, 104), "Live on colonist.io: resources per player, bank, development cards and dice", font=font(22), fill=(226, 236, 246))
-isl = game.crop((225, 165, 725, 690))                       # island only, no names, no old panel
-mask = Image.new("L", isl.size, 0)
-ImageDraw.Draw(mask).ellipse((10, 10, isl.width - 10, isl.height - 10), fill=255)
-mask = mask.filter(ImageFilter.GaussianBlur(28))
-isl.putalpha(mask)
-s1.alpha_composite(isl, (40, 190))
-hero_scale = min(0.93, 590 / panel.height)          # fit under the caption whatever the panel height
-ph = panel.resize((int(panel.width * hero_scale), int(panel.height * hero_scale)), Image.LANCZOS)
-x, y = 1280 - ph.width - 56, 175 + max(0, (590 - ph.height) // 2)
-shadow(s1, (x, y, x + ph.width, y + ph.height))
-s1.alpha_composite(ph, (x, y))
-s1.convert("RGB").save(os.path.join(SHOTS, "1-game.png"))
+BLUE = game.getpixel((60, 60))[:3]
+island = game.crop((225, 165, 725, 690))
+mask = Image.new("L", island.size, 0)
+ImageDraw.Draw(mask).ellipse((10, 10, island.width - 10, island.height - 10), fill=255)
+island.putalpha(mask.filter(ImageFilter.GaussianBlur(28)))
+blur_bg = game.copy()
+ImageDraw.Draw(blur_bg).rectangle((705, 0, 1280, 515), fill=BLUE + (255,))
+blur_bg = blur_bg.filter(ImageFilter.GaussianBlur(14))
 
-def closeup(img2x, caption, sub, name, scale=1.0):
-    canvas = Image.new("RGBA", (1280, 800), BLUE + (255,))
-    # soft blurred game behind (without the old panel)
-    blur = bg.resize((1280, 800)).filter(ImageFilter.GaussianBlur(14))
-    canvas.alpha_composite(Image.blend(canvas, blur, 0.45))
+def caption(canvas, title, sub, locale, y_title=44):
     d = ImageDraw.Draw(canvas)
-    d.text((64, 52), caption, font=font(44, True), fill=(255, 255, 255))
-    d.text((66, 112), sub, font=font(22), fill=(226, 236, 246))
-    w = int(img2x.width * scale)
-    h = int(img2x.height * scale)
+    f1 = fit(d, title, font(44, True, locale), 1150, locale)
+    d.text((64, y_title), title, font=f1, fill=(255, 255, 255))
+    f2 = font(22, False, locale)
+    return draw_wrapped(d, (66, y_title + f1.size + 16), sub, f2, (226, 236, 246), 1150, locale)
+
+def closeup(img2x, title, sub, out, locale, scale=0.9):
+    canvas = Image.new("RGBA", (1280, 800), BLUE + (255,))
+    canvas.alpha_composite(Image.blend(canvas, blur_bg, 0.45))
+    bottom = caption(canvas, title, sub, locale)
+    top = max(bottom + 12, 170)
+    max_h = 800 - top - 20
+    w, h = int(img2x.width * scale), int(img2x.height * scale)
     im = img2x.resize((w, h), Image.LANCZOS)
-    max_h = 800 - 190
     if h > max_h:
         im = im.resize((int(w * max_h / h), max_h), Image.LANCZOS)
     x = (1280 - im.width) // 2
-    y = 170 + (max_h - im.height) // 2
+    y = top + (max_h - im.height) // 2
     shadow(canvas, (x, y, x + im.width, y + im.height))
     canvas.alpha_composite(im, (x, y))
-    canvas.convert("RGB").save(os.path.join(SHOTS, name))
+    canvas.convert("RGB").save(out)
 
-closeup(panel, "Every hidden steal becomes a probability", "5 +1 60% means five cards for sure and a 60% chance of one more, refined with every move",
-        "2-steals.png", scale=0.9)
-closeup(panel_exp, "Or read the expected value at a glance", "Same game, one click on % — plus bank, development cards and the dice histogram",
-        "3-expected.png", scale=0.9)
-closeup(consent, "Free, open research, anonymous by design", "Player names are replaced by codes before anything leaves your browser; you decide first",
-        "4-research.png", scale=0.9)
+def hero_game(panel, title, sub, out, locale):
+    s = Image.new("RGBA", (1280, 800), LIGHT + (255,))
+    bottom = caption(s, title, sub, locale)
+    top = max(bottom + 10, 175)
+    s.alpha_composite(island, (40, max(top, 190)))
+    sc = min(0.93, (800 - top - 20) / panel.height)
+    ph = panel.resize((int(panel.width * sc), int(panel.height * sc)), Image.LANCZOS)
+    x, y = 1280 - ph.width - 56, top + max(0, (800 - top - 20 - ph.height) // 2)
+    shadow(s, (x, y, x + ph.width, y + ph.height))
+    s.alpha_composite(ph, (x, y))
+    s.convert("RGB").save(out)
 
-# 5) options page, already 1280x800 at 1x? it was captured at 2x -> downscale
-o = downscale(options) if options.width > 1280 else options
-o = o.crop((0, 0, 1280, 800)) if o.width >= 1280 and o.height >= 800 else o
-s5 = Image.new("RGBA", (1280, 800), (15, 19, 25, 255))
-s5.alpha_composite(o, ((1280 - o.width) // 2, 0))
-s5.convert("RGB").save(os.path.join(SHOTS, "5-options.png"))
-
-# ---------------------------------------------------------------- promo tiles
-def tile(size, title_size, sub_size, bullets, panel_scale, name, pad):
+def promo(panel, t, size, out, locale, title_size, sub_size, bullet_size, pad, panel_scale):
     W, H = size
     canvas = Image.new("RGBA", size, DARK + (255,))
-    # diagonal blue accent
     acc = Image.new("RGBA", size, (0, 0, 0, 0))
-    ImageDraw.Draw(acc).polygon([(int(W * 0.52), 0), (W, 0), (W, H), (int(W * 0.42), H)], fill=(38, 96, 150, 255))
+    ImageDraw.Draw(acc).polygon([(int(W * 0.50), 0), (W, 0), (W, H), (int(W * 0.40), H)], fill=(38, 96, 150, 255))
     canvas.alpha_composite(acc)
     d = ImageDraw.Draw(canvas)
-    d.text((pad, pad), "Colonist Card Tracker", font=font(title_size, True), fill=(255, 255, 255))
-    d.text((pad + 2, pad + title_size + 10), "Catan card counter for colonist.io", font=font(sub_size), fill=(255, 217, 138))
-    yy = pad + title_size + sub_size + 34
-    for b in bullets:
-        d.text((pad + 2, yy), "•  " + b, font=font(sub_size - 2), fill=(201, 211, 222))
-        yy += sub_size + 8
-    im = panel.resize((int(panel.width * panel_scale), int(panel.height * panel_scale)), Image.LANCZOS)
-    x = W - im.width - pad // 2
-    y = (H - im.height) // 2 if im.height < H - 20 else 10
-    if im.height > H - 20:
-        im = im.crop((0, 0, im.width, H - 20)); y = 10
-    shadow(canvas, (x, y, x + im.width, y + im.height))
-    canvas.alpha_composite(im, (x, y))
-    canvas.convert("RGB").save(os.path.join(STORE, name))
+    left_w = int(W * 0.44) - pad
+    y = pad
+    ft = font(title_size, True, locale)
+    for ln in ("Colonist Card", "Tracker") if W >= 1000 else ("Colonist Card Tracker",):
+        d.text((pad, y), ln, font=ft, fill=(255, 255, 255)); y += int(ft.size * 1.12)
+    y += int(ft.size * 0.3)
+    fs = fit(d, t["tagline"], font(sub_size, False, locale), left_w, locale)
+    d.text((pad + 2, y), t["tagline"], font=fs, fill=(255, 217, 138)); y += fs.size + 26
+    fb = font(bullet_size, False, locale)
+    for b in t["bullets"]:
+        y = draw_wrapped(d, (pad + 2, y), "•  " + b, fb, (201, 211, 222), left_w, locale, line_gap=4) + 6
+    sc = min(panel_scale, (H - 2 * 24) / panel.height)
+    im = panel.resize((int(panel.width * sc), int(panel.height * sc)), Image.LANCZOS)
+    x, yy = W - im.width - pad, (H - im.height) // 2
+    shadow(canvas, (x, yy, x + im.width, yy + im.height))
+    canvas.alpha_composite(im, (x, yy))
+    canvas.convert("RGB").save(out)
 
-tile((1400, 560), 54, 26, ["Who holds what, every turn", "Hidden steals as probabilities", "Bank, development cards, dice", "15 languages · free · open source"],
-     0.9, "marquee-1400x560.png", 56)
-tile((440, 280), 20, 12, ["Hidden steals as odds", "Bank, dev cards, dice", "15 languages, free"], 0.27, "promo-440x280.png", 14)
-print("ok:", os.listdir(SHOTS))
+for locale in locales:
+    t = TEXTS[locale]
+    raw = os.path.join(RAW, locale)
+    if not os.path.isdir(raw):
+        print(locale, "sin capturas"); continue
+    out_dir = os.path.join(STORE, "shots", locale)
+    os.makedirs(out_dir, exist_ok=True)
+    load = lambda n: Image.open(os.path.join(raw, n)).convert("RGBA")
+    panel, panel_stats, consent, options, features = load("panel-range.png"), load("panel-stats.png"), load("consent.png"), load("options.png"), load("features.png")
+
+    promo(panel, t, (1280, 800), os.path.join(out_dir, "1-promo.png"), locale, 62, 26, 23, 60, 0.8)
+    closeup(panel_stats, t["stats"][0], t["stats"][1], os.path.join(out_dir, "2-stats.png"), locale)
+    hero_game(panel, t["game"][0], t["game"][1], os.path.join(out_dir, "3-game.png"), locale)
+    (downscale(features) if features.width > 1280 else features).convert("RGB").save(os.path.join(out_dir, "4-features.png"))
+    closeup(consent, t["game"][0], t["game"][1], os.path.join(out_dir, "extra-research.png"), locale)
+    o = downscale(options) if options.width > 1280 else options
+    o.convert("RGB").crop((0, 0, 1280, 800)).save(os.path.join(out_dir, "extra-options.png"))
+
+    if locale == "en":
+        promo(panel, t, (1400, 560), os.path.join(STORE, "marquee-1400x560.png"), locale, 54, 26, 22, 56, 0.9)
+        promo(panel, t, (440, 280), os.path.join(STORE, "promo-440x280.png"), locale, 20, 12, 11, 14, 0.27)
+    print(locale, "ok")
