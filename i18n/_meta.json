@@ -109,13 +109,10 @@
       "note": "Tooltip of the '?' column (cards of unknown type)."
     },
     "modeRange": {
-      "note": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+      "note": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
     },
     "modeExpected": {
-      "note": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-    },
-    "export": {
-      "note": "Tooltip of the download button."
+      "note": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
     },
     "options": {
       "note": "Tooltip of the gear button."
@@ -351,6 +348,15 @@
     "mostRolled": {
       "note": "Stats line: 'most rolled 8 (×6)'.",
       "maxLength": 24
+    },
+    "perPlayer": {
+      "note": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+    },
+    "bankTitle": {
+      "note": "Tooltip of the bank row."
+    },
+    "moreStatsTitle": {
+      "note": "Tooltip of the 'More stats' button."
     }
   }
 }

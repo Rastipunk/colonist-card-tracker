@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "카드 합계",
+    "message": "서버 기준 손에 든 카드 합계. ✓ 카운터와 일치, ! 카운터가 스스로 수정함.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "개발 카드",
+    "message": "손에 든 개발 카드. 숫자 옆의 작은 카드는 이 플레이어가 이미 사용한 카드입니다.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "범위 표시 (최소 + 추가 가능성)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "범위로 전환. 지금은 기댓값 표시: '2.6'은 가능한 모든 비공개 훔치기를 가중한 평균 카드 수입니다.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "기댓값 표시",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "진단 내보내기 (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "기댓값으로 전환. 지금은 범위 표시: '2 +1 65%'는 확실한 2장과 한 장 더 있을 확률 65%를 뜻하며, 관찰된 모든 플레이로 계산됩니다.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "옵션 및 데이터",
+    "message": "옵션: 동의, 기록된 게임, 서버",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "최소화",
+    "message": "제목 표시줄로 접기, 다시 클릭하면 펼침",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "숨기기 (다시 보려면 Alt+Shift+C)",
+    "message": "패널 숨기기. Alt+Shift+C로 다시 표시.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "통계 더 보기",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "플레이어별 이 자원 카드",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "은행에 남은 카드",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "숫자별 예상치가 표시된 주사위 히스토그램, 7, 비공개 훔치기, 카운터 세부 정보",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "밝은 테마",

@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "卡牌总数",
+    "message": "服务器给出的手牌总数。✓ 计数器一致；! 计数器已自行修正。",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "发展卡",
+    "message": "手中的发展卡。数字旁的小卡牌是该玩家已经打出的。",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "显示范围（最少 + 可能的额外数量）",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "切换为范围显示。当前为期望值：“2.6”是综合所有可能的未公开抢夺后的平均卡牌数。",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "显示期望值",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "导出诊断信息（JSON）",
-    "description": "Tooltip of the download button."
+    "message": "切换为期望值。当前为范围显示：“2 +1 65%”表示确定有 2 张，另有 65% 的概率再多 1 张，由观察到的全部操作推算。",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "选项与数据",
+    "message": "选项：同意设置、已记录对局、服务器",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "最小化",
+    "message": "折叠到标题栏；再点一次展开",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "隐藏（按 Alt+Shift+C 重新显示）",
+    "message": "隐藏面板。按 Alt+Shift+C 重新显示。",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "更多统计",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "每位玩家持有的该资源卡",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "银行剩余卡牌",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "带各点数预期值的骰子直方图、7 的次数、未公开抢夺与计数器详情",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "浅色主题",

@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Total cards",
+    "message": "Total cards in hand, as reported by the server. ✓ the tracker agrees; ! it had to correct itself.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Development cards",
+    "message": "Development cards in hand. The small cards next to the number are the ones this player has already played.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Show range (minimum + likely extra)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Switch to ranges. Now showing expected values: '2.6' is the average number of cards once every possible hidden steal is weighed.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Show expected value",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Export diagnostics (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Switch to expected value. Now showing ranges: '2 +1 65%' means 2 cards for sure and a 65% chance of one more, worked out from every move seen.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Options and data",
+    "message": "Options: research consent, recorded games, server",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Minimize",
+    "message": "Collapse to the title bar; click again to expand",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Hide (Alt+Shift+C to show again)",
+    "message": "Hide the panel. Alt+Shift+C brings it back.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "More stats",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "cards in each player's hand",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Cards left in the bank",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Dice histogram with the expected count per number, sevens, hidden steals and tracker details",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Light theme",

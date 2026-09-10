@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Всего карт",
+    "message": "Всего карт на руках по данным сервера. ✓ счётчик совпадает; ! ему пришлось исправиться.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Карты развития",
+    "message": "Карты развития на руках. Маленькие карты рядом с числом — те, что игрок уже сыграл.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Показать диапазон (минимум + вероятная добавка)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Переключить на диапазоны. Сейчас показаны ожидаемые значения: «2,6» — среднее число карт с учётом всех возможных скрытых краж.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Показать ожидаемое значение",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Экспорт диагностики (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Переключить на ожидаемое значение. Сейчас показаны диапазоны: «2 +1 65%» значит 2 карты точно и 65 % шанс ещё одной, по всем увиденным ходам.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Настройки и данные",
+    "message": "Настройки: согласие, записанные партии, сервер",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Свернуть",
+    "message": "Свернуть до заголовка; ещё щелчок развернёт",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Скрыть (Alt+Shift+C, чтобы показать снова)",
+    "message": "Скрыть панель. Alt+Shift+C возвращает её.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "Ещё статистика",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "карт этого ресурса у каждого игрока",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Карт осталось в банке",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Гистограмма кубиков с ожиданием по числам, семёрки, скрытые кражи и подробности счётчика",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Светлая тема",

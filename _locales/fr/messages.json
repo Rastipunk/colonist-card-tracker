@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Total des cartes",
+    "message": "Total de cartes en main, selon le serveur. ✓ le compteur concorde ; ! il a dû se corriger.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Cartes développement",
+    "message": "Cartes développement en main. Les petites cartes à côté du nombre sont celles que ce joueur a déjà jouées.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Afficher l'intervalle (minimum + extra probable)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Passer aux intervalles. Actuellement en valeurs attendues : « 2,6 » est le nombre moyen de cartes en pesant chaque vol caché possible.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Afficher la valeur attendue",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Exporter le diagnostic (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Passer à la valeur attendue. Actuellement en intervalles : « 2 +1 65% » signifie 2 cartes sûres et 65 % de chances d'en avoir une de plus, calculé à partir de tous les coups vus.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Options et données",
+    "message": "Options : consentement, parties enregistrées, serveur",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Réduire",
+    "message": "Réduire à la barre de titre ; cliquer à nouveau pour agrandir",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Masquer (Alt+Maj+C pour réafficher)",
+    "message": "Masquer le panneau. Alt+Maj+C le fait revenir.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "Plus de statistiques",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "cartes de cette ressource par joueur",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Cartes restantes à la banque",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Histogramme des dés avec l'attendu par numéro, les sept, les vols cachés et les détails du compteur",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Thème clair",

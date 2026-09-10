@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Totaal aantal kaarten",
+    "message": "Totaal kaarten in de hand volgens de server. ✓ de teller klopt; ! hij moest zichzelf corrigeren.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Ontwikkelingskaarten",
+    "message": "Ontwikkelingskaarten in de hand. De kleine kaarten naast het getal heeft deze speler al gespeeld.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Bereik tonen (minimum + waarschijnlijk extra)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Wissel naar bereiken. Nu zie je verwachte waarden: '2,6' is het gemiddelde aantal kaarten, alle mogelijke verborgen diefstallen meegewogen.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Verwachte waarde tonen",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Diagnose exporteren (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Wissel naar verwachte waarde. Nu zie je bereiken: '2 +1 65%' betekent 2 kaarten zeker en 65% kans op nog één, berekend uit alle geziene zetten.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Opties en gegevens",
+    "message": "Opties: toestemming, opgenomen potjes, server",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Minimaliseren",
+    "message": "Inklappen tot de titelbalk; nog een klik klapt uit",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Verbergen (Alt+Shift+C om weer te tonen)",
+    "message": "Verberg het paneel. Alt+Shift+C haalt het terug.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "Meer statistieken",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "kaarten van deze grondstof per speler",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Kaarten over in de bank",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Dobbelhistogram met het verwachte aantal per getal, zevens, verborgen diefstallen en details van de teller",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Licht thema",

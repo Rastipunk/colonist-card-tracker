@@ -44,7 +44,7 @@
     'expVP', 'unknownCol', 'modeRange', 'modeExpected', 'export', 'options', 'minimize', 'close', 'rec', 'recTitle',
     'recOff', 'consentTitle', 'consentText', 'consentYes', 'consentNo', 'consentMore', 'consentDeclined',
     'rateAsk', 'rateDismiss', 'devInHand', 'devPlayed', 'devNone', 'devDeck', 'moreStats', 'round',
-    'themeLight', 'themeDark', 'sevens', 'expected', 'mostRolled'
+    'themeLight', 'themeDark', 'sevens', 'expected', 'mostRolled', 'perPlayer', 'bankTitle', 'moreStatsTitle'
   ].forEach(function (k) { T[k] = msg(k); });
   // Web Store review page of this very install (the id is the store id when installed from the store).
   var RATE_URL = 'https://chromewebstore.google.com/detail/' + chrome.runtime.id + '/reviews';
@@ -450,9 +450,8 @@
         '<span class="cct-actions">' +
           '<button class="cct-theme" data-act="theme" role="switch" aria-checked="' + (prefs.theme === 'light' ? 'true' : 'false') + '" title="' + esc(prefs.theme === 'light' ? T.themeDark : T.themeLight) + '">' +
             '<span class="sun">☼</span><span class="track"><span class="knob"></span></span><span class="moon">☾</span></button>' +
-          '<button data-act="mode" title="' + T.modeExpected + '">%</button>' +
-          '<button data-act="export" title="' + T.export + '">⤓</button>' +
-          '<button data-act="options" title="' + T.options + '">⚙</button>' +
+          '<button data-act="mode" title="' + esc(prefs.mode === 'expected' ? T.modeRange : T.modeExpected) + '">%</button>' +
+          '<button data-act="options" title="' + esc(T.options) + '">⚙</button>' +
           '<button data-act="min" title="' + T.minimize + '">–</button>' +
           '<button data-act="close" title="' + T.close + '">×</button>' +
         '</span>' +
@@ -494,9 +493,6 @@
           ui.modeBtn.title = prefs.mode === 'range' ? T.modeExpected : T.modeRange;
           savePrefs();
           render();
-          break;
-        case 'export':
-          exportDiagnostics();
           break;
         case 'options':
           openOptions();
@@ -573,6 +569,8 @@
         el.hidden = prefs.hidden;
         savePrefs();
       }
+      // Alt+Shift+D: diagnostics JSON for bug reports (no button; see README).
+      if (ev.altKey && ev.shiftKey && (ev.key === 'D' || ev.key === 'd')) exportDiagnostics();
     });
     return ui;
   }
@@ -658,7 +656,7 @@
     var showUnknown = s.players.some(function (p) { return p.unknown && p.unknown.max > 0; });
     var showDev = !s.isCK;
     var html = '<table class="cct-table"><thead><tr><th class="name"></th>';
-    for (var t = 0; t < nTypes; t++) html += '<th class="icon" title="' + esc(NAMES[t]) + '">' + ICONS.res[t] + '</th>';
+    for (var t = 0; t < nTypes; t++) html += '<th class="icon" title="' + esc(NAMES[t] + ' · ' + T.perPlayer) + '">' + ICONS.res[t] + '</th>';
     if (showUnknown) html += '<th title="' + esc(T.unknownCol) + '">❓</th>';
     html += '<th class="icon" title="' + esc(T.totalTitle) + '">' + ICONS.back + '</th>';
     if (showDev) html += '<th class="icon devcol" title="' + esc(T.dev) + '">' + ICONS.devBack + '</th>';
@@ -690,7 +688,7 @@
       html += '</tr>';
     });
 
-    html += '<tr class="bank"><td class="name">🏦 ' + T.bank + '</td>';
+    html += '<tr class="bank" title="' + esc(T.bankTitle) + '"><td class="name">🏦 ' + T.bank + '</td>';
     for (var t3 = 0; t3 < nTypes; t3++) {
       html += s.bank.available ? '<td' + (s.bank.cards[t3] === 0 ? ' class="z"' : '') + '>' + s.bank.cards[t3] + '</td>' : '<td class="z">–</td>';
     }
@@ -701,7 +699,7 @@
 
     // Collapsible statistics: dice histogram with expected counts, then key numbers.
     var open = !!prefs.statsOpen;
-    html += '<div class="cct-section cct-more' + (open ? ' open' : '') + '"><h4 class="cct-toggle" data-act="stats"><span>' + (open ? '▾' : '▸') + ' ' + esc(T.moreStats) + '</span>' +
+    html += '<div class="cct-section cct-more' + (open ? ' open' : '') + '"><h4 class="cct-toggle" data-act="stats" title="' + esc(T.moreStatsTitle) + '"><span class="lbl">' + (open ? '▾' : '▸') + ' ' + esc(T.moreStats) + '</span>' +
       '<span>🎲 ' + s.dice.count + ' ' + esc(T.rolls) + '</span></h4>';
     if (open) {
       var PROB = { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1 };
@@ -763,7 +761,7 @@
     var parts = [];
     var keys = Object.keys(m.dist).map(Number).sort(function (a, b) { return a - b; });
     for (var i = 0; i < keys.length; i++) parts.push(keys[i] + ': ' + numFmt.pct(m.dist[keys[i]]));
-    return 'E=' + numFmt.d2(m.mean) + ' | ' + parts.join(', ');
+    return T.expected + ' ' + numFmt.d2(m.mean) + ' · ' + parts.join(' · ');
   }
 
   /** Mirror a compact summary into the DOM for tooling (tests, live capture). */

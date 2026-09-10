@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Toplam kart",
+    "message": "Sunucuya göre eldeki toplam kart. ✓ sayaç uyuşuyor; ! kendini düzeltmek zorunda kaldı.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Gelişim kartları",
+    "message": "Eldeki gelişim kartları. Sayının yanındaki küçük kartlar bu oyuncunun zaten oynadıklarıdır.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Aralığı göster (minimum + olası fazlalık)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Aralıklara geç. Şu an beklenen değerler gösteriliyor: '2,6' olası her gizli çalma tartılarak bulunan ortalama kart sayısıdır.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Beklenen değeri göster",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Tanılamayı dışa aktar (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Beklenen değere geç. Şu an aralıklar gösteriliyor: '2 +1 65%' kesin 2 kart ve %65 ihtimalle bir kart daha demek; görülen tüm hamlelerden hesaplanır.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Seçenekler ve veriler",
+    "message": "Seçenekler: onay, kaydedilen oyunlar, sunucu",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Küçült",
+    "message": "Başlık çubuğuna daralt; tekrar tıklayınca genişler",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Gizle (tekrar göstermek için Alt+Shift+C)",
+    "message": "Paneli gizle. Alt+Shift+C geri getirir.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "Daha fazla istatistik",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "her oyuncudaki bu kaynak kartları",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Bankada kalan kartlar",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Sayı başına beklenenle zar histogramı, yediler, gizli çalmalar ve sayaç ayrıntıları",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Açık tema",

@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Total cărți",
+    "message": "Total cărți în mână, conform serverului. ✓ contorul coincide; ! a trebuit să se corecteze.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Cărți de dezvoltare",
+    "message": "Cărți de dezvoltare în mână. Cărțile mici de lângă număr sunt cele deja jucate de acest jucător.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Arată intervalul (minim + extra probabil)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Comută la intervale. Acum vezi valori așteptate: „2,6” este numărul mediu de cărți, cântărind fiecare furt ascuns posibil.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Arată valoarea așteptată",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Exportă diagnosticul (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Comută la valoarea așteptată. Acum vezi intervale: „2 +1 65%” înseamnă 2 cărți sigure și 65 % șanse pentru încă una, calculat din toate mutările văzute.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Opțiuni și date",
+    "message": "Opțiuni: consimțământ, partide înregistrate, server",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Minimizează",
+    "message": "Restrânge la bara de titlu; încă un clic îl extinde",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Ascunde (Alt+Shift+C pentru a reafișa)",
+    "message": "Ascunde panoul. Alt+Shift+C îl readuce.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "Mai multe statistici",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "cărți din această resursă per jucător",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Cărți rămase în bancă",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Histograma zarurilor cu așteptatul pe număr, șaptele, furturile ascunse și detaliile contorului",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Temă deschisă",

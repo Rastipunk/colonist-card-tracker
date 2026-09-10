@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Total de cartas",
+    "message": "Total de cartas en mano, según el servidor. ✓ el contador coincide; ! tuvo que corregirse.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Cartas de desarrollo",
+    "message": "Cartas de desarrollo en mano. Las cartas pequeñas junto al número son las que ese jugador ya ha jugado.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Mostrar rango (mínimo + extra probable)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Cambiar a rangos. Ahora ves valores esperados: «2,6» es el número medio de cartas ponderando cada robo oculto posible.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Mostrar valor esperado",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Exportar diagnóstico (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Cambiar a valor esperado. Ahora ves rangos: «2 +1 65%» significa 2 cartas seguras y un 65 % de probabilidad de una más, calculado con todas las jugadas vistas.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Opciones y datos",
+    "message": "Opciones: consentimiento, partidas grabadas, servidor",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Minimizar",
+    "message": "Plegar a la barra de título; otro clic lo despliega",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Ocultar (Alt+Shift+C para volver a mostrar)",
+    "message": "Ocultar el panel. Alt+Shift+C lo vuelve a mostrar.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "Más estadísticas",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "cartas de este recurso por jugador",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Cartas que quedan en el banco",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Histograma de dados con lo esperado por número, sietes, robos ocultos y detalles del contador",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Tema claro",

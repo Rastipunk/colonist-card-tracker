@@ -54,7 +54,9 @@ clave por clave si falta algo.
 1. `chrome://extensions` → **Modo de desarrollador** → **Cargar descomprimida** → esta carpeta.
 2. Entra a una partida. Si ya estabas dentro, recarga (F5).
 3. El panel aparece arriba a la derecha: arrastrable, minimizable (`–`), ocultable (`×` o `Alt+Shift+C`).
-   `%` alterna rango / valor esperado, `⤓` exporta un diagnóstico JSON, `⚙` abre Opciones.
+   `%` alterna rango / valor esperado, `⚙` abre Opciones, el interruptor sol/luna cambia el tema.
+   `Alt+Shift+D` descarga un diagnóstico JSON (estado del contador y tramas recientes) para
+   reportar errores; no tiene botón.
 
 ## El contador
 

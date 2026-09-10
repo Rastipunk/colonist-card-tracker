@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Jumlah kad",
+    "message": "Jumlah kad di tangan menurut pelayan. ✓ pengira sepadan; ! ia terpaksa membetulkan diri.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Kad pembangunan",
+    "message": "Kad pembangunan di tangan. Kad kecil di sebelah nombor ialah kad yang telah dimainkan pemain ini.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Tunjukkan julat (minimum + tambahan berkemungkinan)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Tukar ke julat. Kini nilai jangkaan dipaparkan: '2.6' ialah purata bilangan kad dengan menimbang setiap curian tersembunyi yang mungkin.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Tunjukkan nilai jangkaan",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Eksport diagnostik (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Tukar ke nilai jangkaan. Kini julat dipaparkan: '2 +1 65%' bermaksud 2 kad pasti dan 65% peluang satu lagi, dikira daripada semua langkah yang dilihat.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Pilihan dan data",
+    "message": "Pilihan: persetujuan, permainan dirakam, pelayan",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Kecilkan",
+    "message": "Kecilkan ke bar tajuk; klik lagi untuk kembangkan",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Sembunyikan (Alt+Shift+C untuk paparkan semula)",
+    "message": "Sembunyikan panel. Alt+Shift+C memaparkannya semula.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "Statistik lanjut",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "kad sumber ini setiap pemain",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Kad yang tinggal di bank",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Histogram dadu dengan jangkaan setiap nombor, tujuh, curian tersembunyi dan butiran pengira",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Tema cerah",

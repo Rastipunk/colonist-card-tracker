@@ -219,8 +219,19 @@
   display: flex;
   justify-content: space-between;
 }
-#cct-overlay .cct-toggle { cursor: pointer; user-select: none; }
-#cct-overlay .cct-toggle:hover span:first-child { color: var(--text); }
+#cct-overlay .cct-toggle { cursor: pointer; user-select: none; align-items: center; }
+#cct-overlay .cct-toggle .lbl {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 11px;
+}
+#cct-overlay .cct-toggle:hover .lbl { background: var(--hover); }
+#cct-overlay .cct-more.open .cct-toggle .lbl { background: var(--accent); color: #fff; border-color: transparent; }
 
 /* stats: dice histogram with expected-count marks, then a few lines of numbers */
 #cct-overlay .cct-dice { display: flex; align-items: flex-end; gap: 3px; height: 74px; margin-top: 6px; }

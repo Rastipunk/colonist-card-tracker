@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "Łącznie kart",
+    "message": "Łącznie kart w ręce według serwera. ✓ licznik się zgadza; ! musiał się poprawić.",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "Karty rozwoju",
+    "message": "Karty rozwoju w ręce. Małe karty obok liczby to te, które ten gracz już zagrał.",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "Pokaż zakres (minimum + prawdopodobna nadwyżka)",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "Przełącz na zakresy. Teraz widzisz wartości oczekiwane: „2,6” to średnia liczba kart z uwzględnieniem każdej możliwej ukrytej kradzieży.",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "Pokaż wartość oczekiwaną",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "Eksportuj diagnostykę (JSON)",
-    "description": "Tooltip of the download button."
+    "message": "Przełącz na wartość oczekiwaną. Teraz widzisz zakresy: „2 +1 65%” to 2 karty na pewno i 65% szans na jeszcze jedną, obliczone ze wszystkich widzianych ruchów.",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "Opcje i dane",
+    "message": "Opcje: zgoda, nagrane partie, serwer",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "Zminimalizuj",
+    "message": "Zwiń do paska tytułu; kolejne kliknięcie rozwija",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "Ukryj (Alt+Shift+C, aby pokazać ponownie)",
+    "message": "Ukryj panel. Alt+Shift+C przywraca go.",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "Więcej statystyk",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "kart tego surowca u każdego gracza",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "Karty pozostałe w banku",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "Histogram kości z oczekiwaną liczbą dla każdej wartości, siódemki, ukryte kradzieże i szczegóły licznika",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "Jasny motyw",

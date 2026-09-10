@@ -92,7 +92,7 @@
     "description": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly."
   },
   "totalTitle": {
-    "message": "カード合計",
+    "message": "サーバーによる手札の合計。✓ カウンターと一致、! カウンターが自己修正。",
     "description": "Tooltip of the total column header."
   },
   "contradictions": {
@@ -100,7 +100,7 @@
     "description": "Tooltip of the warning triangle in the footer."
   },
   "dev": {
-    "message": "発展カード",
+    "message": "手札の発展カード。数字の横の小さなカードはこのプレイヤーが既に使用したものです。",
     "description": "Tooltip of the development-cards column."
   },
   "knights": {
@@ -116,27 +116,23 @@
     "description": "Tooltip of the '?' column (cards of unknown type)."
   },
   "modeRange": {
-    "message": "範囲を表示（最小値＋追加の可能性）",
-    "description": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    "message": "範囲表示に切り替え。現在は期待値表示：「2.6」は起こり得る全ての非公開の強奪を重み付けした平均枚数です。",
+    "description": "Tooltip of the % button while expected values are shown. Explains the decimal and says the click switches to ranges."
   },
   "modeExpected": {
-    "message": "期待値を表示",
-    "description": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
-  },
-  "export": {
-    "message": "診断情報を書き出す（JSON）",
-    "description": "Tooltip of the download button."
+    "message": "期待値表示に切り替え。現在は範囲表示：「2 +1 65%」は確実に2枚、さらに1枚ある確率が65%という意味で、観測した全ての手番から計算します。",
+    "description": "Tooltip of the % button while ranges are shown. Explains the range notation and says the click switches to expected values."
   },
   "options": {
-    "message": "オプションとデータ",
+    "message": "オプション：同意、記録したゲーム、サーバー",
     "description": "Tooltip of the gear button."
   },
   "minimize": {
-    "message": "最小化",
+    "message": "タイトルバーに折りたたむ。もう一度クリックで展開",
     "description": "Tooltip of the minimize button."
   },
   "close": {
-    "message": "非表示（Alt+Shift+Cで再表示）",
+    "message": "パネルを非表示。Alt+Shift+Cで再表示。",
     "description": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
   },
   "rec": {
@@ -246,6 +242,18 @@
   "moreStats": {
     "message": "その他の統計",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
+  },
+  "perPlayer": {
+    "message": "各プレイヤーのこの資源のカード",
+    "description": "Second half of a resource header tooltip: '<Resource name> · cards in each player's hand'."
+  },
+  "bankTitle": {
+    "message": "銀行に残っているカード",
+    "description": "Tooltip of the bank row."
+  },
+  "moreStatsTitle": {
+    "message": "数ごとの期待値付きサイコロ分布、7の回数、非公開の強奪、カウンターの詳細",
+    "description": "Tooltip of the 'More stats' button."
   },
   "themeLight": {
     "message": "ライトテーマ",
