@@ -124,7 +124,15 @@
     return out;
   }
 
+  // Panel logo: the extension icon (icons/icon.svg) without filters, for the title bar.
+  var logo = '<svg class="cct-logo" viewBox="16 12 96 104" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+    '<polygon points="64,16 105.6,40 105.6,88 64,112 22.4,88 22.4,40" fill="#2c7fc0" stroke="#123f6e" stroke-width="3" stroke-linejoin="round"/>' +
+    '<g transform="rotate(-14 62 68)"><rect x="36" y="38" width="38" height="52" rx="4.5" fill="#e2a921" stroke="#fff" stroke-width="3"/></g>' +
+    '<g transform="rotate(10 72 74)"><rect x="52" y="44" width="40" height="54" rx="4.5" fill="#3a9540" stroke="#fff" stroke-width="3"/>' +
+    '<text x="72" y="83" text-anchor="middle" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="36" font-weight="700" fill="#fff">%</text></g></svg>';
+
   window.CCTIcons = {
+    logo: logo,
     drawn: drawn,
     colonistDefaults: colonistDefaults,
     colonistNames: colonistNames,

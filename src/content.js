@@ -444,7 +444,7 @@
     el.dir = msg('@@bidi_dir') === 'rtl' ? 'rtl' : 'ltr';
     el.innerHTML =
       '<div class="cct-head">' +
-        '<span class="cct-title">🃏 ' + T.title + '</span>' +
+        '<span class="cct-title">' + (window.CCTIcons ? window.CCTIcons.logo : '') + ' ' + T.title + '</span>' +
         '<span class="cct-status"></span>' +
         '<span class="cct-rec" hidden title="' + T.recTitle + '">● ' + T.rec + '</span>' +
         '<span class="cct-actions">' +

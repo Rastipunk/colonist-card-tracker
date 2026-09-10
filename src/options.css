@@ -6,7 +6,7 @@ body {
   /* text direction is set on <html dir> by options.js from chrome.i18n (@@bidi_dir) */
 }
 main { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
-h1 { font-size: 22px; margin: 0 0 18px; }
+h1 { font-size: 22px; margin: 0 0 18px; display: flex; align-items: center; gap: 8px; }
 h1 span { font-size: 13px; color: #8fa0b5; font-weight: 400; margin-inline-start: 6px; }
 h2 { font-size: 16px; margin: 0 0 8px; }
 section { background: #171c25; border: 1px solid #262d3a; border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }

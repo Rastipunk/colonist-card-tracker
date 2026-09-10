@@ -16,6 +16,7 @@ fs.rmSync(STAGE, { recursive: true, force: true });
 fs.mkdirSync(STAGE, { recursive: true });
 
 const files = ['manifest.json', 'src', 'icons', '_locales'];
+// icons/icon.svg is the source drawing, not needed at runtime
 for (const f of files) fs.cpSync(path.join(ROOT, f), path.join(STAGE, f), { recursive: true });
 
 const zip = path.join(DIST, `colonist-card-tracker-${manifest.version}.zip`);

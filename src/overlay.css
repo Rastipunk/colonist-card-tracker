@@ -86,7 +86,8 @@
   cursor: move;
   border-bottom: 1px solid var(--line-soft);
 }
-#cct-overlay .cct-title { font-weight: 600; font-size: 12.5px; white-space: nowrap; }
+#cct-overlay .cct-title { font-weight: 600; font-size: 12.5px; white-space: nowrap; display: inline-flex; align-items: center; gap: 2px; }
+#cct-overlay .cct-logo { width: 18px; height: 18px; flex: 0 0 auto; }
 #cct-overlay .cct-status {
   flex: 1;
   font-size: 11px;
