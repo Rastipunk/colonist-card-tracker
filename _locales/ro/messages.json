@@ -247,6 +247,26 @@
     "message": "Mai multe statistici",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
+  "themeLight": {
+    "message": "Temă deschisă",
+    "description": "Tooltip of the theme button while the dark theme is active (click switches to light)."
+  },
+  "themeDark": {
+    "message": "Temă închisă",
+    "description": "Tooltip of the theme button while the light theme is active (click switches to dark)."
+  },
+  "sevens": {
+    "message": "de șapte",
+    "description": "Stats line: '5 sevens (12%)'."
+  },
+  "expected": {
+    "message": "așteptate",
+    "description": "Stats line, after a number: '4.2 expected'. Also the tooltip of the thin expected-count marks in the dice histogram."
+  },
+  "mostRolled": {
+    "message": "cel mai frecvent",
+    "description": "Stats line: 'most rolled 8 (×6)'."
+  },
   "researchTitle": {
     "message": "Date pentru cercetare",
     "description": "Options page: heading of the consent section."

@@ -98,6 +98,11 @@ try {
   await page.click('#cct-overlay .cct-toggle[data-act="stats"]');
   await page.waitForTimeout(300);
   await page.locator('#cct-overlay').screenshot({ path: path.join(OUT, 'panel-stats.png') });
+  await page.click('#cct-overlay button[data-act="theme"]');
+  await page.waitForTimeout(300);
+  await page.locator('#cct-overlay').screenshot({ path: path.join(OUT, 'panel-light.png') });
+  await page.click('#cct-overlay button[data-act="theme"]');
+  await page.click('#cct-overlay .cct-toggle[data-act="stats"]');
 
   const opt = await ctx.newPage();
   await opt.goto(`chrome-extension://${extId}/src/options.html`);

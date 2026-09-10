@@ -247,6 +247,26 @@
     "message": "통계 더 보기",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
+  "themeLight": {
+    "message": "밝은 테마",
+    "description": "Tooltip of the theme button while the dark theme is active (click switches to light)."
+  },
+  "themeDark": {
+    "message": "어두운 테마",
+    "description": "Tooltip of the theme button while the light theme is active (click switches to dark)."
+  },
+  "sevens": {
+    "message": "7",
+    "description": "Stats line: '5 sevens (12%)'."
+  },
+  "expected": {
+    "message": "예상",
+    "description": "Stats line, after a number: '4.2 expected'. Also the tooltip of the thin expected-count marks in the dice histogram."
+  },
+  "mostRolled": {
+    "message": "최다",
+    "description": "Stats line: 'most rolled 8 (×6)'."
+  },
   "researchTitle": {
     "message": "연구용 데이터",
     "description": "Options page: heading of the consent section."

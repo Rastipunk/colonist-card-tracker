@@ -247,6 +247,26 @@
     "message": "Meer statistieken",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
+  "themeLight": {
+    "message": "Licht thema",
+    "description": "Tooltip of the theme button while the dark theme is active (click switches to light)."
+  },
+  "themeDark": {
+    "message": "Donker thema",
+    "description": "Tooltip of the theme button while the light theme is active (click switches to dark)."
+  },
+  "sevens": {
+    "message": "zevens",
+    "description": "Stats line: '5 sevens (12%)'."
+  },
+  "expected": {
+    "message": "verwacht",
+    "description": "Stats line, after a number: '4.2 expected'. Also the tooltip of the thin expected-count marks in the dice histogram."
+  },
+  "mostRolled": {
+    "message": "meest gegooid",
+    "description": "Stats line: 'most rolled 8 (×6)'."
+  },
   "researchTitle": {
     "message": "Gegevens voor onderzoek",
     "description": "Options page: heading of the consent section."

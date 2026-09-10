@@ -43,7 +43,8 @@
     'steals', 'scenarios', 'approx', 'synced', 'desync', 'total', 'totalTitle', 'contradictions', 'dev', 'knights',
     'expVP', 'unknownCol', 'modeRange', 'modeExpected', 'export', 'options', 'minimize', 'close', 'rec', 'recTitle',
     'recOff', 'consentTitle', 'consentText', 'consentYes', 'consentNo', 'consentMore', 'consentDeclined',
-    'rateAsk', 'rateDismiss', 'devInHand', 'devPlayed', 'devNone', 'devDeck', 'moreStats', 'round'
+    'rateAsk', 'rateDismiss', 'devInHand', 'devPlayed', 'devNone', 'devDeck', 'moreStats', 'round',
+    'themeLight', 'themeDark', 'sevens', 'expected', 'mostRolled'
   ].forEach(function (k) { T[k] = msg(k); });
   // Web Store review page of this very install (the id is the store id when installed from the store).
   var RATE_URL = 'https://chromewebstore.google.com/detail/' + chrome.runtime.id + '/reviews';
@@ -416,7 +417,7 @@
   // ------------------------------------------------------------------ prefs
 
   function loadPrefs() {
-    var p = { minimized: false, mode: 'range', pos: null, hidden: false, gamesEnded: 0, rateDismissed: false, statsOpen: false };
+    var p = { minimized: false, mode: 'range', pos: null, hidden: false, gamesEnded: 0, rateDismissed: false, statsOpen: false, theme: 'dark' };
     try {
       var raw = localStorage.getItem('cct.prefs');
       if (raw) {
@@ -447,6 +448,7 @@
         '<span class="cct-status"></span>' +
         '<span class="cct-rec" hidden title="' + T.recTitle + '">● ' + T.rec + '</span>' +
         '<span class="cct-actions">' +
+          '<button data-act="theme" title="' + esc(prefs.theme === 'light' ? T.themeDark : T.themeLight) + '">' + (prefs.theme === 'light' ? '☾' : '☼') + '</button>' +
           '<button data-act="mode" title="' + T.modeExpected + '">%</button>' +
           '<button data-act="export" title="' + T.export + '">⤓</button>' +
           '<button data-act="options" title="' + T.options + '">⚙</button>' +
@@ -469,13 +471,22 @@
     if (prefs.pos) applyPos(prefs.pos);
     if (prefs.minimized) el.classList.add('cct-min');
     if (prefs.hidden) el.hidden = true;
+    if (prefs.theme === 'light') el.classList.add('cct-light');
     ui.modeBtn.classList.toggle('on', prefs.mode === 'expected');
+    ui.themeBtn = el.querySelector('[data-act="theme"]');
 
     el.querySelector('.cct-actions').addEventListener('click', function (ev) {
       var btn = ev.target.closest('button');
       if (!btn) return;
       ev.stopPropagation();
       switch (btn.getAttribute('data-act')) {
+        case 'theme':
+          prefs.theme = prefs.theme === 'light' ? 'dark' : 'light';
+          el.classList.toggle('cct-light', prefs.theme === 'light');
+          ui.themeBtn.textContent = prefs.theme === 'light' ? '☾' : '☼';
+          ui.themeBtn.title = prefs.theme === 'light' ? T.themeDark : T.themeLight;
+          savePrefs();
+          break;
         case 'mode':
           prefs.mode = prefs.mode === 'range' ? 'expected' : 'range';
           ui.modeBtn.classList.toggle('on', prefs.mode === 'expected');
@@ -646,7 +657,7 @@
     for (var t = 0; t < nTypes; t++) html += '<th class="icon" title="' + esc(NAMES[t]) + '">' + ICONS.res[t] + '</th>';
     if (showUnknown) html += '<th title="' + esc(T.unknownCol) + '">❓</th>';
     html += '<th class="icon" title="' + esc(T.totalTitle) + '">' + ICONS.back + '</th>';
-    if (showDev) html += '<th class="icon" title="' + esc(T.dev) + '">' + ICONS.devBack + '</th>';
+    if (showDev) html += '<th class="icon devcol" title="' + esc(T.dev) + '">' + ICONS.devBack + '</th>';
     html += '</tr></thead><tbody>';
 
     s.players.forEach(function (p) {
@@ -658,8 +669,19 @@
       html += '<td class="total">' + (p.serverTotal !== null && p.serverTotal !== undefined ? p.serverTotal : (p.modelTotal ? p.modelTotal[0] : '–')) +
         (p.synced === true ? '<span class="ok" title="' + T.synced + '">✓</span>' : (p.synced === false ? '<span class="bad" title="' + T.desync + '">!</span>' : '')) + '</td>';
       if (showDev) {
+        // count in hand + the cards this player has played, as small cards
+        var counts = {};
+        (p.dev.used || []).forEach(function (c) { counts[c] = (counts[c] || 0) + 1; });
+        var played = '', playedNames = [];
+        DEV_ORDER.concat(Object.keys(counts).map(Number).filter(function (c) { return DEV_ORDER.indexOf(c) < 0; })).forEach(function (c) {
+          if (!counts[c]) return;
+          var name = DEV_NAMES[c] || ('#' + c);
+          playedNames.push(name + (counts[c] > 1 ? ' ×' + counts[c] : ''));
+          played += '<span class="cct-devcard" title="' + esc(name) + '">' + (ICONS.dev[c] || '') + (counts[c] > 1 ? '<b>×' + counts[c] + '</b>' : '') + '</span>';
+        });
         var vpStr = p.dev.hand > 0 && p.dev.expectedVP > 0 ? T.expVP + ' ' + numFmt.d1(p.dev.expectedVP) : '';
-        html += '<td class="dev" title="' + esc(p.dev.hand + ' ' + T.devInHand + (vpStr ? ' · ' + vpStr : '')) + '">' + p.dev.hand + '</td>';
+        var devTitle = p.dev.hand + ' ' + T.devInHand + (vpStr ? ' · ' + vpStr : '') + (playedNames.length ? ' · ' + T.devPlayed + ': ' + playedNames.join(', ') : '');
+        html += '<td class="devcol" title="' + esc(devTitle) + '"><span class="n">' + p.dev.hand + '</span>' + (played ? '<span class="played">' + played + '</span>' : '') + '</td>';
       }
       html += '</tr>';
     });
@@ -670,55 +692,43 @@
     }
     if (showUnknown) html += '<td></td>';
     html += '<td class="total">' + (s.bank.available ? s.bank.cards.slice(0, nTypes).reduce(function (a, b) { return a + b; }, 0) : '–') + '</td>';
-    if (showDev) html += '<td class="dev">' + (s.devBank !== null && s.devBank !== undefined ? s.devBank : '–') + '</td>';
+    if (showDev) html += '<td class="devcol" title="' + esc(T.devDeck) + '"><span class="n">' + (s.devBank !== null && s.devBank !== undefined ? s.devBank : '–') + '</span></td>';
     html += '</tr></tbody></table>';
 
-    // Development cards revealed: one row per player, each played card drawn with its name.
-    if (showDev) {
-      var anyPlayed = s.players.some(function (p) { return p.dev.used && p.dev.used.length > 0; });
-      html += '<div class="cct-section cct-devs"><h4><span>' + ICONS.devBack + ' ' + esc(T.dev) + '</span>' +
-        (s.devBank !== null && s.devBank !== undefined ? '<span>' + s.devBank + ' ' + esc(T.devDeck) + '</span>' : '') + '</h4>';
-      if (!anyPlayed) {
-        html += '<div class="cct-devnone">' + esc(T.devNone) + '</div>';
-      } else {
-        s.players.forEach(function (p) {
-          var counts = {};
-          (p.dev.used || []).forEach(function (c) { counts[c] = (counts[c] || 0) + 1; });
-          var cards = '';
-          DEV_ORDER.concat(Object.keys(counts).map(Number).filter(function (c) { return DEV_ORDER.indexOf(c) < 0; })).forEach(function (c) {
-            if (!counts[c]) return;
-            var name = DEV_NAMES[c] || ('#' + c);
-            cards += '<span class="cct-devcard" title="' + esc(name) + '">' + (ICONS.dev[c] || '') + (counts[c] > 1 ? '<b>×' + counts[c] + '</b>' : '') + '</span>';
-          });
-          html += '<div class="cct-devrow' + (p.isMe ? ' me' : '') + '"><span class="who"><span class="cct-dot" style="background:' + p.colorHex + '"></span>' + esc(p.username) + '</span>' +
-            '<span class="cards">' + (cards || '<span class="none">–</span>') + '</span>' +
-            '<span class="hand" title="' + esc(T.devInHand) + '">' + p.dev.hand + ' ' + esc(T.devInHand) + '</span></div>';
-        });
-      }
-      html += '</div>';
-    }
-
-    // Collapsible statistics: dice histogram + tracker internals.
+    // Collapsible statistics: dice histogram with expected counts, then key numbers.
     var open = !!prefs.statsOpen;
     html += '<div class="cct-section cct-more' + (open ? ' open' : '') + '"><h4 class="cct-toggle" data-act="stats"><span>' + (open ? '▾' : '▸') + ' ' + esc(T.moreStats) + '</span>' +
       '<span>🎲 ' + s.dice.count + ' ' + esc(T.rolls) + '</span></h4>';
     if (open) {
+      var PROB = { 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1 };
+      var n = s.dice.count || 0;
+      var maxRoll = 1, mostNum = null;
+      for (var r = 2; r <= 12; r++) {
+        var cnt = s.dice.hist[r] || 0;
+        maxRoll = Math.max(maxRoll, cnt, n * PROB[r] / 36);
+        if (cnt > 0 && (mostNum === null || cnt > (s.dice.hist[mostNum] || 0))) mostNum = r;
+      }
+      var BAR_H = 56;   // px available for the tallest bar
       html += '<div class="cct-dice">';
-      var maxRoll = 1;
-      for (var r = 2; r <= 12; r++) maxRoll = Math.max(maxRoll, s.dice.hist[r] || 0);
       for (var r2 = 2; r2 <= 12; r2++) {
         var c = s.dice.hist[r2] || 0;
-        var hpx = Math.round(26 * c / maxRoll);
-        html += '<div class="bar' + (r2 === 7 ? ' hot' : '') + '" title="' + r2 + ': ' + c + '"><b>' + (c || '') + '</b><i style="height:' + hpx + 'px"></i><span>' + r2 + '</span></div>';
+        var hpx = Math.max(2, Math.round(BAR_H * c / maxRoll));
+        var exp = n * PROB[r2] / 36;
+        var epx = Math.round(BAR_H * exp / maxRoll);
+        html += '<div class="bar' + (r2 === 7 ? ' hot' : '') + '" title="' + r2 + ': ' + c + ' · ' + esc(T.expected) + ' ' + numFmt.d1(exp) + '">' +
+          '<b>' + (c || '') + '</b><i style="height:' + hpx + 'px"></i>' +
+          (n > 0 ? '<em style="bottom:' + (epx + 14) + 'px"></em>' : '') +
+          '<span>' + r2 + '</span></div>';
       }
       html += '</div>';
-      var foot = [];
-      foot.push(T.turn + ' ' + s.turn);
-      foot.push(s.unknownSteals + ' ' + T.steals);
-      foot.push(s.worlds + ' ' + T.scenarios + (s.approx ? ' (' + T.approx + ')' : ''));
-      var warnHtml = '';
-      if (s.contradictions > 0) warnHtml = '<span class="warn" title="' + esc(T.contradictions) + '">⚠ ' + s.contradictions + '</span>';
-      html += '<div class="cct-foot"><span>' + foot.join(' · ') + '</span>' + warnHtml + '</div>';
+      var sevens = s.dice.hist[7] || 0;
+      var lines = [];
+      lines.push('<span>' + esc(T.round) + ' <b>' + round + '</b> · ' + esc(T.turn) + ' <b>' + s.turn + '</b></span>');
+      lines.push('<span>' + esc(T.rolls) + ' <b>' + n + '</b>' + (mostNum !== null ? ' · ' + esc(T.mostRolled) + ' <b>' + mostNum + '</b> (×' + s.dice.hist[mostNum] + ')' : '') + '</span>');
+      lines.push('<span>' + esc(T.sevens) + ' <b>' + sevens + '</b>' + (n > 0 ? ' (' + numFmt.pct(sevens / n) + ') · ' + numFmt.d1(n / 6) + ' ' + esc(T.expected) : '') + '</span>');
+      lines.push('<span>' + s.unknownSteals + ' ' + esc(T.steals) + ' · ' + s.worlds + ' ' + esc(T.scenarios) + (s.approx ? ' (' + esc(T.approx) + ')' : '') +
+        (s.contradictions > 0 ? ' · <span class="warn" title="' + esc(T.contradictions) + '">⚠ ' + s.contradictions + '</span>' : '') + '</span>');
+      html += '<div class="cct-stats">' + lines.join('') + '</div>';
     }
     html += '</div>';
     html += '<div class="cct-foot cct-version"><span></span><span>v' + VERSION + '</span></div>';

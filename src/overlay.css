@@ -1,13 +1,42 @@
+/* Colonist Card Tracker panel. Colours live in variables so the light theme is
+   a single override block; contrast on both themes is >= 4.5:1 for text. */
 #cct-overlay {
+  --bg: rgba(16, 20, 28, 0.94);
+  --bg-solid: #10141c;
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --line: rgba(255, 255, 255, 0.10);
+  --line-soft: rgba(255, 255, 255, 0.08);
+  --text: #e8ecf1;
+  --text-2: #c9d3de;
+  --muted: #9fb0c3;
+  --muted-2: #7f90a5;
+  --faint: #55627a;
+  --hover: rgba(255, 255, 255, 0.12);
+  --live: #7ee2a8;
+  --warn: #ffcf6b;
+  --bad: #ff8a80;
+  --rec: #ff6b6b;
+  --accent: #4f7bd6;
+  --accent-soft: rgba(79, 123, 214, 0.14);
+  --extra: #ffcf6b;
+  --expected: #ffd98a;
+  --dev: #d8c8ff;
+  --bar: #4f7bd6;
+  --bar-hot: #e27174;
+  --mark: rgba(255, 255, 255, 0.55);
+  --link: #8ab4ff;
+  --button: rgba(255, 255, 255, 0.10);
+  --dot-ring: rgba(0, 0, 0, 0.4);
+
   position: fixed;
   top: 12px;
   right: 12px;
   z-index: 2147483000;
   min-width: 300px;
-  max-width: 560px;
-  color: #e8ecf1;
-  background: rgba(16, 20, 28, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  max-width: 600px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
   border-radius: 10px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
   font: 12px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans CJK SC", "Noto Sans CJK JP", "Noto Sans CJK KR", sans-serif;
@@ -16,27 +45,58 @@
   /* Chrome replaces this with ltr/rtl according to the UI locale (see _locales). */
   direction: __MSG_@@bidi_dir__;
 }
+#cct-overlay.cct-light {
+  --bg: rgba(250, 251, 253, 0.96);
+  --bg-solid: #fafbfd;
+  --panel-border: rgba(0, 0, 0, 0.18);
+  --line: rgba(0, 0, 0, 0.14);
+  --line-soft: rgba(0, 0, 0, 0.09);
+  --text: #16202c;
+  --text-2: #2b3846;
+  --muted: #4d5d70;
+  --muted-2: #5f6f82;
+  --faint: #9aa7b6;
+  --hover: rgba(0, 0, 0, 0.08);
+  --live: #1b7f45;
+  --warn: #8a5a00;
+  --bad: #b3261e;
+  --rec: #c62828;
+  --accent: #2f5fc4;
+  --accent-soft: rgba(47, 95, 196, 0.10);
+  --extra: #8a5a00;
+  --expected: #7a4d00;
+  --dev: #4a2fa8;
+  --bar: #2f5fc4;
+  --bar-hot: #c62828;
+  --mark: rgba(0, 0, 0, 0.45);
+  --link: #1a4fbf;
+  --button: rgba(0, 0, 0, 0.06);
+  --dot-ring: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+}
 #cct-overlay[hidden] { display: none !important; }
 #cct-overlay * { box-sizing: border-box; }
+
+/* ---------------------------------------------------------------- header */
 #cct-overlay .cct-head {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 6px 8px 6px 10px;
   cursor: move;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--line-soft);
 }
 #cct-overlay .cct-title { font-weight: 600; font-size: 12.5px; white-space: nowrap; }
 #cct-overlay .cct-status {
   flex: 1;
   font-size: 11px;
-  color: #9fb0c3;
+  color: var(--muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#cct-overlay .cct-status.live { color: #7ee2a8; }
-#cct-overlay .cct-status.warn { color: #ffcf6b; }
+#cct-overlay .cct-status.live { color: var(--live); }
+#cct-overlay .cct-status.warn { color: var(--warn); }
 #cct-overlay .cct-actions { display: flex; gap: 2px; }
 #cct-overlay .cct-actions button {
   all: unset;
@@ -46,58 +106,35 @@
   border-radius: 5px;
   text-align: center;
   font-size: 12px;
-  color: #c9d3de;
+  color: var(--text-2);
 }
-#cct-overlay .cct-actions button:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
-#cct-overlay .cct-actions button.on { background: rgba(126, 226, 168, 0.18); color: #7ee2a8; }
+#cct-overlay .cct-actions button:hover { background: var(--hover); color: var(--text); }
+#cct-overlay .cct-actions button.on { background: var(--accent-soft); color: var(--live); }
 #cct-overlay .cct-body { padding: 6px 8px 8px; }
 #cct-overlay.cct-min .cct-body { display: none; }
 
+/* ----------------------------------------------------------------- table */
 #cct-overlay table.cct-table { border-collapse: collapse; width: 100%; }
 #cct-overlay table.cct-table th,
 #cct-overlay table.cct-table td {
-  padding: 3px 5px;
+  padding: 3px 4px;
   text-align: center;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
 #cct-overlay table.cct-table th {
   font-weight: 500;
-  color: #9fb0c3;
+  color: var(--muted);
   font-size: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--line);
 }
 #cct-overlay table.cct-table th.icon { font-size: 14px; padding-top: 2px; padding-bottom: 2px; }
 #cct-overlay .cct-card { width: 15px; height: 21px; vertical-align: middle; display: inline-block; object-fit: contain; border-radius: 2px; }
 #cct-overlay table.cct-table th.icon .cct-card { width: 17px; height: 24px; }
-
-/* development cards revealed */
-#cct-overlay .cct-devs h4 .cct-card { width: 13px; height: 18px; margin-inline-end: 3px; }
-#cct-overlay .cct-devrow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 2px 2px;
-  font-size: 12px;
-}
-#cct-overlay .cct-devrow.me .who { font-weight: 600; }
-#cct-overlay .cct-devrow .who { flex: 0 0 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-#cct-overlay .cct-devrow .cards { flex: 1; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
-#cct-overlay .cct-devrow .cards .none { color: #55627a; }
-#cct-overlay .cct-devcard { display: inline-flex; align-items: center; gap: 2px; }
-#cct-overlay .cct-devcard .cct-card { width: 21px; height: 29px; }
-#cct-overlay .cct-devcard b { font-size: 10.5px; color: #d8c8ff; font-weight: 600; }
-#cct-overlay .cct-devrow .hand { flex: 0 0 auto; color: #9fb0c3; font-size: 11px; white-space: nowrap; }
-#cct-overlay .cct-devnone { color: #6f7f94; font-size: 11px; padding: 2px 2px 0; }
-
-/* collapsible stats */
-#cct-overlay .cct-toggle { cursor: pointer; user-select: none; }
-#cct-overlay .cct-toggle:hover span:first-child { color: #e8ecf1; }
-#cct-overlay .cct-more.open .cct-dice { margin-top: 4px; }
-#cct-overlay .cct-version { margin-top: 4px; justify-content: flex-end; }
 #cct-overlay table.cct-table td.name,
 #cct-overlay table.cct-table th.name { text-align: start; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
 #cct-overlay table.cct-table tr.me td.name { font-weight: 600; }
+#cct-overlay table.cct-table td.name small { color: var(--muted); }
 #cct-overlay .cct-dot {
   display: inline-block;
   width: 9px;
@@ -105,73 +142,136 @@
   border-radius: 50%;
   margin-inline-end: 5px;
   vertical-align: 0;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 1px var(--dot-ring);
 }
-#cct-overlay table.cct-table td.z { color: #55627a; }
+#cct-overlay table.cct-table td.z { color: var(--faint); }
 /* fixed-width value columns so probabilities never change the layout */
-#cct-overlay table.cct-table th:not(.name),
-#cct-overlay table.cct-table td:not(.name) { min-width: 40px; width: 40px; }
+#cct-overlay table.cct-table th:not(.name):not(.devcol),
+#cct-overlay table.cct-table td:not(.name):not(.devcol) { min-width: 40px; width: 40px; }
 #cct-overlay table.cct-table td { height: 30px; vertical-align: middle; line-height: 1.1; }
 #cct-overlay table.cct-table td .v { font-size: 13px; font-weight: 600; }
-#cct-overlay table.cct-table td .x { font-size: 10px; color: #ffcf6b; margin-inline-start: 2px; }
-#cct-overlay table.cct-table td .p { display: block; font-size: 9px; color: #8fa0b5; margin-top: 1px; }
-#cct-overlay table.cct-table td .e { font-size: 13px; font-weight: 600; color: #ffd98a; }
+#cct-overlay table.cct-table td .x { font-size: 10px; color: var(--extra); margin-inline-start: 2px; }
+#cct-overlay table.cct-table td .p { display: block; font-size: 9px; color: var(--muted); margin-top: 1px; }
+#cct-overlay table.cct-table td .e { font-size: 13px; font-weight: 600; color: var(--expected); }
 #cct-overlay table.cct-table td.total { font-weight: 600; }
-#cct-overlay table.cct-table td.total .ok { color: #7ee2a8; font-size: 10px; margin-inline-start: 2px; }
-#cct-overlay table.cct-table td.total .bad { color: #ff8a80; font-size: 10px; margin-inline-start: 2px; }
-#cct-overlay table.cct-table tr.bank td { border-top: 1px solid rgba(255, 255, 255, 0.1); color: #b6c3d2; }
-#cct-overlay table.cct-table td.dev { color: #d8c8ff; }
-#cct-overlay table.cct-table td.dev .used { font-size: 10px; color: #a893d9; }
+#cct-overlay table.cct-table td.total .ok { color: var(--live); font-size: 10px; margin-inline-start: 2px; }
+#cct-overlay table.cct-table td.total .bad { color: var(--bad); font-size: 10px; margin-inline-start: 2px; }
+#cct-overlay table.cct-table tr.bank td { border-top: 1px solid var(--line); color: var(--text-2); }
 
+/* development column: count + the cards played, as small cards */
+#cct-overlay table.cct-table .devcol { min-width: 96px; width: 96px; text-align: start; padding-inline-start: 8px; }
+#cct-overlay table.cct-table th.devcol { text-align: center; }
+#cct-overlay table.cct-table td.devcol { color: var(--dev); }
+#cct-overlay table.cct-table td.devcol .n { font-weight: 600; display: inline-block; min-width: 12px; }
+#cct-overlay table.cct-table td.devcol .played { display: inline-flex; gap: 3px; align-items: center; vertical-align: middle; margin-inline-start: 4px; }
+#cct-overlay table.cct-table td.devcol .played .cct-card { width: 12px; height: 17px; }
+#cct-overlay table.cct-table td.devcol .played b { font-size: 9px; font-weight: 600; color: var(--muted); margin-inline-start: -1px; }
+
+/* -------------------------------------------------------------- sections */
 #cct-overlay .cct-section { margin-top: 7px; }
 #cct-overlay .cct-section h4 {
   margin: 0 0 3px;
   font-size: 11px;
   font-weight: 500;
-  color: #9fb0c3;
+  color: var(--muted);
   display: flex;
   justify-content: space-between;
 }
-#cct-overlay .cct-dice { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+#cct-overlay .cct-toggle { cursor: pointer; user-select: none; }
+#cct-overlay .cct-toggle:hover span:first-child { color: var(--text); }
+
+/* stats: dice histogram with expected-count marks, then a few lines of numbers */
+#cct-overlay .cct-dice { display: flex; align-items: flex-end; gap: 3px; height: 74px; margin-top: 6px; }
 #cct-overlay .cct-dice .bar {
   flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   height: 100%;
   font-size: 9px;
-  color: #9fb0c3;
+  color: var(--muted);
 }
 #cct-overlay .cct-dice .bar i {
   display: block;
   width: 100%;
-  background: #4f7bd6;
+  background: var(--bar);
   border-radius: 2px 2px 0 0;
-  min-height: 1px;
+  min-height: 2px;
 }
-#cct-overlay .cct-dice .bar.hot i { background: #e27174; }
-#cct-overlay .cct-dice .bar b { font-weight: 500; color: #c9d3de; }
+#cct-overlay .cct-dice .bar.hot i { background: var(--bar-hot); }
+#cct-overlay .cct-dice .bar b { font-weight: 500; color: var(--text-2); }
+#cct-overlay .cct-dice .bar em {
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  height: 0;
+  border-top: 2px dotted var(--mark);
+  pointer-events: none;
+}
+#cct-overlay .cct-dice .bar span { margin-top: 2px; }
+#cct-overlay .cct-stats { margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; font-size: 11px; color: var(--muted-2); }
+#cct-overlay .cct-stats b { color: var(--text-2); font-weight: 600; }
+#cct-overlay .cct-stats .warn { color: var(--warn); }
 #cct-overlay .cct-foot {
   margin-top: 6px;
   font-size: 10.5px;
-  color: #7f90a5;
+  color: var(--muted-2);
   display: flex;
   justify-content: space-between;
   gap: 8px;
 }
-#cct-overlay .cct-foot .warn { color: #ffcf6b; }
+#cct-overlay .cct-foot .warn { color: var(--warn); }
+#cct-overlay .cct-version { margin-top: 4px; justify-content: flex-end; }
+#cct-overlay .cct-empty { color: var(--muted); padding: 8px 2px; font-size: 12px; }
+#cct-overlay .cct-empty small { display: block; color: var(--muted-2); margin-top: 4px; }
+
+/* --------------------------------------------------------- rec + consent */
+#cct-overlay .cct-rec {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--rec);
+  letter-spacing: 0.3px;
+  animation: cct-blink 1.6s ease-in-out infinite;
+  white-space: nowrap;
+}
+@keyframes cct-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+#cct-overlay .cct-consent {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--accent-soft);
+  font-size: 11.5px;
+  line-height: 1.4;
+  max-width: 420px;
+}
+#cct-overlay .cct-consent p { margin: 4px 0 6px; color: var(--text-2); }
+#cct-overlay .cct-consent-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+#cct-overlay .cct-consent button {
+  all: unset;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: var(--button);
+  color: var(--text);
+  font-size: 11.5px;
+}
+#cct-overlay .cct-consent button.primary { background: var(--accent); color: #fff; font-weight: 600; }
+#cct-overlay .cct-consent button.link { background: none; color: var(--link); text-decoration: underline; }
+#cct-overlay .cct-consent button:hover { filter: brightness(1.15); }
+
+/* --------------------------------------------------------------- rating */
 #cct-overlay .cct-rate {
   margin-top: 6px;
   padding-top: 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--line-soft);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
   font-size: 11px;
 }
-#cct-overlay .cct-rate a { color: #ffd98a; text-decoration: none; }
+#cct-overlay .cct-rate a { color: var(--expected); text-decoration: none; }
 #cct-overlay .cct-rate a:hover { text-decoration: underline; }
 #cct-overlay .cct-rate button {
   all: unset;
@@ -180,40 +280,6 @@
   height: 18px;
   border-radius: 4px;
   text-align: center;
-  color: #8fa0b5;
+  color: var(--muted);
 }
-#cct-overlay .cct-rate button:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
-#cct-overlay .cct-empty { color: #9fb0c3; padding: 8px 2px; font-size: 12px; }
-#cct-overlay .cct-empty small { display: block; color: #6f7f94; margin-top: 4px; }
-
-#cct-overlay .cct-rec {
-  font-size: 10.5px;
-  font-weight: 600;
-  color: #ff6b6b;
-  letter-spacing: 0.3px;
-  animation: cct-blink 1.6s ease-in-out infinite;
-  white-space: nowrap;
-}
-@keyframes cct-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-#cct-overlay .cct-consent {
-  padding: 8px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(79, 123, 214, 0.12);
-  font-size: 11.5px;
-  line-height: 1.4;
-  max-width: 420px;
-}
-#cct-overlay .cct-consent p { margin: 4px 0 6px; color: #c9d3de; }
-#cct-overlay .cct-consent-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-#cct-overlay .cct-consent button {
-  all: unset;
-  cursor: pointer;
-  padding: 4px 10px;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #e8ecf1;
-  font-size: 11.5px;
-}
-#cct-overlay .cct-consent button.primary { background: #4f7bd6; color: #fff; font-weight: 600; }
-#cct-overlay .cct-consent button.link { background: none; color: #8ab4ff; text-decoration: underline; }
-#cct-overlay .cct-consent button:hover { filter: brightness(1.15); }
+#cct-overlay .cct-rate button:hover { background: var(--hover); color: var(--text); }

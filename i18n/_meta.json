@@ -331,6 +331,26 @@
     "round": {
       "note": "Status prefix before the round number (one round = every player has taken a turn), e.g. 'round 12'.",
       "maxLength": 16
+    },
+    "themeLight": {
+      "note": "Tooltip of the theme button while the dark theme is active (click switches to light).",
+      "maxLength": 24
+    },
+    "themeDark": {
+      "note": "Tooltip of the theme button while the light theme is active (click switches to dark).",
+      "maxLength": 24
+    },
+    "sevens": {
+      "note": "Stats line: '5 sevens (12%)'.",
+      "maxLength": 24
+    },
+    "expected": {
+      "note": "Stats line, after a number: '4.2 expected'. Also the tooltip of the thin expected-count marks in the dice histogram.",
+      "maxLength": 24
+    },
+    "mostRolled": {
+      "note": "Stats line: 'most rolled 8 (×6)'.",
+      "maxLength": 24
     }
   }
 }

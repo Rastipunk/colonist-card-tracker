@@ -247,6 +247,26 @@
     "message": "Statistik lanjut",
     "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
+  "themeLight": {
+    "message": "Tema cerah",
+    "description": "Tooltip of the theme button while the dark theme is active (click switches to light)."
+  },
+  "themeDark": {
+    "message": "Tema gelap",
+    "description": "Tooltip of the theme button while the light theme is active (click switches to dark)."
+  },
+  "sevens": {
+    "message": "tujuh",
+    "description": "Stats line: '5 sevens (12%)'."
+  },
+  "expected": {
+    "message": "dijangka",
+    "description": "Stats line, after a number: '4.2 expected'. Also the tooltip of the thin expected-count marks in the dice histogram."
+  },
+  "mostRolled": {
+    "message": "paling kerap",
+    "description": "Stats line: 'most rolled 8 (×6)'."
+  },
   "researchTitle": {
     "message": "Data untuk penyelidikan",
     "description": "Options page: heading of the consent section."
