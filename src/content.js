@@ -448,7 +448,8 @@
         '<span class="cct-status"></span>' +
         '<span class="cct-rec" hidden title="' + T.recTitle + '">● ' + T.rec + '</span>' +
         '<span class="cct-actions">' +
-          '<button data-act="theme" title="' + esc(prefs.theme === 'light' ? T.themeDark : T.themeLight) + '">' + (prefs.theme === 'light' ? '☾' : '☼') + '</button>' +
+          '<button class="cct-theme" data-act="theme" role="switch" aria-checked="' + (prefs.theme === 'light' ? 'true' : 'false') + '" title="' + esc(prefs.theme === 'light' ? T.themeDark : T.themeLight) + '">' +
+            '<span class="sun">☼</span><span class="track"><span class="knob"></span></span><span class="moon">☾</span></button>' +
           '<button data-act="mode" title="' + T.modeExpected + '">%</button>' +
           '<button data-act="export" title="' + T.export + '">⤓</button>' +
           '<button data-act="options" title="' + T.options + '">⚙</button>' +
@@ -483,7 +484,7 @@
         case 'theme':
           prefs.theme = prefs.theme === 'light' ? 'dark' : 'light';
           el.classList.toggle('cct-light', prefs.theme === 'light');
-          ui.themeBtn.textContent = prefs.theme === 'light' ? '☾' : '☼';
+          ui.themeBtn.setAttribute('aria-checked', prefs.theme === 'light' ? 'true' : 'false');
           ui.themeBtn.title = prefs.theme === 'light' ? T.themeDark : T.themeLight;
           savePrefs();
           break;

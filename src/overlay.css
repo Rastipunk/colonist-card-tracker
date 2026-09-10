@@ -110,6 +110,41 @@
 }
 #cct-overlay .cct-actions button:hover { background: var(--hover); color: var(--text); }
 #cct-overlay .cct-actions button.on { background: var(--accent-soft); color: var(--live); }
+
+/* theme switch: sun · sliding knob · moon (fixed width so nothing moves) */
+#cct-overlay .cct-actions button.cct-theme {
+  width: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--muted);
+  margin-inline-end: 4px;
+}
+#cct-overlay .cct-theme .track {
+  position: relative;
+  width: 24px;
+  height: 13px;
+  border-radius: 7px;
+  background: var(--button);
+  border: 1px solid var(--line);
+  flex: 0 0 auto;
+}
+#cct-overlay .cct-theme .knob {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: left 0.15s ease;
+}
+#cct-overlay .cct-theme[aria-checked="true"] .knob { left: 12px; }
+#cct-overlay .cct-theme .sun { color: var(--expected); }
+#cct-overlay .cct-theme[aria-checked="true"] .sun { color: var(--muted); }
+#cct-overlay .cct-theme[aria-checked="true"] .moon { color: var(--accent); }
 #cct-overlay .cct-body { padding: 6px 8px 8px; }
 #cct-overlay.cct-min .cct-body { display: none; }
 
