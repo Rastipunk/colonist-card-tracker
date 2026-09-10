@@ -713,6 +713,7 @@
       }
       html += '</div>';
       var foot = [];
+      foot.push(T.turn + ' ' + s.turn);
       foot.push(s.unknownSteals + ' ' + T.steals);
       foot.push(s.worlds + ' ' + T.scenarios + (s.approx ? ' (' + T.approx + ')' : ''));
       var warnHtml = '';
