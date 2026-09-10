@@ -43,6 +43,10 @@
     "message": "tour",
     "description": "Prefix before the turn number, e.g. 'turn 12'."
   },
+  "round": {
+    "message": "tour de table",
+    "description": "Status prefix before the round number (one round = every player has taken a turn), e.g. 'round 12'."
+  },
   "bank": {
     "message": "Banque",
     "description": "Row label for the bank's cards. Use the same word colonist.io uses in this language."

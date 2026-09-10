@@ -327,6 +327,10 @@
     "moreStats": {
       "note": "Title of the collapsible section with the dice histogram and tracker statistics.",
       "maxLength": 32
+    },
+    "round": {
+      "note": "Status prefix before the round number (one round = every player has taken a turn), e.g. 'round 12'.",
+      "maxLength": 16
     }
   }
 }

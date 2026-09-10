@@ -43,7 +43,7 @@
     'steals', 'scenarios', 'approx', 'synced', 'desync', 'total', 'totalTitle', 'contradictions', 'dev', 'knights',
     'expVP', 'unknownCol', 'modeRange', 'modeExpected', 'export', 'options', 'minimize', 'close', 'rec', 'recTitle',
     'recOff', 'consentTitle', 'consentText', 'consentYes', 'consentNo', 'consentMore', 'consentDeclined',
-    'rateAsk', 'rateDismiss', 'devInHand', 'devPlayed', 'devNone', 'devDeck', 'moreStats'
+    'rateAsk', 'rateDismiss', 'devInHand', 'devPlayed', 'devNone', 'devDeck', 'moreStats', 'round'
   ].forEach(function (k) { T[k] = msg(k); });
   // Web Store review page of this very install (the id is the store id when installed from the store).
   var RATE_URL = 'https://chromewebstore.google.com/detail/' + chrome.runtime.id + '/reviews';
@@ -631,7 +631,11 @@
 
     var statusBits = [s.phase === 'ended' ? T.ended : T.live];
     if (s.isSpectator) statusBits.push(T.spectator);
-    statusBits.push(T.turn + ' ' + s.turn);
+    // The tracker counts player turns (one per end-of-turn separator); people think in
+    // rounds, where every player has played once.
+    var nPlayers = Math.max(1, s.players.length);
+    var round = Math.max(1, Math.ceil(s.turn / nPlayers));
+    statusBits.push(T.round + ' ' + round);
     ui.status.textContent = statusBits.join(' · ');
     ui.status.className = 'cct-status ' + (s.phase === 'live' ? 'live' : '');
 
