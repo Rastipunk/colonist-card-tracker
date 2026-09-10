@@ -19,95 +19,314 @@
     "it": "Italian"
   },
   "keys": {
-    "appName": { "note": "Store name. Must start with the brand 'Colonist Card Tracker'; after a dash, a short local phrase meaning 'Catan card counter'. Web Store shows about 35 characters in search results and recommends 45 at most.", "maxLength": 45 },
-    "appDesc": { "note": "Short description shown by Chrome and as the Web Store summary. HARD LIMIT 132 characters. Keep 'Catan', 'card counter' and 'colonist.io' near the start.", "maxLength": 132 },
-    "rateAsk": { "note": "Footer link shown after the third finished game, once: invitation to rate the extension in the Web Store. Friendly, no pressure, no reward.", "maxLength": 48 },
-    "rateDismiss": { "note": "Tooltip of the small × next to rateAsk: dismisses the invitation for good.", "maxLength": 20 },
-    "title": { "note": "Panel title, next to a card emoji. Keep short." },
-    "waiting": { "note": "Status shown while no game is loaded." },
-    "waitingHint": { "note": "Hint under the waiting status. F5 is the reload key." },
-    "live": { "note": "Status: game in progress." },
-    "ended": { "note": "Status: game finished." },
-    "spectator": { "note": "Status chip when the user is watching, not playing. Lowercase if the language allows." },
-    "turn": { "note": "Prefix before the turn number, e.g. 'turn 12'." },
-    "bank": { "note": "Row label for the bank's cards. Use the same word colonist.io uses in this language." },
-    "you": { "note": "Small tag after the user's own name: '(you)'." },
-    "bot": { "note": "Tooltip on the robot icon next to computer players." },
-    "dice": { "note": "Section title for the dice histogram." },
-    "rolls": { "note": "Suffix after a number: '37 rolls'." },
-    "steals": { "note": "Footer: number of steals whose card was not visible, e.g. '3 hidden steals'." },
-    "scenarios": { "note": "Footer: number of possible worlds being tracked, e.g. '120 scenarios'." },
-    "approx": { "note": "Footer suffix in parentheses when the scenario count was capped." },
-    "synced": { "note": "Tooltip on the green check next to a player's total." },
-    "desync": { "note": "Tooltip on the red exclamation mark next to a player's total." },
-    "total": { "note": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly.", "maxLength": 4 },
-    "totalTitle": { "note": "Tooltip of the total column header." },
-    "contradictions": { "note": "Tooltip of the warning triangle in the footer." },
-    "dev": { "note": "Tooltip of the development-cards column." },
-    "knights": { "note": "Tooltip fragment after a number: '2 knights played'." },
-    "expVP": { "note": "Tooltip fragment before a number: 'expected VP 0.4'. VP = victory points; use the local abbreviation if one exists." },
-    "unknownCol": { "note": "Tooltip of the '?' column (cards of unknown type)." },
-    "modeRange": { "note": "Tooltip of the % button when the panel shows expected values (click switches to range mode)." },
-    "modeExpected": { "note": "Tooltip of the % button when the panel shows ranges (click switches to expected values)." },
-    "export": { "note": "Tooltip of the download button." },
-    "options": { "note": "Tooltip of the gear button." },
-    "minimize": { "note": "Tooltip of the minimize button." },
-    "close": { "note": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally." },
-    "rec": { "note": "Blinking recording indicator, like on a camera. Keep 'REC' unless the language has a common alternative.", "maxLength": 6 },
-    "recTitle": { "note": "Tooltip of the recording indicator." },
-    "recOff": { "note": "Status when recording is disabled." },
-    "consentTitle": { "note": "Heading of the consent card shown before the counter works." },
-    "consentText": { "note": "LEGAL TEXT. Translate faithfully, do not shorten: it says the extension is free, that it stores game history (moves, trades and chat) anonymously, that names are replaced by codes before anything leaves the browser, that data is collected exclusively for research on decision-making and negotiation in the game, and that accepting is required to use the counter." },
-    "consentYes": { "note": "Primary button of the consent card." },
-    "consentNo": { "note": "Secondary button of the consent card." },
-    "consentMore": { "note": "Link that opens the options page." },
-    "consentDeclined": { "note": "Text shown instead of consentText after the user declined." },
-    "resLumber": { "note": "Resource tooltip. Use the exact word colonist.io shows in this language for the wood resource.", "maxLength": 24 },
-    "resBrick": { "note": "Resource tooltip (brick/clay), as in colonist.io.", "maxLength": 24 },
-    "resWool": { "note": "Resource tooltip (wool/sheep), as in colonist.io.", "maxLength": 24 },
-    "resGrain": { "note": "Resource tooltip (grain/wheat), as in colonist.io.", "maxLength": 24 },
-    "resOre": { "note": "Resource tooltip (ore), as in colonist.io.", "maxLength": 24 },
-    "resCloth": { "note": "Cities & Knights commodity, as in colonist.io.", "maxLength": 24 },
-    "resCoin": { "note": "Cities & Knights commodity, as in colonist.io.", "maxLength": 24 },
-    "resPaper": { "note": "Cities & Knights commodity, as in colonist.io.", "maxLength": 24 },
-    "devKnight": { "note": "1-3 character abbreviation of 'Knight' shown in the played-cards list.", "maxLength": 3 },
-    "devVP": { "note": "1-3 character abbreviation of 'Victory Point'.", "maxLength": 3 },
-    "devMonopoly": { "note": "1-3 character abbreviation of 'Monopoly'.", "maxLength": 3 },
-    "devRoadBuilding": { "note": "1-3 character abbreviation of 'Road Building'.", "maxLength": 3 },
-    "devYearOfPlenty": { "note": "1-3 character abbreviation of 'Year of Plenty'.", "maxLength": 3 },
-    "researchTitle": { "note": "Options page: heading of the consent section." },
-    "researchText": { "note": "LEGAL TEXT, options page. Longer version of consentText; translate faithfully and completely." },
-    "optConsentYes": { "note": "Options page radio button: accept." },
-    "optConsentNo": { "note": "Options page radio button: decline." },
-    "installId": { "note": "Label before the random installation identifier." },
-    "installIdNote": { "note": "Parenthetical after the installation identifier." },
-    "privacy": { "note": "Link text to the privacy policy." },
-    "serverTitle": { "note": "Options page: heading of the server section (advanced users)." },
-    "endpoint": { "note": "Label of the server URL field." },
-    "token": { "note": "Label of the optional token field." },
-    "save": { "note": "Button." },
-    "saved": { "note": "Confirmation shown for two seconds after saving." },
-    "keepLocal": { "note": "Checkbox label." },
-    "gamesTitle": { "note": "Options page: heading of the recorded games table." },
-    "retry": { "note": "Button: retry uploads that failed." },
-    "refresh": { "note": "Button: reload the table." },
-    "deleteAll": { "note": "Destructive button (red)." },
-    "deleteAllConfirm": { "note": "Browser confirm() dialog before deleting local data." },
-    "colDate": { "note": "Table column header." },
-    "colGame": { "note": "Table column header (game id)." },
-    "colPlayers": { "note": "Table column header (number of players)." },
-    "colFrames": { "note": "Table column header: number of network messages recorded." },
-    "colSize": { "note": "Table column header (bytes)." },
-    "colStatus": { "note": "Table column header." },
-    "empty": { "note": "Shown when the table is empty." },
-    "partial": { "note": "Small tag after a game id when the recording did not capture the whole game." },
-    "exportBtn": { "note": "Small button per row." },
-    "deleteBtn": { "note": "Small button per row." },
-    "status_recording": { "note": "Row status: recording in progress." },
-    "status_finalizing": { "note": "Row status: being compressed/anonymised." },
-    "status_pending": { "note": "Row status: waiting to be uploaded." },
-    "status_uploaded": { "note": "Row status: uploaded successfully." },
-    "status_failed": { "note": "Row status: upload failed after retries." },
-    "status_local": { "note": "Row status: kept locally because no server is configured." }
+    "appName": {
+      "note": "Store name. Must start with the brand 'Colonist Card Tracker'; after a dash, a short local phrase meaning 'Catan card counter'. Web Store shows about 35 characters in search results and recommends 45 at most.",
+      "maxLength": 45
+    },
+    "appDesc": {
+      "note": "Short description shown by Chrome and as the Web Store summary. HARD LIMIT 132 characters. Keep 'Catan', 'card counter' and 'colonist.io' near the start.",
+      "maxLength": 132
+    },
+    "rateAsk": {
+      "note": "Footer link shown after the third finished game, once: invitation to rate the extension in the Web Store. Friendly, no pressure, no reward.",
+      "maxLength": 48
+    },
+    "rateDismiss": {
+      "note": "Tooltip of the small × next to rateAsk: dismisses the invitation for good.",
+      "maxLength": 20
+    },
+    "title": {
+      "note": "Panel title, next to a card emoji. Keep short."
+    },
+    "waiting": {
+      "note": "Status shown while no game is loaded."
+    },
+    "waitingHint": {
+      "note": "Hint under the waiting status. F5 is the reload key."
+    },
+    "live": {
+      "note": "Status: game in progress."
+    },
+    "ended": {
+      "note": "Status: game finished."
+    },
+    "spectator": {
+      "note": "Status chip when the user is watching, not playing. Lowercase if the language allows."
+    },
+    "turn": {
+      "note": "Prefix before the turn number, e.g. 'turn 12'."
+    },
+    "bank": {
+      "note": "Row label for the bank's cards. Use the same word colonist.io uses in this language."
+    },
+    "you": {
+      "note": "Small tag after the user's own name: '(you)'."
+    },
+    "bot": {
+      "note": "Tooltip on the robot icon next to computer players."
+    },
+    "dice": {
+      "note": "Section title for the dice histogram."
+    },
+    "rolls": {
+      "note": "Suffix after a number: '37 rolls'."
+    },
+    "steals": {
+      "note": "Footer: number of steals whose card was not visible, e.g. '3 hidden steals'."
+    },
+    "scenarios": {
+      "note": "Footer: number of possible worlds being tracked, e.g. '120 scenarios'."
+    },
+    "approx": {
+      "note": "Footer suffix in parentheses when the scenario count was capped."
+    },
+    "synced": {
+      "note": "Tooltip on the green check next to a player's total."
+    },
+    "desync": {
+      "note": "Tooltip on the red exclamation mark next to a player's total."
+    },
+    "total": {
+      "note": "Column header for the total. The sigma symbol is fine in every language; change only if it reads badly.",
+      "maxLength": 4
+    },
+    "totalTitle": {
+      "note": "Tooltip of the total column header."
+    },
+    "contradictions": {
+      "note": "Tooltip of the warning triangle in the footer."
+    },
+    "dev": {
+      "note": "Tooltip of the development-cards column."
+    },
+    "knights": {
+      "note": "Tooltip fragment after a number: '2 knights played'."
+    },
+    "expVP": {
+      "note": "Tooltip fragment before a number: 'expected VP 0.4'. VP = victory points; use the local abbreviation if one exists."
+    },
+    "unknownCol": {
+      "note": "Tooltip of the '?' column (cards of unknown type)."
+    },
+    "modeRange": {
+      "note": "Tooltip of the % button when the panel shows expected values (click switches to range mode)."
+    },
+    "modeExpected": {
+      "note": "Tooltip of the % button when the panel shows ranges (click switches to expected values)."
+    },
+    "export": {
+      "note": "Tooltip of the download button."
+    },
+    "options": {
+      "note": "Tooltip of the gear button."
+    },
+    "minimize": {
+      "note": "Tooltip of the minimize button."
+    },
+    "close": {
+      "note": "Tooltip of the × button. Keep the key combination Alt+Shift+C literally."
+    },
+    "rec": {
+      "note": "Blinking recording indicator, like on a camera. Keep 'REC' unless the language has a common alternative.",
+      "maxLength": 6
+    },
+    "recTitle": {
+      "note": "Tooltip of the recording indicator."
+    },
+    "recOff": {
+      "note": "Status when recording is disabled."
+    },
+    "consentTitle": {
+      "note": "Heading of the consent card shown before the counter works."
+    },
+    "consentText": {
+      "note": "LEGAL TEXT. Translate faithfully, do not shorten: it says the extension is free, that it stores game history (moves, trades and chat) anonymously, that names are replaced by codes before anything leaves the browser, that data is collected exclusively for research on decision-making and negotiation in the game, and that accepting is required to use the counter."
+    },
+    "consentYes": {
+      "note": "Primary button of the consent card."
+    },
+    "consentNo": {
+      "note": "Secondary button of the consent card."
+    },
+    "consentMore": {
+      "note": "Link that opens the options page."
+    },
+    "consentDeclined": {
+      "note": "Text shown instead of consentText after the user declined."
+    },
+    "resLumber": {
+      "note": "Resource tooltip. Use the exact word colonist.io shows in this language for the wood resource.",
+      "maxLength": 24
+    },
+    "resBrick": {
+      "note": "Resource tooltip (brick/clay), as in colonist.io.",
+      "maxLength": 24
+    },
+    "resWool": {
+      "note": "Resource tooltip (wool/sheep), as in colonist.io.",
+      "maxLength": 24
+    },
+    "resGrain": {
+      "note": "Resource tooltip (grain/wheat), as in colonist.io.",
+      "maxLength": 24
+    },
+    "resOre": {
+      "note": "Resource tooltip (ore), as in colonist.io.",
+      "maxLength": 24
+    },
+    "resCloth": {
+      "note": "Cities & Knights commodity, as in colonist.io.",
+      "maxLength": 24
+    },
+    "resCoin": {
+      "note": "Cities & Knights commodity, as in colonist.io.",
+      "maxLength": 24
+    },
+    "resPaper": {
+      "note": "Cities & Knights commodity, as in colonist.io.",
+      "maxLength": 24
+    },
+    "researchTitle": {
+      "note": "Options page: heading of the consent section."
+    },
+    "researchText": {
+      "note": "LEGAL TEXT, options page. Longer version of consentText; translate faithfully and completely."
+    },
+    "optConsentYes": {
+      "note": "Options page radio button: accept."
+    },
+    "optConsentNo": {
+      "note": "Options page radio button: decline."
+    },
+    "installId": {
+      "note": "Label before the random installation identifier."
+    },
+    "installIdNote": {
+      "note": "Parenthetical after the installation identifier."
+    },
+    "privacy": {
+      "note": "Link text to the privacy policy."
+    },
+    "serverTitle": {
+      "note": "Options page: heading of the server section (advanced users)."
+    },
+    "endpoint": {
+      "note": "Label of the server URL field."
+    },
+    "token": {
+      "note": "Label of the optional token field."
+    },
+    "save": {
+      "note": "Button."
+    },
+    "saved": {
+      "note": "Confirmation shown for two seconds after saving."
+    },
+    "keepLocal": {
+      "note": "Checkbox label."
+    },
+    "gamesTitle": {
+      "note": "Options page: heading of the recorded games table."
+    },
+    "retry": {
+      "note": "Button: retry uploads that failed."
+    },
+    "refresh": {
+      "note": "Button: reload the table."
+    },
+    "deleteAll": {
+      "note": "Destructive button (red)."
+    },
+    "deleteAllConfirm": {
+      "note": "Browser confirm() dialog before deleting local data."
+    },
+    "colDate": {
+      "note": "Table column header."
+    },
+    "colGame": {
+      "note": "Table column header (game id)."
+    },
+    "colPlayers": {
+      "note": "Table column header (number of players)."
+    },
+    "colFrames": {
+      "note": "Table column header: number of network messages recorded."
+    },
+    "colSize": {
+      "note": "Table column header (bytes)."
+    },
+    "colStatus": {
+      "note": "Table column header."
+    },
+    "empty": {
+      "note": "Shown when the table is empty."
+    },
+    "partial": {
+      "note": "Small tag after a game id when the recording did not capture the whole game."
+    },
+    "exportBtn": {
+      "note": "Small button per row."
+    },
+    "deleteBtn": {
+      "note": "Small button per row."
+    },
+    "status_recording": {
+      "note": "Row status: recording in progress."
+    },
+    "status_finalizing": {
+      "note": "Row status: being compressed/anonymised."
+    },
+    "status_pending": {
+      "note": "Row status: waiting to be uploaded."
+    },
+    "status_uploaded": {
+      "note": "Row status: uploaded successfully."
+    },
+    "status_failed": {
+      "note": "Row status: upload failed after retries."
+    },
+    "status_local": {
+      "note": "Row status: kept locally because no server is configured."
+    },
+    "devKnightName": {
+      "note": "Development card name (tooltip and revealed-cards list). Use colonist.io's term.",
+      "maxLength": 40
+    },
+    "devVPName": {
+      "note": "Development card name: victory point card.",
+      "maxLength": 40
+    },
+    "devMonopolyName": {
+      "note": "Development card name.",
+      "maxLength": 40
+    },
+    "devRoadBuildingName": {
+      "note": "Development card name.",
+      "maxLength": 40
+    },
+    "devYearOfPlentyName": {
+      "note": "Development card name. Colonist calls it 'Invento' in Spanish, 'Erfindung' in German.",
+      "maxLength": 40
+    },
+    "devInHand": {
+      "note": "Suffix after a number in the development-cards section: '2 in hand'.",
+      "maxLength": 40
+    },
+    "devPlayed": {
+      "note": "Label before the icons of the cards a player has played.",
+      "maxLength": 40
+    },
+    "devNone": {
+      "note": "Shown in the development-cards section when nobody has played a card yet.",
+      "maxLength": 40
+    },
+    "devDeck": {
+      "note": "Suffix after a number: '19 in the deck' (development cards left to buy).",
+      "maxLength": 40
+    },
+    "moreStats": {
+      "note": "Title of the collapsible section with the dice histogram and tracker statistics.",
+      "maxLength": 32
+    }
   }
 }

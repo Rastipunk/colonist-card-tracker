@@ -382,6 +382,7 @@ importScripts('msgpack.js', 'recorder/format.js', 'recorder/store.js');
       case 'rec.end': p = queued(function () { return endSession(msg, !!msg.immediate); }); break;
       case 'rec.active': p = getActive(msg.sid).then(function (k) { return { key: k }; }); break;
       case 'stats.get': p = stats(); break;
+      case 'options.open': p = chrome.runtime.openOptionsPage().then(function () { return { ok: true }; }); break;
       case 'upload.retry': p = queued(retryPending).then(stats); break;
       case 'session.export':
         p = S.getSession(msg.key).then(function (s) {

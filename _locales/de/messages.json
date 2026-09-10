@@ -203,25 +203,45 @@
     "message": "Papier",
     "description": "Cities & Knights commodity, as in colonist.io."
   },
-  "devKnight": {
-    "message": "R",
-    "description": "1-3 character abbreviation of 'Knight' shown in the played-cards list."
+  "devKnightName": {
+    "message": "Ritter",
+    "description": "Development card name (tooltip and revealed-cards list). Use colonist.io's term."
   },
-  "devVP": {
-    "message": "SP",
-    "description": "1-3 character abbreviation of 'Victory Point'."
+  "devVPName": {
+    "message": "Siegpunkt",
+    "description": "Development card name: victory point card."
   },
-  "devMonopoly": {
-    "message": "M",
-    "description": "1-3 character abbreviation of 'Monopoly'."
+  "devMonopolyName": {
+    "message": "Monopol",
+    "description": "Development card name."
   },
-  "devRoadBuilding": {
-    "message": "SB",
-    "description": "1-3 character abbreviation of 'Road Building'."
+  "devRoadBuildingName": {
+    "message": "Straßenbau",
+    "description": "Development card name."
   },
-  "devYearOfPlenty": {
-    "message": "JÜ",
-    "description": "1-3 character abbreviation of 'Year of Plenty'."
+  "devYearOfPlentyName": {
+    "message": "Erfindung",
+    "description": "Development card name. Colonist calls it 'Invento' in Spanish, 'Erfindung' in German."
+  },
+  "devInHand": {
+    "message": "auf der Hand",
+    "description": "Suffix after a number in the development-cards section: '2 in hand'."
+  },
+  "devPlayed": {
+    "message": "gespielt",
+    "description": "Label before the icons of the cards a player has played."
+  },
+  "devNone": {
+    "message": "noch keine gespielt",
+    "description": "Shown in the development-cards section when nobody has played a card yet."
+  },
+  "devDeck": {
+    "message": "im Stapel",
+    "description": "Suffix after a number: '19 in the deck' (development cards left to buy)."
+  },
+  "moreStats": {
+    "message": "Mehr Statistiken",
+    "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
   "researchTitle": {
     "message": "Daten für die Forschung",

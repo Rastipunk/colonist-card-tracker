@@ -203,25 +203,45 @@
     "message": "Kertas",
     "description": "Cities & Knights commodity, as in colonist.io."
   },
-  "devKnight": {
-    "message": "K",
-    "description": "1-3 character abbreviation of 'Knight' shown in the played-cards list."
+  "devKnightName": {
+    "message": "Kesateria",
+    "description": "Development card name (tooltip and revealed-cards list). Use colonist.io's term."
   },
-  "devVP": {
-    "message": "MK",
-    "description": "1-3 character abbreviation of 'Victory Point'."
+  "devVPName": {
+    "message": "Mata kemenangan",
+    "description": "Development card name: victory point card."
   },
-  "devMonopoly": {
-    "message": "M",
-    "description": "1-3 character abbreviation of 'Monopoly'."
+  "devMonopolyName": {
+    "message": "Monopoli",
+    "description": "Development card name."
   },
-  "devRoadBuilding": {
-    "message": "BJ",
-    "description": "1-3 character abbreviation of 'Road Building'."
+  "devRoadBuildingName": {
+    "message": "Pembinaan jalan",
+    "description": "Development card name."
   },
-  "devYearOfPlenty": {
-    "message": "TM",
-    "description": "1-3 character abbreviation of 'Year of Plenty'."
+  "devYearOfPlentyName": {
+    "message": "Tahun melimpah",
+    "description": "Development card name. Colonist calls it 'Invento' in Spanish, 'Erfindung' in German."
+  },
+  "devInHand": {
+    "message": "di tangan",
+    "description": "Suffix after a number in the development-cards section: '2 in hand'."
+  },
+  "devPlayed": {
+    "message": "dimainkan",
+    "description": "Label before the icons of the cards a player has played."
+  },
+  "devNone": {
+    "message": "belum ada yang dimainkan",
+    "description": "Shown in the development-cards section when nobody has played a card yet."
+  },
+  "devDeck": {
+    "message": "dalam dek",
+    "description": "Suffix after a number: '19 in the deck' (development cards left to buy)."
+  },
+  "moreStats": {
+    "message": "Statistik lanjut",
+    "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
   "researchTitle": {
     "message": "Data untuk penyelidikan",

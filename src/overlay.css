@@ -67,7 +67,34 @@
   font-size: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-#cct-overlay table.cct-table th.icon { font-size: 14px; }
+#cct-overlay table.cct-table th.icon { font-size: 14px; padding-top: 2px; padding-bottom: 2px; }
+#cct-overlay .cct-card { width: 15px; height: 21px; vertical-align: middle; display: inline-block; object-fit: contain; border-radius: 2px; }
+#cct-overlay table.cct-table th.icon .cct-card { width: 17px; height: 24px; }
+
+/* development cards revealed */
+#cct-overlay .cct-devs h4 .cct-card { width: 13px; height: 18px; margin-inline-end: 3px; }
+#cct-overlay .cct-devrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 2px;
+  font-size: 12px;
+}
+#cct-overlay .cct-devrow.me .who { font-weight: 600; }
+#cct-overlay .cct-devrow .who { flex: 0 0 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#cct-overlay .cct-devrow .cards { flex: 1; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+#cct-overlay .cct-devrow .cards .none { color: #55627a; }
+#cct-overlay .cct-devcard { display: inline-flex; align-items: center; gap: 2px; }
+#cct-overlay .cct-devcard .cct-card { width: 21px; height: 29px; }
+#cct-overlay .cct-devcard b { font-size: 10.5px; color: #d8c8ff; font-weight: 600; }
+#cct-overlay .cct-devrow .hand { flex: 0 0 auto; color: #9fb0c3; font-size: 11px; white-space: nowrap; }
+#cct-overlay .cct-devnone { color: #6f7f94; font-size: 11px; padding: 2px 2px 0; }
+
+/* collapsible stats */
+#cct-overlay .cct-toggle { cursor: pointer; user-select: none; }
+#cct-overlay .cct-toggle:hover span:first-child { color: #e8ecf1; }
+#cct-overlay .cct-more.open .cct-dice { margin-top: 4px; }
+#cct-overlay .cct-version { margin-top: 4px; justify-content: flex-end; }
 #cct-overlay table.cct-table td.name,
 #cct-overlay table.cct-table th.name { text-align: start; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
 #cct-overlay table.cct-table tr.me td.name { font-weight: 600; }

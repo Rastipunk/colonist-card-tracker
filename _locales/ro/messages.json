@@ -203,25 +203,45 @@
     "message": "Hârtie",
     "description": "Cities & Knights commodity, as in colonist.io."
   },
-  "devKnight": {
-    "message": "C",
-    "description": "1-3 character abbreviation of 'Knight' shown in the played-cards list."
+  "devKnightName": {
+    "message": "Cavaler",
+    "description": "Development card name (tooltip and revealed-cards list). Use colonist.io's term."
   },
-  "devVP": {
-    "message": "PV",
-    "description": "1-3 character abbreviation of 'Victory Point'."
+  "devVPName": {
+    "message": "Punct de victorie",
+    "description": "Development card name: victory point card."
   },
-  "devMonopoly": {
-    "message": "M",
-    "description": "1-3 character abbreviation of 'Monopoly'."
+  "devMonopolyName": {
+    "message": "Monopol",
+    "description": "Development card name."
   },
-  "devRoadBuilding": {
-    "message": "CD",
-    "description": "1-3 character abbreviation of 'Road Building'."
+  "devRoadBuildingName": {
+    "message": "Construirea drumurilor",
+    "description": "Development card name."
   },
-  "devYearOfPlenty": {
-    "message": "AA",
-    "description": "1-3 character abbreviation of 'Year of Plenty'."
+  "devYearOfPlentyName": {
+    "message": "Anul abundenței",
+    "description": "Development card name. Colonist calls it 'Invento' in Spanish, 'Erfindung' in German."
+  },
+  "devInHand": {
+    "message": "în mână",
+    "description": "Suffix after a number in the development-cards section: '2 in hand'."
+  },
+  "devPlayed": {
+    "message": "jucate",
+    "description": "Label before the icons of the cards a player has played."
+  },
+  "devNone": {
+    "message": "niciuna jucată încă",
+    "description": "Shown in the development-cards section when nobody has played a card yet."
+  },
+  "devDeck": {
+    "message": "în pachet",
+    "description": "Suffix after a number: '19 in the deck' (development cards left to buy)."
+  },
+  "moreStats": {
+    "message": "Mai multe statistici",
+    "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
   "researchTitle": {
     "message": "Date pentru cercetare",

@@ -203,25 +203,45 @@
     "message": "Kağıt",
     "description": "Cities & Knights commodity, as in colonist.io."
   },
-  "devKnight": {
-    "message": "Ş",
-    "description": "1-3 character abbreviation of 'Knight' shown in the played-cards list."
+  "devKnightName": {
+    "message": "Şövalye",
+    "description": "Development card name (tooltip and revealed-cards list). Use colonist.io's term."
   },
-  "devVP": {
-    "message": "ZP",
-    "description": "1-3 character abbreviation of 'Victory Point'."
+  "devVPName": {
+    "message": "Zafer puanı",
+    "description": "Development card name: victory point card."
   },
-  "devMonopoly": {
-    "message": "T",
-    "description": "1-3 character abbreviation of 'Monopoly'."
+  "devMonopolyName": {
+    "message": "Tekel",
+    "description": "Development card name."
   },
-  "devRoadBuilding": {
-    "message": "YY",
-    "description": "1-3 character abbreviation of 'Road Building'."
+  "devRoadBuildingName": {
+    "message": "Yol yapımı",
+    "description": "Development card name."
   },
-  "devYearOfPlenty": {
-    "message": "BY",
-    "description": "1-3 character abbreviation of 'Year of Plenty'."
+  "devYearOfPlentyName": {
+    "message": "Bolluk yılı",
+    "description": "Development card name. Colonist calls it 'Invento' in Spanish, 'Erfindung' in German."
+  },
+  "devInHand": {
+    "message": "elde",
+    "description": "Suffix after a number in the development-cards section: '2 in hand'."
+  },
+  "devPlayed": {
+    "message": "oynanan",
+    "description": "Label before the icons of the cards a player has played."
+  },
+  "devNone": {
+    "message": "henüz oynanmadı",
+    "description": "Shown in the development-cards section when nobody has played a card yet."
+  },
+  "devDeck": {
+    "message": "destede",
+    "description": "Suffix after a number: '19 in the deck' (development cards left to buy)."
+  },
+  "moreStats": {
+    "message": "Daha fazla istatistik",
+    "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
   "researchTitle": {
     "message": "Araştırma verileri",

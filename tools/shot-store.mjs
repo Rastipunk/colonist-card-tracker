@@ -79,6 +79,8 @@ try {
     rolls.forEach(([a, b], i) => { sep(); roll((i % 4) + 1, a, b); });
     // Gris steals a hidden card from Verde -> probabilities
     diff({ gameLogState: log(li++, { type: 16, playerColorThief: 2, playerColorVictim: 4, cardBacks: [0] }), playerStates: { 2: { resourceCards: { 0: 9 } }, 4: { resourceCards: { 0: 4 } } } });
+    // development cards already played (server-reported), to populate the revealed-cards section
+    diff({ mechanicDevelopmentCardsState: { players: { 2: { developmentCardsUsed: [11, 11, 13] }, 4: { developmentCardsUsed: [14] } } } });
     await sleep(400);
   });
 
@@ -92,6 +94,10 @@ try {
   await page.click('#cct-overlay button[data-act="mode"]');
   await page.waitForTimeout(300);
   await page.locator('#cct-overlay').screenshot({ path: path.join(OUT, 'panel-expected.png') });
+  await page.click('#cct-overlay button[data-act="mode"]');
+  await page.click('#cct-overlay .cct-toggle[data-act="stats"]');
+  await page.waitForTimeout(300);
+  await page.locator('#cct-overlay').screenshot({ path: path.join(OUT, 'panel-stats.png') });
 
   const opt = await ctx.newPage();
   await opt.goto(`chrome-extension://${extId}/src/options.html`);

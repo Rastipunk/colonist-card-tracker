@@ -203,25 +203,45 @@
     "message": "종이",
     "description": "Cities & Knights commodity, as in colonist.io."
   },
-  "devKnight": {
-    "message": "기",
-    "description": "1-3 character abbreviation of 'Knight' shown in the played-cards list."
+  "devKnightName": {
+    "message": "기사",
+    "description": "Development card name (tooltip and revealed-cards list). Use colonist.io's term."
   },
-  "devVP": {
-    "message": "승",
-    "description": "1-3 character abbreviation of 'Victory Point'."
+  "devVPName": {
+    "message": "승점",
+    "description": "Development card name: victory point card."
   },
-  "devMonopoly": {
-    "message": "독",
-    "description": "1-3 character abbreviation of 'Monopoly'."
+  "devMonopolyName": {
+    "message": "독점",
+    "description": "Development card name."
   },
-  "devRoadBuilding": {
-    "message": "도",
-    "description": "1-3 character abbreviation of 'Road Building'."
+  "devRoadBuildingName": {
+    "message": "도로 건설",
+    "description": "Development card name."
   },
-  "devYearOfPlenty": {
-    "message": "풍",
-    "description": "1-3 character abbreviation of 'Year of Plenty'."
+  "devYearOfPlentyName": {
+    "message": "풍요의 해",
+    "description": "Development card name. Colonist calls it 'Invento' in Spanish, 'Erfindung' in German."
+  },
+  "devInHand": {
+    "message": "손에",
+    "description": "Suffix after a number in the development-cards section: '2 in hand'."
+  },
+  "devPlayed": {
+    "message": "사용",
+    "description": "Label before the icons of the cards a player has played."
+  },
+  "devNone": {
+    "message": "아직 사용 없음",
+    "description": "Shown in the development-cards section when nobody has played a card yet."
+  },
+  "devDeck": {
+    "message": "덱에",
+    "description": "Suffix after a number: '19 in the deck' (development cards left to buy)."
+  },
+  "moreStats": {
+    "message": "통계 더 보기",
+    "description": "Title of the collapsible section with the dice histogram and tracker statistics."
   },
   "researchTitle": {
     "message": "연구용 데이터",

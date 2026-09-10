@@ -43,15 +43,72 @@
     'steals', 'scenarios', 'approx', 'synced', 'desync', 'total', 'totalTitle', 'contradictions', 'dev', 'knights',
     'expVP', 'unknownCol', 'modeRange', 'modeExpected', 'export', 'options', 'minimize', 'close', 'rec', 'recTitle',
     'recOff', 'consentTitle', 'consentText', 'consentYes', 'consentNo', 'consentMore', 'consentDeclined',
-    'rateAsk', 'rateDismiss'
+    'rateAsk', 'rateDismiss', 'devInHand', 'devPlayed', 'devNone', 'devDeck', 'moreStats'
   ].forEach(function (k) { T[k] = msg(k); });
   // Web Store review page of this very install (the id is the store id when installed from the store).
   var RATE_URL = 'https://chromewebstore.google.com/detail/' + chrome.runtime.id + '/reviews';
   var RATE_AFTER_GAMES = 3;
 
-  var ICONS = ['🪵', '🧱', '🐑', '🌾', '🪨', '🧵', '🪙', '📜'];
+  // Card images (src/icons.js): colonist.io's own cards from its CDN, with a
+  // re-discovery step if an asset hash changed and our own drawings as last resort.
+  var ICONS = null;
+  var iconMode = 'colonist';          // 'colonist' | 'drawn'
+  var assetsDiscovered = false;
+  function loadAssetMap() {
+    try {
+      var raw = localStorage.getItem('cct.assets');
+      if (raw) { var a = JSON.parse(raw); if (a && a.map && Date.now() - a.ts < 30 * 86400000) return a.map; }
+    } catch (e) { /* ignore */ }
+    return null;
+  }
+  function buildIcons() {
+    var I = window.CCTIcons;
+    if (!I) { ICONS = { res: [], back: '', devBack: '', dev: {} }; return; }
+    ICONS = iconMode === 'drawn' ? I.drawn : I.fromAssets(loadAssetMap() || I.colonistDefaults);
+  }
+  buildIcons();
+  /** Re-reads the asset names from colonist's own bundle (only when an image failed). */
+  function discoverAssets() {
+    if (assetsDiscovered) return Promise.resolve(false);
+    assetsDiscovered = true;
+    var I = window.CCTIcons;
+    return fetch('https://colonist.io/', { credentials: 'omit', cache: 'no-cache' }).then(function (r) { return r.text(); }).then(function (html) {
+      var m = html.match(/https:\/\/cdn\.colonist\.io\/dist\/js\/shared\.[0-9a-f]+\.js/);
+      if (!m) throw new Error('bundle not found');
+      return fetch(m[0], { credentials: 'omit' }).then(function (r) { return r.text(); });
+    }).then(function (js) {
+      var found = {};
+      var re = /assets\/(card_[a-z]+)\.([0-9a-f]+)\.svg/g, x;
+      while ((x = re.exec(js))) found[x[1]] = x[1] + '.' + x[2];
+      var N = I.colonistNames, map = { res: [], dev: {} };
+      for (var i = 0; i < N.res.length; i++) { if (!found[N.res[i]]) throw new Error('missing ' + N.res[i]); map.res.push(found[N.res[i]]); }
+      if (!found[N.back] || !found[N.devBack]) throw new Error('missing backs');
+      map.back = found[N.back]; map.devBack = found[N.devBack];
+      for (var k in N.dev) { if (!found[N.dev[k]]) throw new Error('missing ' + N.dev[k]); map.dev[k] = found[N.dev[k]]; }
+      try { localStorage.setItem('cct.assets', JSON.stringify({ ts: Date.now(), map: map })); } catch (e) { /* ignore */ }
+      buildIcons();
+      return true;
+    }).catch(function (e) {
+      console.warn('[CCT] card assets discovery failed, using drawn cards', e);
+      iconMode = 'drawn';
+      buildIcons();
+      return true;
+    });
+  }
+  /** Called after each render: if a colonist image fails, re-discover or fall back. */
+  function watchIcons(root) {
+    if (iconMode !== 'colonist') return;
+    var imgs = root.querySelectorAll('img.cct-card');
+    for (var i = 0; i < imgs.length; i++) {
+      imgs[i].addEventListener('error', function () {
+        if (assetsDiscovered) { if (iconMode !== 'drawn') { iconMode = 'drawn'; buildIcons(); queueRender(); } return; }
+        discoverAssets().then(function () { queueRender(); });
+      }, { once: true });
+    }
+  }
   var NAMES = ['resLumber', 'resBrick', 'resWool', 'resGrain', 'resOre', 'resCloth', 'resCoin', 'resPaper'].map(msg);
-  var DEV_NAMES = { 11: msg('devKnight'), 12: msg('devVP'), 13: msg('devMonopoly'), 14: msg('devRoadBuilding'), 15: msg('devYearOfPlenty') };
+  var DEV_NAMES = { 11: msg('devKnightName'), 12: msg('devVPName'), 13: msg('devMonopolyName'), 14: msg('devRoadBuildingName'), 15: msg('devYearOfPlentyName') };
+  var DEV_ORDER = [11, 13, 14, 15, 12];
 
   // Locale-aware number formatting (decimal separator, percent sign placement).
   var numFmt = (function () {
@@ -359,7 +416,7 @@
   // ------------------------------------------------------------------ prefs
 
   function loadPrefs() {
-    var p = { minimized: false, mode: 'range', pos: null, hidden: false, gamesEnded: 0, rateDismissed: false };
+    var p = { minimized: false, mode: 'range', pos: null, hidden: false, gamesEnded: 0, rateDismissed: false, statsOpen: false };
     try {
       var raw = localStorage.getItem('cct.prefs');
       if (raw) {
@@ -464,6 +521,12 @@
       var t = ev.target.closest('[data-act]');
       if (!t) return;
       var act = t.getAttribute('data-act');
+      if (act === 'stats') {
+        prefs.statsOpen = !prefs.statsOpen;
+        savePrefs();
+        render();
+        return;
+      }
       if (act === 'rate' || act === 'rate-no') {
         // Either way the invitation is shown only once; the link itself opens normally.
         prefs.rateDismissed = true;
@@ -500,7 +563,9 @@
   }
 
   function openOptions() {
-    try { window.open(chrome.runtime.getURL('src/options.html'), '_blank'); } catch (e) { /* ignore */ }
+    // A web page cannot navigate to chrome-extension:// URLs (ERR_BLOCKED_BY_CLIENT);
+    // the service worker opens the options page on our behalf.
+    rt({ type: 'options.open' });
   }
 
   function applyPos(pos) {
@@ -574,10 +639,10 @@
     var showUnknown = s.players.some(function (p) { return p.unknown && p.unknown.max > 0; });
     var showDev = !s.isCK;
     var html = '<table class="cct-table"><thead><tr><th class="name"></th>';
-    for (var t = 0; t < nTypes; t++) html += '<th class="icon" title="' + esc(NAMES[t]) + '">' + ICONS[t] + '</th>';
+    for (var t = 0; t < nTypes; t++) html += '<th class="icon" title="' + esc(NAMES[t]) + '">' + ICONS.res[t] + '</th>';
     if (showUnknown) html += '<th title="' + esc(T.unknownCol) + '">❓</th>';
-    html += '<th title="' + esc(T.totalTitle) + '">' + esc(T.total) + '</th>';
-    if (showDev) html += '<th class="icon" title="' + T.dev + '">🃏</th>';
+    html += '<th class="icon" title="' + esc(T.totalTitle) + '">' + ICONS.back + '</th>';
+    if (showDev) html += '<th class="icon" title="' + esc(T.dev) + '">' + ICONS.devBack + '</th>';
     html += '</tr></thead><tbody>';
 
     s.players.forEach(function (p) {
@@ -589,10 +654,8 @@
       html += '<td class="total">' + (p.serverTotal !== null && p.serverTotal !== undefined ? p.serverTotal : (p.modelTotal ? p.modelTotal[0] : '–')) +
         (p.synced === true ? '<span class="ok" title="' + T.synced + '">✓</span>' : (p.synced === false ? '<span class="bad" title="' + T.desync + '">!</span>' : '')) + '</td>';
       if (showDev) {
-        var usedStr = (p.dev.used || []).map(function (c) { return DEV_NAMES[c] || ('#' + c); }).join(' ');
-        var vpStr = p.dev.hand > 0 && p.dev.expectedVP > 0 ? ' · ' + T.expVP + ' ' + numFmt.d1(p.dev.expectedVP) : '';
-        html += '<td class="dev" title="' + esc((usedStr ? usedStr + ' | ' : '') + p.dev.knights + ' ' + T.knights + vpStr) + '">' +
-          p.dev.hand + (usedStr ? ' <span class="used">' + esc(usedStr) + '</span>' : '') + '</td>';
+        var vpStr = p.dev.hand > 0 && p.dev.expectedVP > 0 ? T.expVP + ' ' + numFmt.d1(p.dev.expectedVP) : '';
+        html += '<td class="dev" title="' + esc(p.dev.hand + ' ' + T.devInHand + (vpStr ? ' · ' + vpStr : '')) + '">' + p.dev.hand + '</td>';
       }
       html += '</tr>';
     });
@@ -606,28 +669,61 @@
     if (showDev) html += '<td class="dev">' + (s.devBank !== null && s.devBank !== undefined ? s.devBank : '–') + '</td>';
     html += '</tr></tbody></table>';
 
-    html += '<div class="cct-section"><h4><span>🎲 ' + T.dice + '</span><span>' + s.dice.count + ' ' + T.rolls + '</span></h4><div class="cct-dice">';
-    var maxRoll = 1;
-    for (var r = 2; r <= 12; r++) maxRoll = Math.max(maxRoll, s.dice.hist[r] || 0);
-    for (var r2 = 2; r2 <= 12; r2++) {
-      var c = s.dice.hist[r2] || 0;
-      var hpx = Math.round(26 * c / maxRoll);
-      html += '<div class="bar' + (r2 === 7 ? ' hot' : '') + '" title="' + r2 + ': ' + c + '"><b>' + (c || '') + '</b><i style="height:' + hpx + 'px"></i><span>' + r2 + '</span></div>';
+    // Development cards revealed: one row per player, each played card drawn with its name.
+    if (showDev) {
+      var anyPlayed = s.players.some(function (p) { return p.dev.used && p.dev.used.length > 0; });
+      html += '<div class="cct-section cct-devs"><h4><span>' + ICONS.devBack + ' ' + esc(T.dev) + '</span>' +
+        (s.devBank !== null && s.devBank !== undefined ? '<span>' + s.devBank + ' ' + esc(T.devDeck) + '</span>' : '') + '</h4>';
+      if (!anyPlayed) {
+        html += '<div class="cct-devnone">' + esc(T.devNone) + '</div>';
+      } else {
+        s.players.forEach(function (p) {
+          var counts = {};
+          (p.dev.used || []).forEach(function (c) { counts[c] = (counts[c] || 0) + 1; });
+          var cards = '';
+          DEV_ORDER.concat(Object.keys(counts).map(Number).filter(function (c) { return DEV_ORDER.indexOf(c) < 0; })).forEach(function (c) {
+            if (!counts[c]) return;
+            var name = DEV_NAMES[c] || ('#' + c);
+            cards += '<span class="cct-devcard" title="' + esc(name) + '">' + (ICONS.dev[c] || '') + (counts[c] > 1 ? '<b>×' + counts[c] + '</b>' : '') + '</span>';
+          });
+          html += '<div class="cct-devrow' + (p.isMe ? ' me' : '') + '"><span class="who"><span class="cct-dot" style="background:' + p.colorHex + '"></span>' + esc(p.username) + '</span>' +
+            '<span class="cards">' + (cards || '<span class="none">–</span>') + '</span>' +
+            '<span class="hand" title="' + esc(T.devInHand) + '">' + p.dev.hand + ' ' + esc(T.devInHand) + '</span></div>';
+        });
+      }
+      html += '</div>';
     }
-    html += '</div></div>';
 
-    var foot = [];
-    foot.push(s.unknownSteals + ' ' + T.steals);
-    foot.push(s.worlds + ' ' + T.scenarios + (s.approx ? ' (' + T.approx + ')' : ''));
-    var warnHtml = '';
-    if (s.contradictions > 0) warnHtml = '<span class="warn" title="' + esc(T.contradictions) + '">⚠ ' + s.contradictions + '</span>';
-    html += '<div class="cct-foot"><span>' + foot.join(' · ') + '</span>' + warnHtml + '<span>v' + VERSION + '</span></div>';
+    // Collapsible statistics: dice histogram + tracker internals.
+    var open = !!prefs.statsOpen;
+    html += '<div class="cct-section cct-more' + (open ? ' open' : '') + '"><h4 class="cct-toggle" data-act="stats"><span>' + (open ? '▾' : '▸') + ' ' + esc(T.moreStats) + '</span>' +
+      '<span>🎲 ' + s.dice.count + ' ' + esc(T.rolls) + '</span></h4>';
+    if (open) {
+      html += '<div class="cct-dice">';
+      var maxRoll = 1;
+      for (var r = 2; r <= 12; r++) maxRoll = Math.max(maxRoll, s.dice.hist[r] || 0);
+      for (var r2 = 2; r2 <= 12; r2++) {
+        var c = s.dice.hist[r2] || 0;
+        var hpx = Math.round(26 * c / maxRoll);
+        html += '<div class="bar' + (r2 === 7 ? ' hot' : '') + '" title="' + r2 + ': ' + c + '"><b>' + (c || '') + '</b><i style="height:' + hpx + 'px"></i><span>' + r2 + '</span></div>';
+      }
+      html += '</div>';
+      var foot = [];
+      foot.push(s.unknownSteals + ' ' + T.steals);
+      foot.push(s.worlds + ' ' + T.scenarios + (s.approx ? ' (' + T.approx + ')' : ''));
+      var warnHtml = '';
+      if (s.contradictions > 0) warnHtml = '<span class="warn" title="' + esc(T.contradictions) + '">⚠ ' + s.contradictions + '</span>';
+      html += '<div class="cct-foot"><span>' + foot.join(' · ') + '</span>' + warnHtml + '</div>';
+    }
+    html += '</div>';
+    html += '<div class="cct-foot cct-version"><span></span><span>v' + VERSION + '</span></div>';
     if ((prefs.gamesEnded || 0) >= RATE_AFTER_GAMES && !prefs.rateDismissed) {
       html += '<div class="cct-rate"><a href="' + RATE_URL + '" target="_blank" rel="noopener" data-act="rate">★ ' + esc(T.rateAsk) + '</a>' +
         '<button data-act="rate-no" title="' + esc(T.rateDismiss) + '">×</button></div>';
     }
 
     ui.body.innerHTML = html;
+    watchIcons(ui.body);
   }
 
   function cellHtml(m) {

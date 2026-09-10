@@ -12,6 +12,20 @@ A diferencia de los trackers anteriores, **no lee el DOM**. Intercepta el WebSoc
 decodifica los mensajes (MessagePack) y procesa el log estructurado que el servidor envía al
 cliente. Funciona en cualquier idioma de la interfaz y sobrevive a una recarga a mitad de partida.
 
+## Imágenes de las cartas
+
+Desde 1.3.0 las cabeceras y la sección de cartas de desarrollo usan las cartas de colonist.io,
+cargadas en tiempo de ejecución desde su CDN (`cdn.colonist.io/dist/assets/card_*.<hash>.svg`);
+no se incluyen en el paquete. Decisión de Juan del 2026-09-09, con el riesgo de propiedad
+intelectual advertido (el arte es de Colonist/Catan). Mecanismo en `src/icons.js` y
+`content.js`:
+
+1. Se usan las direcciones conocidas (el hash es de contenido: solo cambia si cambia el dibujo).
+2. Si una imagen falla, se relee el bundle `shared.*.js` del sitio, que lista los nombres
+   actuales, y se guarda el mapa en `localStorage` (`cct.assets`, 30 días).
+3. Si eso también falla, se usan los dibujos propios en SVG de `src/icons.js`, hechos en el
+   mismo lenguaje visual pero sin copiar el arte.
+
 ## Idiomas
 
 La interfaz de la extensión (panel, consentimiento, página de opciones, nombre y descripción)

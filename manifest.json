@@ -44,6 +44,7 @@
         "src/protocol.js",
         "src/engine/worlds.js",
         "src/engine/tracker.js",
+        "src/icons.js",
         "src/content.js"
       ],
       "css": [
