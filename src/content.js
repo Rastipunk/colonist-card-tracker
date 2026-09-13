@@ -235,6 +235,7 @@
         console.log('[CCT] game built: ' + tracker.players.map(function (pl) { return pl.username; }).join(', ') +
           ' | mode=' + tracker.mode + ' | me=' + tracker.myColor + ' | logs=' + tracker.processedLogs.size);
         lastPhase = 'live';
+        if (prefs.hidden) setHidden(false);   // a new game always brings the panel back
         startRecording(p.sid, false);
       } else {
         frames.push(rec);
@@ -425,6 +426,9 @@
         for (var k in parsed) if (Object.prototype.hasOwnProperty.call(p, k)) p[k] = parsed[k];
       }
     } catch (e) { /* ignore */ }
+    // "Hidden" never survives a page load: a panel that stays invisible across games
+    // looks like a broken extension to anyone who does not know the shortcut.
+    p.hidden = false;
     return p;
   }
 
@@ -459,8 +463,18 @@
       '<div class="cct-consent" hidden></div>' +
       '<div class="cct-body"></div>';
     root.appendChild(el);
+    // Small tab shown while the panel is hidden, so it can always be brought back.
+    var chip = document.createElement('button');
+    chip.id = 'cct-chip';
+    chip.className = prefs.theme === 'light' ? 'cct-light' : '';
+    chip.hidden = true;
+    chip.title = T.title + ' (Alt+Shift+C)';
+    chip.innerHTML = (window.CCTIcons ? window.CCTIcons.logo : '') + '<span>' + esc(T.title) + '</span>';
+    chip.addEventListener('click', function () { setHidden(false); });
+    root.appendChild(chip);
     ui = {
       root: el,
+      chip: chip,
       head: el.querySelector('.cct-head'),
       status: el.querySelector('.cct-status'),
       rec: el.querySelector('.cct-rec'),
@@ -470,7 +484,8 @@
     };
     if (prefs.pos) applyPos(prefs.pos);
     if (prefs.minimized) { el.classList.add('cct-min'); if (prefs.minWidth) el.style.width = prefs.minWidth + 'px'; }
-    if (prefs.hidden) el.hidden = true;
+    if (prefs.hidden) setHidden(true);
+    window.addEventListener('resize', function () { if (prefs.pos) applyPos(prefs.pos); });
     if (prefs.theme === 'light') el.classList.add('cct-light');
     ui.modeBtn.classList.toggle('on', prefs.mode === 'expected');
     ui.themeBtn = el.querySelector('[data-act="theme"]');
@@ -483,6 +498,7 @@
         case 'theme':
           prefs.theme = prefs.theme === 'light' ? 'dark' : 'light';
           el.classList.toggle('cct-light', prefs.theme === 'light');
+          ui.chip.classList.toggle('cct-light', prefs.theme === 'light');
           ui.themeBtn.setAttribute('aria-checked', prefs.theme === 'light' ? 'true' : 'false');
           ui.themeBtn.title = prefs.theme === 'light' ? T.themeDark : T.themeLight;
           savePrefs();
@@ -506,9 +522,7 @@
           savePrefs();
           break;
         case 'close':
-          prefs.hidden = true;
-          el.hidden = true;
-          savePrefs();
+          setHidden(true);
           break;
       }
     });
@@ -564,11 +578,7 @@
       savePrefs();
     });
     window.addEventListener('keydown', function (ev) {
-      if (ev.altKey && ev.shiftKey && (ev.key === 'C' || ev.key === 'c')) {
-        prefs.hidden = !prefs.hidden;
-        el.hidden = prefs.hidden;
-        savePrefs();
-      }
+      if (ev.altKey && ev.shiftKey && (ev.key === 'C' || ev.key === 'c')) setHidden(!prefs.hidden);
       // Alt+Shift+D: diagnostics JSON for bug reports (no button; see README).
       if (ev.altKey && ev.shiftKey && (ev.key === 'D' || ev.key === 'd')) exportDiagnostics();
     });
@@ -579,6 +589,14 @@
     // A web page cannot navigate to chrome-extension:// URLs (ERR_BLOCKED_BY_CLIENT);
     // the service worker opens the options page on our behalf.
     rt({ type: 'options.open' });
+  }
+
+  /** Hide/show the panel for this page load only; the chip stays as the way back. */
+  function setHidden(hidden) {
+    prefs.hidden = !!hidden;
+    if (!ui) return;
+    ui.root.hidden = prefs.hidden;
+    ui.chip.hidden = !prefs.hidden;
   }
 
   function applyPos(pos) {

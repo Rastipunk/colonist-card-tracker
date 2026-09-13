@@ -77,6 +77,32 @@
 #cct-overlay[hidden] { display: none !important; }
 #cct-overlay * { box-sizing: border-box; }
 
+/* tab shown while the panel is hidden: one click brings the panel back */
+#cct-chip {
+  all: unset;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 2147483000;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 7px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #e8ecf1;
+  background: rgba(16, 20, 28, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  font: 600 12px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+}
+#cct-chip[hidden] { display: none !important; }
+#cct-chip:hover { background: rgba(30, 36, 48, 0.96); }
+#cct-chip .cct-logo { width: 18px; height: 18px; }
+#cct-chip.cct-light { color: #16202c; background: rgba(250, 251, 253, 0.96); border-color: rgba(0, 0, 0, 0.18); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); }
+#cct-chip.cct-light:hover { background: #eef1f5; }
+
 /* ---------------------------------------------------------------- header */
 #cct-overlay .cct-head {
   display: flex;

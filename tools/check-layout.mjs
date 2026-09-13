@@ -68,6 +68,17 @@ try {
   await page.click('#cct-overlay button[data-act="theme"]'); await check('dark theme');
   await page.click('#cct-overlay button[data-act="mode"]'); await check('expected mode');
   await page.click('#cct-overlay button[data-act="mode"]'); await check('range mode');
+
+  // hide/show: the chip must appear while hidden, and a reload must show the panel again
+  const vis = () => page.evaluate(() => ({ panel: !document.querySelector('#cct-overlay').hidden, chip: !document.querySelector('#cct-chip').hidden }));
+  await page.click('#cct-overlay button[data-act="close"]'); await page.waitForTimeout(200);
+  let v = await vis(); console.log((!v.panel && v.chip ? 'ok   ' : 'FAIL ') + ' | hidden shows chip | ' + JSON.stringify(v)); if (v.panel || !v.chip) failures++;
+  await page.click('#cct-chip'); await page.waitForTimeout(200);
+  v = await vis(); console.log((v.panel && !v.chip ? 'ok   ' : 'FAIL ') + ' | chip restores panel | ' + JSON.stringify(v)); if (!v.panel || v.chip) failures++;
+  await page.click('#cct-overlay button[data-act="close"]'); await page.waitForTimeout(200);
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.waitForSelector('#cct-overlay', { timeout: 15000 }); await page.waitForTimeout(800);
+  v = await vis(); console.log((v.panel ? 'ok   ' : 'FAIL ') + ' | reload shows panel | ' + JSON.stringify(v)); if (!v.panel) failures++;
 } finally {
   await ctx.close().catch(() => {});
 }
