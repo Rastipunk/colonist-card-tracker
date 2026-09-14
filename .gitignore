@@ -4,3 +4,4 @@ tools/out/
 *.log
 store/_*
 store/raw-*
+dataset/
